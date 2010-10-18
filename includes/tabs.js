@@ -1,12 +1,9 @@
 $(document).ready(function() {
-	$(".content").hide();
-	$("ul.tabs li:first").addClass("active").show();
-	$(".content:first").show();
 
-	$("ul.tabs li").click(function() {
-		$("ul.tabs li").removeClass("active");
+	$("ul.portfolio li").click(function() {
+		//$("ul.tabs li").removeClass("active");
 			$(this).addClass("active");
-			$(".content").hide();
+			$(".exhibit").hide();
 
 			var activeTab = $(this).find("a").attr("href");
 			$(activeTab).fadeIn();
