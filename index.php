@@ -11,7 +11,11 @@
   <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="icon.png" type="image/png">
-  <script type="text/javascript" src="includes/jquery.js"></script>
+  <script type="text/javascript" src="includes/jquery-core.js">
+</script>
+  <script type="text/javascript" src=
+  "includes/jquery-components.js">
+</script>
   <script type="text/javascript" src="includes/tabs.js">
 </script>
 </head>
@@ -22,49 +26,109 @@
     "dylanstestserver"></div>
 
     <div id="content">
-	<div id="exhibit">
-		<div class="tabs" id="repthis">
-			REPTHIS
-		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-	</div>
+      <div id="exhibit">
+        <div class="tabs" id="repthis">
+          <div class="minimizer"></div><a href=
+          "http://repthis.com">REPTHIS</a><br>
+          <br>
+          <i>rapid prototyping replicator</i>
+        </div>
+
+        <div class="tabs" id="peepshow">
+          <i><a href=
+          "foxy-addons/peepshow">foxy-addons/peepshow</a></i>
+        </div>
+
+        <div class="tabs" id="readoo">
+          <b><a href="readoo/">READOO</a></b>
+        </div><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
       <ul class="portfolio" style="text-align:right">
-        <h3>my projects:</h3>
-	<li class="project"><a href="#repthis">repthis.info</a></li><br>
-        <a href=
-        "foxy-addons/peepshow/">foxy-addons/peepshow/</a><br>
-        <a href="readoo/">readoo/</a><br>
-        <a href="http://leavemeout.us">leavemeout.us</a><br>
-        <br>
+        <li style="list-style: none; display: inline">
+          <h3>my projects:</h3>
+        </li>
 
-        <h3>things i've done for others:</h3><a href=
-        "http://activehamptons.com">activehamptons.com</a><br>
-        <a href="http://transfishing.com">transfishing.com</a><br>
-        <br>
+        <li class="project"><a href=
+        "#repthis">repthis.info</a></li>
 
-        <h3>things i'm doing for others:</h3><a href=
-        "kjondesign/">kjondesign/</a><br>
-        <br>
+        <li style="list-style: none"><br></li>
 
-        <h3>my github repo:</h3><a href=
-        "http://github.com/nospampleasemam">github@github.com:nospampleasemam/</a><br>
+        <li class="project"><a href=
+        "#peepshow">foxy-addons/peepshow/</a></li>
 
-        <br>
-        <br>
+        <li style="list-style: none"><br></li>
 
-        <h2>i am</h2>
+        <li class="project"><a href="#readoo">readoo/</a></li>
 
-        <h1><a href="mailto:dylan@psu.edu">dylan</a></h1><a href=
-        "mailto:dylan@psu.edu">@psu.edu</a>
+        <li style="list-style: none">
+          <br>
+          <br>
+
+          <h3>things i've done for others:</h3>
+        </li>
+
+        <li class="project"><a href=
+        "http://activehamptons.com">activehamptons.com</a></li>
+
+        <li style="list-style: none"><br></li>
+
+        <li class="project"><a href=
+        "http://transfishing.com">transfishing.com</a></li>
+
+        <li style="list-style: none">
+          <br>
+          <br>
+
+          <h3>things i'm doing for others:</h3>
+        </li>
+
+        <li class="project"><a href=
+        "kjondesign/">kjondesign/</a></li>
+
+        <li style="list-style: none">
+          <br>
+          <br>
+
+          <h3>things i've worked on</h3>
+        </li>
+
+        <li class="project"><a href=
+        "tempositions.com">tempositions.com</a></li>
+
+        <li style="list-style: none">
+          <br>
+          <br>
+
+          <h3>my github repo:</h3>
+        </li>
+
+        <li class="project"><a href=
+        "http://github.com/nospampleasemam">github@github.com:nospampleasemam/</a></li>
+
+        <li style="list-style: none">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <h2>i am</h2>
+
+          <h1><a href="mailto:dylan@psu.edu">dylan</a></h1><a href=
+          "mailto:dylan@psu.edu">@psu.edu</a>
+        </li>
       </ul>
     </div><br>
     <br>
   </div>
 </body>
 </html>
+

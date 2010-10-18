@@ -1,13 +1,18 @@
 $(document).ready(function() {
-
 	$(".tabs").hide();
+	var i = 0;
 	$("ul.portfolio li").click(function() {
-		//$("ul.tabs li").removeClass("active");
-		$(this).addClass("active");
-		$(".exhibit").hide();
+		i++;
+		$(".tabs").hide();
+		$("ul.portfolio li").removeClass("active");
+		$(this).addClass("active_project");
 
 		var activeTab = $(this).find("a").attr("href");
-		$(activeTab).fadeIn();
+		if (i==1)
+			$(activeTab).show("fold", 400);
+		else
+			$(activeTab).show("puff", 600);
+		$(activeTab).addClass("active_tab");
 		return false;
 	});
 
