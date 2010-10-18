@@ -8,7 +8,7 @@
   <meta http-equiv="Content-type" content=
   "text/html; charset=us-ascii">
 
-  <title>dylanstestserver/title&gt;</title>
+  <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="icon.png" type="image/png">
   <script type="text/javascript" src="includes/jquery.js">
@@ -27,13 +27,13 @@
         <h3>my projects:</h3><a href=
         "http://repthis.info">repthis.info</a><br>
         <a href=
-        "foxy-addons/peepshow/">foxy-addons/peepshow</a><br>
+        "foxy-addons/peepshow/">foxy-addons/peepshow/</a><br>
         <a href="readoo/">readoo/</a><br>
         <a href="http://leavemeout.us">leavemeout.us</a><br>
         <br>
 
         <h3>things i've done for others:</h3><a href=
-        "activehamptons.com">activehamptons.com</a><br>
+        "http://activehamptons.com">activehamptons.com</a><br>
         <a href="http://transfishing.com">transfishing.com</a><br>
         <br>
 
@@ -42,7 +42,7 @@
         <br>
 
         <h3>my github repo:</h3><a href=
-        "http://github.com/nospampleasemam">github@github.com:nospampleasemam</a><br>
+        "http://github.com/nospampleasemam">github@github.com:nospampleasemam/</a><br>
 
         <br>
         <br>
