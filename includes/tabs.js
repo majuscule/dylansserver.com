@@ -1,13 +1,14 @@
 $(document).ready(function() {
 
+	$(".tabs").hide();
 	$("ul.portfolio li").click(function() {
 		//$("ul.tabs li").removeClass("active");
-			$(this).addClass("active");
-			$(".exhibit").hide();
+		$(this).addClass("active");
+		$(".exhibit").hide();
 
-			var activeTab = $(this).find("a").attr("href");
-			$(activeTab).fadeIn();
-			return false;
+		var activeTab = $(this).find("a").attr("href");
+		$(activeTab).fadeIn();
+		return false;
 	});
 
 });

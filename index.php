@@ -11,8 +11,7 @@
   <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="icon.png" type="image/png">
-  <script type="text/javascript" src="includes/jquery.js">
-</script>
+  <script type="text/javascript" src="includes/jquery.js"></script>
   <script type="text/javascript" src="includes/tabs.js">
 </script>
 </head>
@@ -23,9 +22,21 @@
     "dylanstestserver"></div>
 
     <div id="content">
-      <div style="text-align:right">
-        <h3>my projects:</h3><a href=
-        "http://repthis.info">repthis.info</a><br>
+	<div id="exhibit">
+		<div class="tabs" id="repthis">
+			REPTHIS
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+      <ul class="portfolio" style="text-align:right">
+        <h3>my projects:</h3>
+	<li class="project"><a href="#repthis">repthis.info</a></li><br>
         <a href=
         "foxy-addons/peepshow/">foxy-addons/peepshow/</a><br>
         <a href="readoo/">readoo/</a><br>
@@ -51,7 +62,7 @@
 
         <h1><a href="mailto:dylan@psu.edu">dylan</a></h1><a href=
         "mailto:dylan@psu.edu">@psu.edu</a>
-      </div>
+      </ul>
     </div><br>
     <br>
   </div>
