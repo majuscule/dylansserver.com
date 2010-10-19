@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	$(".tabs").hide();
 	var i = 0;
-	$("ul.portfolio li").click(function() {
+	$("ul.portfolio li.project a.exhibit").click(function() {
 		i++;
 		$(".tabs").hide();
 		$("ul.portfolio li").removeClass("active");
 		$(this).addClass("active_project");
 
-		var activeTab = $(this).find("a").attr("href");
+		var activeTab = $(this).attr("href");
 		if (i==1)
-			$(activeTab).show("fold", 400);
+			$(activeTab).show("slide", 400);
 		else
 			$(activeTab).show("puff", 600);
 		$(activeTab).addClass("active_tab");
