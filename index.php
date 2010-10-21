@@ -47,7 +47,7 @@
           <br>
           <a href="http://repthis.info">repthis.info</a> is the account of a friend and I learning to build our own. <br>
           <br>
-
+</span>
         </div>
 
         <div class="tabs" id="peepshow"> 
