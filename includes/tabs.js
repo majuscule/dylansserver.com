@@ -15,5 +15,11 @@ $(document).ready(function() {
 		$(activeTab).addClass("active_tab");
 		return false;
 	});
+	$('#showdivs').click(function() {
+		var divs = document.getElementsByTagName('div');
+		for(i=0;i<divs.length;i++){
+			divs[i].className += (" shownDiv");
+		}
+	});
 
 });

@@ -32,7 +32,6 @@
     <div id="content">
       <div id="exhibit">
         <div class="tabs" id="repthis">
-          <div class="minimizer"></div><br>
           <span class="reprap_entry-title">3D printing is a form of
           additive manufacturing technology where a three
           dimensional object is created by successive layers of
@@ -62,6 +61,14 @@
 
 	here's the <a href="http://github.com/nospampleasemam/peepshow/">repo</a> for the source code.</span>
         </div>
+	<div class="tabs" id="drawcss">
+	<span class="drawcss_entry"><a href="drawcss">drawcss</a><br><br>
+	writing markup for website wireframes always seemed silly.<br><br>
+	this is a tool to draw them (it's not done).<br><br>
+	<a href="#show" id="showdivs">check out</a> the invisible divs this page is built on.<br><br>
+	then get <a href="http://github.com/nospampleasemam/drawcss">the code</a>.
+	</span>
+	</div>
 
         <div class="tabs" id="readoo">
 	<span class="readoo_entry"><a href="readoo">readoo</a> helps you find search keywords to target.<br><br>
@@ -88,6 +95,11 @@
 
         <li class="project"><a class="exhibit" href=
         "#peepshow">foxy-addons/peepshow</a></li>
+
+        <li style="list-style: none"><br></li>
+
+        <li class="project"><a class="exhibit" href=
+        "#drawcss">drawcss</a></li>
 
         <li style="list-style: none"><br></li>
 

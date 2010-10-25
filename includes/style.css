@@ -107,3 +107,11 @@ a {
 .readoo_entry{
 	font:1.6em arial;
 }
+
+.drawcss_entry{
+	font:1.6em "lucida console";
+}
+
+.shownDiv{
+	border:1px solid black;
+}
