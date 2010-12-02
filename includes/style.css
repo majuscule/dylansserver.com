@@ -7,6 +7,10 @@ a {
 	text-decoration:none;
 }
 
+li {
+	list-style:none;
+}
+
 #structure {
 	padding-top:1px;
 	background-color:#fff;
