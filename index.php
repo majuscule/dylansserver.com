@@ -74,15 +74,7 @@
 	<span class="readoo_entry"><a href="readoo">readoo</a> helps you find search keywords to target.<br><br>
 	it reads your IIS logs, and finds successful keywords worth focusing on.<br><br>
 	it's not done yet! here's the <a href="github.com/nospampleasemam/READOO">source code</a>.</span>
-        </div>
-
-	<div class="tabs" id="dylanstestserver">
-	<span class="dylanstestserver_entry">
-		here's the code for this site:<br><br>
-		git clone <a href="http:github.com/nospampleasemam/dylanstestserver">git@github.com:<br>nospampleasemam/<br>dylanstestserver</a>
-	</span>
-	</div>
-	<br>
+        </div><br>
         <br>
         <br>
         <br>
@@ -92,34 +84,29 @@
       </div>
 
       <ul class="portfolio" style="text-align:right">
-        <li style=" display: inline">
+        <li style="list-style: none; display: inline">
           <h3>my projects:</h3>
         </li>
 
         <li class="project"><a class="exhibit" href=
-        "#drawcss">drawcss</a></li>
-
-        <li ><br></li>
-
-        <li class="project"><a class="exhibit" href=
         "#repthis">repthis.info</a></li>
 
-        <li ><br></li>
+        <li style="list-style: none"><br></li>
 
         <li class="project"><a class="exhibit" href=
         "#peepshow">foxy-addons/peepshow</a></li>
 
-        <li ><br></li>
+        <li style="list-style: none"><br></li>
+
+        <li class="project"><a class="exhibit" href=
+        "#drawcss">drawcss</a></li>
+
+        <li style="list-style: none"><br></li>
 
         <li class="project"><a class="exhibit" href=
         "#readoo">readoo</a></li>
 
-        <li ><br></li>
-
-        <li class="project"><a class="exhibit" href=
-        "#dylanstestserver">dylanstestserver</a></li>
-
-        <li >
+        <li style="list-style: none">
           <br>
           <br>
 
@@ -129,12 +116,12 @@
         <li class="project"><a href=
         "http://activehamptons.com">activehamptons.com</a></li>
 
-        <li ><br></li>
+        <li style="list-style: none"><br></li>
 
         <li class="project"><a href=
         "http://transfishing.com">transfishing.com</a></li>
 
-        <li >
+        <li style="list-style: none">
           <br>
           <br>
 
@@ -144,7 +131,7 @@
         <li class="project"><a href=
         "kjondesign/">kjondesign</a></li>
 
-        <li >
+        <li style="list-style: none">
           <br>
           <br>
 
@@ -154,7 +141,7 @@
         <li class="project"><a href=
         "http://tempositions.com">tempositions.com</a></li>
 
-        <li >
+        <li style="list-style: none">
           <br>
           <br>
 
@@ -164,19 +151,16 @@
         <li class="project"><a href=
         "http://github.com/nospampleasemam">github@github.com:nospampleasemam</a></li>
 
+        <li style="list-style: none">
+          <br>
+          <br>
           <br>
           <br>
           <br>
           <br>
 
-        <li>
-          <div class="tabs" id="contact">
-          <span class="contact_link">
-           <h1><a href="contact">dylan</a></h1><a href=
-           "contact">@psu.edu</a>
-	   </span>
-          </div>
-
+          <h1><a href="mailto:dylan@psu.edu">dylan</a></h1><a href=
+          "mailto:dylan@psu.edu">@psu.edu</a>
         </li>
       </ul>
     </div><br>
