@@ -24,7 +24,7 @@
   <div id="structure">
     <div id="banner">
       <a href=
-      "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&ucn_task=conformance#">
+      "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#">
       <img src="images/dylanstestserver.png" alt="dylanstestserver"
       border="0"></a>
     </div>
@@ -44,48 +44,74 @@
           desktop 3D printer capable of printing plastic
           objects.<br>
           <br>
-          <a href="http://repthis.info">repthis.info</a> is the account of a friend and I learning to build our own. <br>
-          <br>
-</span>
+          <a href="http://repthis.info">repthis.info</a> is the
+          account of a friend and I learning to build our own.<br>
+          <br></span>
         </div>
 
         <div class="tabs" id="youtube_backup_">
           <span class="youtube_backup-entry-title"><a href=
-          "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></span>
-		  <br><br>
-		  <span class="youtube_backup-entry">
-		  <br>
-		  backs up all the <a href="http://youtube.com">youtube</a> videos in a users favorites list.<br><br>
-		   this is my fork of the <a href="https://github.com/hagnas/youtube_backup">original youtube_backup</a> which adds asynchronous alerts after successful downloads.<br><br>
-		   it's written in <a href="http://www.python.org/">python</a>.
-		  </span>
+          "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></span><br>
+
+          <br>
+          <span class="youtube_backup-entry"><br>
+          backs up all the <a href="http://youtube.com">youtube</a>
+          videos in a users favorites list.<br>
+          <br>
+          this is my fork of the <a href=
+          "https://github.com/hagnas/youtube_backup">original
+          youtube_backup</a> which adds asynchronous alerts after
+          successful downloads.<br>
+          <br>
+          it's written in <a href=
+          "http://www.python.org/">python</a>.</span>
         </div>
 
-        <div class="tabs" id="peepshow_"> 
+        <div class="tabs" id="peepshow_">
           <h3><i><a href=
           "foxy-addons/peepshow">foxy-addons/</a></i></h3>
 
           <h1><i><a href=
-          "foxy-addons/peepshow">peepshow</a></i></h1>
-<br><br><br>
-
-	<span class="peepshow_entry">a <a href="http://www.mozilla.com/en-US/products/download.html">firefox</a> addon, to load linked images inline (like on <a href="http://reddit.com/r/pics">reddit</a>).<br><br>
-
-	here's the <a href="http://github.com/nospampleasemam/peepshow/">repo</a> for the source code.</span>
+          "foxy-addons/peepshow">peepshow</a></i></h1><br>
+          <br>
+          <br>
+          <span class="peepshow_entry">a <a href=
+          "http://www.mozilla.com/en-US/products/download.html">firefox</a>
+          addon, to load linked images inline (like on <a href=
+          "http://reddit.com/r/pics">reddit</a>).<br>
+          <br>
+          here's the <a href=
+          "http://github.com/nospampleasemam/peepshow/">repo</a>
+          for the source code.</span>
         </div>
-	<div class="tabs" id="drawcss_">
-	<span class="drawcss_entry"><a href="drawcss">drawcss</a><br><br>
-	writing markup for website wireframes always seemed silly.<br><br>
-	this is a tool to draw them (it's not done).<br><br>
-	<a href="#show" id="showdivs">check out</a> the invisible divs this page is built on.<br><br>
-	then get <a href="http://github.com/nospampleasemam/drawcss">the code</a>.
-	</span>
-	</div>
+
+        <div class="tabs" id="drawcss_">
+          <span class="drawcss_entry"><a href=
+          "drawcss">drawcss</a><br>
+          <br>
+          writing markup for website wireframes always seemed
+          silly.<br>
+          <br>
+          this is a tool to draw them (it's not done).<br>
+          <br>
+          <a href="#show" id="showdivs" name="showdivs">check
+          out</a> the invisible divs this page is built on.<br>
+          <br>
+          then get <a href=
+          "http://github.com/nospampleasemam/drawcss">the
+          code</a>.</span>
+        </div>
 
         <div class="tabs" id="readoo_">
-	<span class="readoo_entry"><a href="readoo">readoo</a> helps you find search keywords to target.<br><br>
-	it reads your IIS logs, and finds successful keywords worth focusing on.<br><br>
-	it's not done yet! here's the <a href="github.com/nospampleasemam/READOO">source code</a>.</span>
+          <span class="readoo_entry"><a href="readoo">readoo</a>
+          helps you find search keywords to target.<br>
+          <br>
+          it reads your IIS logs, and finds successful keywords
+          worth focusing on.<br>
+          <br>
+          it's not done yet! here's the <a href=
+          "github.com/nospampleasemam/READOO">source
+          code</a>.</span>
         </div><br>
         <br>
         <br>
@@ -185,4 +211,3 @@
   </div>
 </body>
 </html>
-
