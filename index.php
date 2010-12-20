@@ -39,7 +39,7 @@
           "http://repthis.info/">http://en.wikipedia.org/wiki/3D_printing</a><br>
 
           <br>
-          <a href="reprap.org">reprap</a> is a <a href=
+          <a href="http://reprap.org">reprap</a> is a <a href=
           "http://en.wikipedia.org/wiki/Free_software">free</a>
           desktop 3D printer capable of printing plastic
           objects.<br>
