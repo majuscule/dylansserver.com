@@ -62,13 +62,13 @@
 
         <div class="tabs" id="peepshow"> 
           <h3><i><a href=
-          "http://foxy-addons/peepshow">foxy-addons/</a></i></h3>
+          "foxy-addons/peepshow">foxy-addons/</a></i></h3>
 
           <h1><i><a href=
-          "http://foxy-addons/peepshow">peepshow</a></i></h1>
+          "foxy-addons/peepshow">peepshow</a></i></h1>
 <br><br><br>
 
-	<span class="peepshow_entry">a <a href="http://www.mozilla.com/en-US/products/download.html">firefox</a> addon, to load linked images inline (like on <a href="reddit.com/r/pics">reddit</a>).<br><br>
+	<span class="peepshow_entry">a <a href="http://www.mozilla.com/en-US/products/download.html">firefox</a> addon, to load linked images inline (like on <a href="http://reddit.com/r/pics">reddit</a>).<br><br>
 
 	here's the <a href="http://github.com/nospampleasemam/peepshow/">repo</a> for the source code.</span>
         </div>
