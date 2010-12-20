@@ -50,8 +50,8 @@
         </div>
 
         <div class="tabs" id="youtube_backup">
-          <span class="youtube_backup-entry-title"><h3><a href=
-          "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></h3></span>
+          <span class="youtube_backup-entry-title"><a href=
+          "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></span>
 		  <span class="youtube_backup-entry">
 		  <br>
 		  backs up all the <a href="http://youtube.com">youtube</a> videos in a users favorites list.<br><br>
