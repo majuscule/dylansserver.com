@@ -24,7 +24,7 @@
   <div id="structure">
     <div id="banner">
       <a href=
-      "http://validator.w3.org/check?verbose=1&amp;uri=http%3A%2F%2Fdylanstestserver.com%2F">
+      "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&ucn_task=conformance#">
       <img src="images/dylanstestserver.png" alt="dylanstestserver"
       border="0"></a>
     </div>
