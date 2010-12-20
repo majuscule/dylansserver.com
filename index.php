@@ -31,7 +31,7 @@
 
     <div id="content">
       <div id="exhibit">
-        <div class="tabs" id="repthis">
+        <div class="tabs" id="repthis_">
           <span class="reprap_entry-title">3D printing is a form of
           additive manufacturing technology where a three
           dimensional object is created by successive layers of
@@ -49,9 +49,10 @@
 </span>
         </div>
 
-        <div class="tabs" id="youtube_backup">
+        <div class="tabs" id="youtube_backup_">
           <span class="youtube_backup-entry-title"><a href=
           "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></span>
+		  <br><br>
 		  <span class="youtube_backup-entry">
 		  <br>
 		  backs up all the <a href="http://youtube.com">youtube</a> videos in a users favorites list.<br><br>
@@ -60,7 +61,7 @@
 		  </span>
         </div>
 
-        <div class="tabs" id="peepshow"> 
+        <div class="tabs" id="peepshow_"> 
           <h3><i><a href=
           "foxy-addons/peepshow">foxy-addons/</a></i></h3>
 
@@ -72,7 +73,7 @@
 
 	here's the <a href="http://github.com/nospampleasemam/peepshow/">repo</a> for the source code.</span>
         </div>
-	<div class="tabs" id="drawcss">
+	<div class="tabs" id="drawcss_">
 	<span class="drawcss_entry"><a href="drawcss">drawcss</a><br><br>
 	writing markup for website wireframes always seemed silly.<br><br>
 	this is a tool to draw them (it's not done).<br><br>
@@ -81,7 +82,7 @@
 	</span>
 	</div>
 
-        <div class="tabs" id="readoo">
+        <div class="tabs" id="readoo_">
 	<span class="readoo_entry"><a href="readoo">readoo</a> helps you find search keywords to target.<br><br>
 	it reads your IIS logs, and finds successful keywords worth focusing on.<br><br>
 	it's not done yet! here's the <a href="github.com/nospampleasemam/READOO">source code</a>.</span>
