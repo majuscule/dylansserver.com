@@ -98,7 +98,7 @@ li {
 }
 
 .reprap_entry-title {
-	font: 1.5em georgia, times, serif;
+	font: 1.5em georgia, times;
 	text-decoration: none;
 	color: black;
 	display: block;
@@ -114,6 +114,14 @@ li {
 
 .drawcss_entry{
 	font:1.6em "lucida console";
+}
+
+.youtube_backup-entry-title{
+	font:1.6em "lucida console";
+}
+
+.youtube_backup-entry{
+	font:1.3em "lucida console";
 }
 
 .shownDiv{

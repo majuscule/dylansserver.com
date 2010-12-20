@@ -49,6 +49,17 @@
 </span>
         </div>
 
+        <div class="tabs" id="youtube_backup">
+          <span class="youtube_backup-entry-title"><h3><a href=
+          "https://github.com/nospampleasemam/youtube_backup">youtube_backup</a></h3></span>
+		  <span class="youtube_backup-entry">
+		  <br>
+		  backs up all the <a href="http://youtube.com">youtube</a> videos in a users favorites list.<br><br>
+		   this is my fork of the <a href="https://github.com/hagnas/youtube_backup">original youtube_backup</a> which adds asynchronous alerts after successful downloads.<br><br>
+		   it's written in <a href="http://www.python.org/">python</a>.
+		  </span>
+        </div>
+
         <div class="tabs" id="peepshow"> 
           <h3><i><a href=
           "http://foxy-addons/peepshow">foxy-addons/</a></i></h3>
@@ -90,6 +101,11 @@
 
         <li class="project"><a class="exhibit" href=
         "#repthis">repthis.info</a></li>
+
+        <li style="list-style: none"><br></li>
+
+        <li class="project"><a class="exhibit" href=
+        "#youtube_backup">youtube_backup</a></li>
 
         <li style="list-style: none"><br></li>
 
