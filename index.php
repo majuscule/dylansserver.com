@@ -103,14 +103,14 @@
         </div>
 
         <div class="tabs" id="readoo_">
-          <span class="readoo_entry"><a href="readoo">readoo</a>
+          <span class="readoo_entry"><a href="http://github.com/nospampleasemam/readoo">readoo</a>
           helps you find search keywords to target.<br>
           <br>
           it reads your IIS logs, and finds successful keywords
           worth focusing on.<br>
           <br>
           it's not done yet! here's the <a href=
-          "github.com/nospampleasemam/READOO">source
+          "http://github.com/nospampleasemam/readoo">source
           code</a>.</span>
         </div><br>
         <br>
