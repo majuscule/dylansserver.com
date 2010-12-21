@@ -69,10 +69,10 @@
 
         <div class="tabs" id="peepshow_">
           <h3><i><a href=
-          "foxy-addons/peepshow">foxy-addons/</a></i></h3>
+          "foxy-addons/peepshow/peepshow.xpi">foxy-addons/</a></i></h3>
 
           <h1><i><a href=
-          "foxy-addons/peepshow">peepshow</a></i></h1><br>
+          "foxy-addons/peepshow/peepshow.xpi">peepshow</a></i></h1><br>
           <br>
           <br>
           <span class="peepshow_entry">a <a href=
