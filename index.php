@@ -10,7 +10,7 @@
 
   <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
-  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="icon" href="favicon.ico" type="image/png">
   <script type="text/javascript" src="includes/all.js"> </script>
 </head>
 
