@@ -11,13 +11,7 @@
   <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="icon.png" type="image/png">
-  <script type="text/javascript" src="includes/jquery-core.js">
-</script>
-  <script type="text/javascript" src=
-  "includes/jquery-all-components.js">
-</script>
-  <script type="text/javascript" src="includes/tabs.js">
-</script>
+  <script type="text/javascript" src="includes/all.js"> </script>
 </head>
 
 <body>
