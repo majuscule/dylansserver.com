@@ -14,7 +14,7 @@
   <script type="text/javascript" src="includes/jquery-core.js">
 </script>
   <script type="text/javascript" src=
-  "includes/jquery-components.js">
+  "includes/jquery-all-components.js">
 </script>
   <script type="text/javascript" src="includes/tabs.js">
 </script>
