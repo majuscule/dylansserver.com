@@ -61,6 +61,26 @@
           "http://www.python.org/">python</a>.</span>
         </div>
 
+        <div class="tabs" id="i_like_pandora_">
+          <span class="youtube_backup-entry"><a href=
+          "https://github.com/nospampleasemam/i_like_pandora">i_like_pandora</a></span>
+          <br>
+          <br>
+          <span class="youtube_backup-entry"><br>
+		  searches <a href="http://youtube.com">youtube</a> for what you like on <a href="http://pandora.com">pandora</a>.
+          <br>
+          <br>
+		  then it downloads the first video.
+          <br>
+          <br>
+		  it's not <i>quite</i> done yet.
+          <br>
+          <br>
+          <br>
+		  the code is free (as in freedom), <a href="http://github.com/nospampleasemam/i_like_pandora">here</a>.
+          <br>
+        </div>
+
         <div class="tabs" id="peepshow_">
           <h3><i><a href=
           "foxy-addons/peepshow/peepshow.xpi">foxy-addons/</a></i></h3>
@@ -127,6 +147,11 @@
 
         <li class="project"><a class="exhibit" href=
         "#youtube_backup">youtube_backup</a></li>
+
+        <li style="list-style: none"><br></li>
+
+        <li class="project"><a class="exhibit" href=
+        "#i_like_pandora">i_like_pandora</a></li>
 
         <li style="list-style: none"><br></li>
 
