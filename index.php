@@ -130,12 +130,6 @@
           "http://github.com/nospampleasemam/readoo">source
           code</a>.</span>
         </div><br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
       </div>
 
       <ul class="portfolio" style="text-align:right">
@@ -218,6 +212,15 @@
 
         <li style="list-style: none">
           <br>
+          <br>
+
+          <h3>my repo:</h3>
+        </li>
+
+        <li class="project">
+        git://dylanstestserver.com/project_name</li>
+
+        <li style="list-style: none">
           <br>
           <br>
           <br>
