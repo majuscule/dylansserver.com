@@ -38,7 +38,6 @@ li {
 
 #banner {
 	float:right;
-	margin-top:25px;
 	margin-right:15px;
 }
 
@@ -95,10 +94,13 @@ li {
 	display: block;
 }
 
-.peepshow_entry {
+.peepshow_entry-title {
 	font:1.6em verdana;
 }
 
+.peepshow_entry {
+	font:1.3em verdana;
+}
 .readoo_entry{
 	font:1.6em arial;
 }

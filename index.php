@@ -11,7 +11,8 @@
   <title>dylanstestserver</title>
   <link href="includes/style.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="favicon.ico" type="image/png">
-  <script type="text/javascript" src="includes/all.js"> </script>
+  <script type="text/javascript" src="includes/all.js">
+</script>
 </head>
 
 <body>
@@ -63,30 +64,31 @@
 
         <div class="tabs" id="i_like_pandora_">
           <span class="i_like_pandora-entry-title"><a href=
-          "https://github.com/nospampleasemam/i_like_pandora">i_like_pandora</a></span>
-          <br>
+          "https://github.com/nospampleasemam/i_like_pandora">i_like_pandora</a></span><br>
+
           <br>
           <span class="i_like_pandora-entry"><br>
-		  searches <a href="http://youtube.com">youtube</a> for what you like on <a href="http://pandora.com">pandora</a>.
+          searches <a href="http://youtube.com">youtube</a> for
+          what you like on <a href=
+          "http://pandora.com">pandora</a>.<br>
+          <br>
+          then it downloads the first video.<br>
+          <br>
+          it's not <i>quite</i> done yet.<br>
           <br>
           <br>
-		  then it downloads the first video.
-          <br>
-          <br>
-		  it's not <i>quite</i> done yet.
-          <br>
-          <br>
-          <br>
-		  the code is free (as in freedom), <a href="http://github.com/nospampleasemam/i_like_pandora">here</a>.
-          <br>
+          the code is free (as in freedom), <a href=
+          "http://github.com/nospampleasemam/i_like_pandora">here</a>.<br>
+          </span>
         </div>
 
         <div class="tabs" id="peepshow_">
-          <h3><i><a href=
-          "foxy-addons/peepshow/peepshow.xpi">foxy-addons/</a></i></h3>
+          <h3><span class="peepshow-entry-title"><i><a href=
+          "foxy-addons/peepshow/peepshow.xpi">foxy-addons/</a></i></span></h3>
 
-          <h1><i><a href=
-          "foxy-addons/peepshow/peepshow.xpi">peepshow</a></i></h1><br>
+          <h1><span class="peepshow-entry"><i><a href=
+          "foxy-addons/peepshow/peepshow.xpi">peepshow</a></i></span></h1><span class="i_like_pandora-entry"><br>
+
           <br>
           <br>
           <span class="peepshow_entry">a <a href=
@@ -96,7 +98,7 @@
           <br>
           here's the <a href=
           "http://github.com/nospampleasemam/peepshow/">repo</a>
-          for the source code.</span>
+          for the source code.</span></span>
         </div>
 
         <div class="tabs" id="drawcss_">
@@ -117,7 +119,8 @@
         </div>
 
         <div class="tabs" id="readoo_">
-          <span class="readoo_entry"><a href="http://github.com/nospampleasemam/readoo">readoo</a>
+          <span class="readoo_entry"><a href=
+          "http://github.com/nospampleasemam/readoo">readoo</a>
           helps you find search keywords to target.<br>
           <br>
           it reads your IIS logs, and finds successful keywords
@@ -127,12 +130,6 @@
           "http://github.com/nospampleasemam/readoo">source
           code</a>.</span>
         </div><br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
       </div>
 
       <ul class="portfolio" style="text-align:right">
@@ -215,6 +212,15 @@
 
         <li style="list-style: none">
           <br>
+          <br>
+
+          <h3>my repo:</h3>
+        </li>
+
+        <li class="project">
+        git://dylanstestserver.com/project_name</li>
+
+        <li style="list-style: none">
           <br>
           <br>
           <br>
