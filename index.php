@@ -184,16 +184,6 @@
           <br>
           <br>
 
-          <h3>things i'm doing for others:</h3>
-        </li>
-
-        <li class="project"><a href=
-        "kjondesign/">kjondesign</a></li>
-
-        <li style="list-style: none">
-          <br>
-          <br>
-
           <h3>something i've worked on:</h3>
         </li>
 
