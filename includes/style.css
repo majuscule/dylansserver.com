@@ -115,6 +115,14 @@ li {
 	font:1.3em "lucida console";
 }
 
+.i_like_pandora-entry-title{
+	font:2em "lucida console";
+}
+
+.i_like_pandora-entry{
+	font:1.4em "lucida console";
+}
+
 .shownDiv{
 	border:1px solid black;
 }
