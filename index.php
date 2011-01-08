@@ -62,11 +62,11 @@
         </div>
 
         <div class="tabs" id="i_like_pandora_">
-          <span class="youtube_backup-entry"><a href=
+          <span class="i_like_pandora-entry-title"><a href=
           "https://github.com/nospampleasemam/i_like_pandora">i_like_pandora</a></span>
           <br>
           <br>
-          <span class="youtube_backup-entry"><br>
+          <span class="i_like_pandora-entry"><br>
 		  searches <a href="http://youtube.com">youtube</a> for what you like on <a href="http://pandora.com">pandora</a>.
           <br>
           <br>
