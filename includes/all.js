@@ -262,7 +262,7 @@ b.callback.apply(this,arguments);a.dequeue()}})})}})(jQuery);
 
 		var activeTab = $(this).attr("href") + '_';
 		if (i==1)
-			$(activeTab).show("slide", 400);
+			$(activeTab).show("slide", 600);
 		else
 			$(activeTab).show("puff", 600);
 		$(activeTab).addClass("active_tab");
