@@ -3,37 +3,23 @@
 	margin: 0;
 	}
 
+h3 {
+	margin-top:15px;
+}
+
 a {
 	text-decoration:none;
 }
 
 li {
 	list-style:none;
+	display:block;
 }
 
 #structure {
-	padding-top:1px;
 	width:960px;
 	margin: 0 auto;
 	margin-top: 30px;
-	text-align: left;
-	border: 10px solid #fff;
-}
-
-#logo_box {
-	background-image:url('../images/logo.png');
-	margin-top:25px;
-	margin-left:25px;
-	width:150px;
-	min-height:150px;
-}
-
-#about_bar {
-	background-image:url('../images/logo.png');
-	margin-top:25px;
-	margin-left:25px;
-	width:150px;
-	min-height:500px;
 }
 
 #banner {
@@ -49,82 +35,93 @@ li {
 	margin-right:15px;
 	padding:5px;
 	padding-left:20px;
-	padding-top:25px;
 	padding-bottom:25px;
 }
 
-.portfolio {
+#portfolio {
 	float:right;
 	width:350px;
 	margin-right:17px;
-}
-
-.portfolio li a {
-	text-decoration:none;
 }
 
 #exhibit {
 	float:right;
 }
 
-.tabs {
+#exhibit h1 {
+	margin-bottom:15px;
+}
+
+.exhibit {
 	width:300px;
 	min-height:600px;
 	border:1px solid black;
 	padding:10px;
 }
 
-.project {
-	float:right;
-	list-style:none;
+.shownDiv {
+	border:1px solid black;
 }
 
-.active_project {
-	display:block;
-	/*margin-right:-15px;*/
+#contact_me {
+	margin-top:100px;
 }
 
-.active_tab {
-	/*margin-right:15px;*/
-}
-
-.reprap_entry-title {
+/* reprap */
+#reprap_entry {
 	font: 1.5em georgia, times;
 	text-decoration: none;
 	display: block;
 }
 
-.peepshow_entry-title {
-	font:1.6em verdana;
+/* peepshow */
+#peepshow_title_1 {
+	font-style:italic;
+	margin-top:0px;
 }
 
-.peepshow_entry {
-	font:1.3em verdana;
-}
-.readoo_entry{
-	font:1.6em arial;
-}
-
-.drawcss_entry{
-	font:1.6em "lucida console";
+#peephow_title_2 {
+	font-style:italic; /* not sure why this isn't working :( */
+	background-color:red;
+	font:3em;
 }
 
-.youtube_backup-entry-title{
-	font:1.6em "lucida console";
-}
-
-.youtube_backup-entry{
-	font:1.3em "lucida console";
-}
-
-.i_like_pandora-entry-title{
-	font:2em "lucida console";
-}
-
-.i_like_pandora-entry{
+#peepshow_entry {
 	font:1.4em "lucida console";
 }
 
-.shownDiv{
-	border:1px solid black;
+/* readoo */
+#readoo_title {
+	font:1.6em arial;
+}
+
+#readoo_entry {
+	font:1.6em arial;
+}
+
+/* drawcss */
+#drawcss_title {
+	font:1.6em "lucida console";
+}
+
+#drawcss_entry {
+	font:1.6em "lucida console";
+ }
+
+/* youtube_backup */
+#youtube_backup_title {
+	font:1.6em "lucida console";
+}
+
+#youtube_backup_entry {
+	font:1.4em "lucida console";
+}
+
+/* i_like_pandora */
+#i_like_pandora_title {
+	font:1.6em "lucida console";
+}
+
+#i_like_pandora_entry {
+	font:1.4em "lucida console";
 }
