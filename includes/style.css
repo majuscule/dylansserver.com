@@ -81,9 +81,8 @@ li {
 }
 
 #peephow_title_2 {
+	font-size:3em;
 	font-style:italic; /* not sure why this isn't working :( */
-	background-color:red;
-	font:3em;
 }
 
 #peepshow_entry {
