@@ -1,22 +1,19 @@
 $(document).ready(function() {
-	$(".tabs").hide();
+	$(".exhibit").hide();
 	var divs = document.getElementsByTagName('div');
 	if(document.location.hash){
 		$(document.location.hash + '_').show();
 	}
 	var i = 0;
-	$("ul.portfolio li.project a.exhibit").click(function() {
+	$("ul#portfolio li a.tab").click(function() {
 		i++;
-		$(".tabs").hide();
-		$("ul.portfolio li").removeClass("active");
-		$(this).addClass("active_project");
-
+		$(".exhibit").hide();
 		var activeTab = $(this).attr("href") + '_';
 		if (i==1)
 			$(activeTab).show("slide", 600);
 		else
 			$(activeTab).show("puff", 600);
-		$(activeTab).addClass("active_tab");
+		$(activeTab).addClass("active_exhibit");
 	});
 	$('#showdivs').click(function() {
 		for(i=0;i<divs.length;i++){
