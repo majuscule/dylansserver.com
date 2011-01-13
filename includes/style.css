@@ -75,6 +75,9 @@ li {
 }
 
 /* peepshow */
+#peepshow_ {
+	font-style:italic;
+}
 #peepshow_title_1 {
 	font-style:italic;
 	margin-top:0px;
@@ -82,7 +85,6 @@ li {
 
 #peephow_title_2 {
 	font-size:3em;
-	font-style:italic; /* not sure why this isn't working :( */
 }
 
 #peepshow_entry {
