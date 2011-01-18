@@ -64,7 +64,7 @@
           <br>
           then it downloads the first video.<br>
           <br>
-          it's not quite done yet.<br>
+          it's working, but i'm still making it better.<br>
           <br>
           <br>
           the code is free (as in freedom), <a href=
