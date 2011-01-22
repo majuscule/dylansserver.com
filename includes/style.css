@@ -44,6 +44,10 @@ li {
 	margin-right:17px;
 }
 
+#portfolio li{
+	font-family:sans-serif;
+}
+
 #exhibit {
 	float:right;
 }
