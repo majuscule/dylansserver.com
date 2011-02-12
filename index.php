@@ -167,7 +167,8 @@
           <h3>my repo:</h3>
         </li>
 
-        <li>git://dylanstestserver.com/project_name</li>
+        <li><a href=
+        "git">git://dylanstestserver.com</a></li>
 
         <li>
           <h1 id="contact_me"><a href=
