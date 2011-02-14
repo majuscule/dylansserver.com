@@ -130,3 +130,22 @@ li {
 #i_like_pandora_entry {
 	font:1.4em "lucida console";
 }
+
+/* notes */
+#notes {
+	float:right;
+	text-align:right;
+	margin-top:20px;
+}
+
+#notes h2 {
+	margin-bottom:10px;
+}
+
+.note {
+	margin-bottom:40px;
+}
+
+.note p {
+	margin-bottom:5px;
+}
