@@ -157,18 +157,18 @@
         "http://tempositions.com">tempositions.com</a></li>
 
         <li>
-          <h3>my github repo:</h3>
-        </li>
-
-        <li><a href=
-        "http://github.com/nospampleasemam">github@github.com:nospampleasemam</a></li>
-
-        <li>
-          <h3>my repo:</h3>
+          <h3>my repositories:</h3>
         </li>
 
         <li><a href=
         "git">git://dylanstestserver.com</a></li>
+
+        <li>
+          <h3>some notes:</h3>
+        </li>
+
+        <li><a href=
+        "notes">here</a></li>
 
         <li>
           <h1 id="contact_me"><a href=

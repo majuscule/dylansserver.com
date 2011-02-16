@@ -69,6 +69,7 @@ li {
 
 #contact_me {
 	margin-top:100px;
+	font-family:sans-serif;
 }
 
 /* reprap */
@@ -140,6 +141,7 @@ li {
 
 #notes h2 {
 	margin-bottom:10px;
+	font-family:sans-serif;
 }
 
 .note {
@@ -148,4 +150,8 @@ li {
 
 .note p {
 	margin-bottom:5px;
+}
+
+pre {
+	margin-top:10px;
 }
