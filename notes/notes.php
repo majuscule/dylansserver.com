@@ -1,6 +1,7 @@
 <?php
-  mysql_connect('localhost', 'dylan', 'password') or die(mysql_error());
-  mysql_select_db('dylanstestserver') or die(mysql_error());
+  $config = parse_ini_file('/etc/dylanstestserver.ini');
+  mysql_connect($config['domain'], $config['user'], $config['password']) or die(mysql_error());
+  mysql_select_db($config['database']) or die(mysql_error());
   $sql = "SELECT COUNT(*) FROM notes";
   $result = mysql_query($sql);
   $result = mysql_fetch_row($result);
@@ -46,7 +47,7 @@
 	  $month_posted = $date_posted[1];
 	  $day_posted = $date_posted[2];
 	  $url = $note['url'];
-      echo "<h2><span style=\"color:grey;\">$year_posted/$month_posted/$day_posted/</span><a href=\"note/$url\">$title</a></h2>";
+      echo "<h2><span style=\"color:grey;\">$year_posted/$month_posted/$day_posted/</span><a href=\"/dylanstestserver/notes/$url\">$title</a></h2>";
 	  echo $note['text'];
 	  echo "</div>";
     }
@@ -55,14 +56,14 @@
 	  if(!$page == 2 && $total_number_of_pages == 2)
       echo "<a href=\"{$_SERVER['PHP_SELF']}/page/1\">first</a> / ";
       $previous_page = $page - 1;
-      echo "<a href=\"notes/page/$previous_page\">prev</a>";
+      echo "<a href=\"/dylanstestserver/notes/page/$previous_page\">prev</a>";
     }
     if($page < $total_number_of_pages) {
       $forward_page = $page + 1;
-      echo "<a href=\"notes/page/$forward_page\">next</a>";
+      echo "<a href=\"/dylanstestserver/notes/page/$forward_page\">next</a>";
     }
     if($page != $total_number_of_pages && (!$page == 1 && $total_number_of_pages == 2)){
-      echo " / <a href=\"notes/page/$total_number_of_pages\">last</a>";
+      echo " / <a href=\"/dylanstestserver/notes/page/$total_number_of_pages\">last</a>";
     }
     echo "</h2>";
   }

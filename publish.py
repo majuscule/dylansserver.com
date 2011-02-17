@@ -2,12 +2,18 @@
 
 import os
 import time
-import MySQLdb
+import MySQLdb as db
+import ConfigParser
 
-db = MySQLdb.connect('localhost','dylan','password', 'dylanstestserver')
-cursor = db.cursor()
+config = ConfigParser.RawConfigParser()
+config.read('/etc/dylanstestserver.ini')
+domain = config.get('database', 'domain')
+user = config.get('database', 'user')
+password = config.get('database', 'password')
+database = config.get('database', 'database')
+cursor = db.connect(domain, user, password, database).cursor()
 
-notes = os.listdir('notes')
+notes = os.listdir('/home/dylan/docs/notes')
 
 sql = "SELECT title FROM notes"
 cursor.execute(sql)
@@ -27,7 +33,7 @@ for note in notes:
     date_posted = "%s-%s-%s" % (str(mtime.tm_year)[2:], mtime.tm_mon, mtime.tm_mday)
     sql = "INSERT INTO notes (date_posted, url, title, text)\
              VALUES(\"%s\", \"%s\", \"%s\", \"%s\")"\
-             % (date_posted, url, title, MySQLdb.escape_string(text))
+             % (date_posted, url, title, db.escape_string(text))
 
     #print sql
     cursor.execute(sql)

@@ -8,8 +8,8 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
   <title>dylanstestserver</title>
-  <link href="includes/style.css" rel="stylesheet" type="text/css">
-  <link rel="icon" href="favicon.ico" type="image/png">
+  <link href="/dylanstestserver/includes/style.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="/dylanstestserver/favicon.ico" type="image/png">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div id="banner">
       <a href=
       "http://dylanstestserver.com/">
-      <img src="images/dylanstestserver.png" alt="dylanstestserver"
+      <img src="/dylanstestserver/images/dylanstestserver.png" alt="dylanstestserver"
       border="0"></a>
     </div>
 

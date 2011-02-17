@@ -1,6 +1,6 @@
 ErrorDocument 404 /404.php
 RewriteEngine on
 RewriteRule ^notes/page/([1-9]+)/?$ notes/index.php?page=$1 [L]
-RewriteRule ^note/([^/\.]+)/?$ notes/index.php?note=$1 [L]
-php_flag display_errors on
-php_value error_reporting 7
+RewriteRule ^notes/([^/\.]+)/?$ notes/index.php?note=$1 [L]
+RewriteRule ^notes/?$ notes/ [L]
+RewriteRule ^([^/\.]+)/?$ index.php?project=$1 [L]
