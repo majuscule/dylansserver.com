@@ -23,7 +23,7 @@
 
     <div id="content">
 	  <div id="notes">
-	    <?php require('notes.php') ?>
+	    <?php require('../includes/cms.php') ?>
         <h1 id="contact_me" style="margin-top:60px;"><a href=
         "mailto:dylan@psu.edu">dylan</a></h1><a href=
         "mailto:dylan@psu.edu">@psu.edu</a>

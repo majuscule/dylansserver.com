@@ -25,26 +25,7 @@
 
     <div id="content">
       <div id="exhibit">
-	    <?php
-		  $config = parse_ini_file('/etc/dylanstestserver.ini');
-          mysql_connect($config['domain'], $config['user'], $config['password']) or die(mysql_error());
-          mysql_select_db($config['database']) or die(mysql_error());
-		  if (isset($_GET['project'])) {
-		    $page_type = 'project';
-			$project = mysql_real_escape_string($_GET['project']);
-		    $sql = "SELECT text FROM projects WHERE title='$project'";
-		  } else {
-		    $sql = "SELECT text FROM projects";
-		  }
-          $result = mysql_query($sql) or die (mysql_error());
-          while($project = mysql_fetch_array($result)) {
-			$text = $project['text'];
-			if (isset($page_type)) {
-			  $text = str_replace("<div class=\"exhibit\"", "<div class=\"exhibit\" style=\"display:block;\"", $text);
-			}
-			echo $text;
-          }
-	    ?>
+	    <?php require('includes/cms.php'); ?>
 	  </div>
 
       <ul id="portfolio" style="text-align:right">
@@ -52,20 +33,7 @@
           <h3>my projects:</h3>
         </li>
 
-        <li><a class="tab" href="repthis">repthis.info</a></li>
-
-        <li><a class="tab" href=
-        "youtube_backup">youtube_backup</a></li>
-
-        <li><a class="tab" href=
-        "i_like_pandora">i_like_pandora</a></li>
-
-        <li><a class="tab" href=
-        "peepshow">foxy-addons/peepshow</a></li>
-
-        <li><a class="tab" href="drawcss">drawcss</a></li>
-
-        <li><a class="tab" href="readoo">readoo</a></li>
+		<?php $index->list_projects(); ?>
 
         <li>
           <h3>things i've done for others:</h3>
