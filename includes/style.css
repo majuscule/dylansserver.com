@@ -69,11 +69,9 @@ li {
 }
 
 #contact_me {
-	margin-top:100px;
-<<<<<<< HEAD
 	font-family:sans-serif;
-=======
->>>>>>> no-javascript
+	text-align:right;
+	float:right;
 }
 
 /* reprap */
@@ -94,28 +92,14 @@ li {
 
 #peephow_title_2 {
 	font-size:3em;
-<<<<<<< HEAD
 }
 
 #peepshow_entry {
 	font:1.4em "lucida console";
 }
 
-=======
-}
-
 #peepshow_entry {
 	font:1.4em "lucida console";
-}
-
->>>>>>> no-javascript
-/* readoo */
-#readoo_title {
-	font:1.6em arial;
-}
-
-#readoo_entry {
-	font:1.6em arial;
 }
 
 /* drawcss */
@@ -143,7 +127,6 @@ li {
 
 #i_like_pandora_entry {
 	font:1.4em "lucida console";
-<<<<<<< HEAD
 }
 
 /* notes */
@@ -168,6 +151,8 @@ li {
 
 pre {
 	margin-top:10px;
-=======
->>>>>>> no-javascript
+}
+
+#navigation {
+	text-align:right;
 }
