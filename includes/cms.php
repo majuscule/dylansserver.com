@@ -31,13 +31,6 @@ abstract class cms {
 	}
   }
 
-  protected function not_found() {
-    header("HTTP/1.0 404 Not Found");
-	ob_end_clean();
-	include("404.php");
-	exit();
-  }
-
   public function query() {
     $args = func_get_args();
 	$statement = $this->db->prepare($args[0]);
@@ -199,7 +192,7 @@ class project extends index {
 	    echo $text;
 	    echo "</div>";
 	  } else {
-	    $this->not_found();
+	    throw new notFound();
 	  }
 	}
 }
@@ -223,13 +216,13 @@ class page extends cms {
 	if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 	  $this->page = (int) $_GET['page'];
 	} else {
-	  $this->not_found();
+	  throw new notFound();
 	}
 	if ($this->page > $this->number_of_pages) {
-	  $this->not_found();
+	  throw new notFound();
 	}
 	if ($this->page < 1) {
-	  $this->not_found();
+	  throw new notFound();
 	}
 	$this->offset = ($this->page - 1) * $this->notes_per_page;
   }
@@ -290,7 +283,7 @@ class note extends cms {
 			  WHERE url = ?";
 	$results = $this->query($sql, "s", $_GET['note']);
 	if ($results[0]["COUNT(*)"] != 1) {
-	  $this->not_found();
+	  throw new notFound();
 	}
   }
 
@@ -322,6 +315,15 @@ class note extends cms {
     echo "</h2>";
     echo "</div>";
   }
+}
+
+class notFound extends Exception {
+	public function __construct() {
+      header("HTTP/1.0 404 Not Found");
+	  ob_end_clean();
+	  include("404.php");
+	  exit();
+	}
 }
 
 ## now actually do something:
