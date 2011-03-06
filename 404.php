@@ -4,6 +4,7 @@
 <head>
   <meta name="generator" content=
   "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
   <title>404: not found</title>
 </head>

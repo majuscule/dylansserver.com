@@ -63,7 +63,7 @@ abstract class cms {
     $scripts = "";
 	$stylesheets = "<link href=\"/includes/style.css\" rel=\"stylesheet\" type=\"text/css\">";
 	if (cms::determine_type() == "index") {
-	  $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\">";
+	  $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\"></script>"; 
 	  $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
 	}
   echo <<<END_OF_HEAD
@@ -80,7 +80,6 @@ abstract class cms {
   <link rel="icon" href="favicon.ico" type="image/png">
   $stylesheets
   $scripts
-</script>
 </head>
 
 <body>
@@ -123,11 +122,11 @@ END_OF_CLOSE;
 
 class index extends cms {
 	public function display() {
-		$this->display_head();
-		$this->display_exhibits();
-		echo "<ul id=\"portfolio\" style=\"text-align:right\">";
-		$this->list_projects();
-		echo <<<OTHER_PROJECTS
+	  $this->display_head();
+	  $this->display_exhibits();
+	  echo "<ul id=\"portfolio\" style=\"text-align:right\">";
+	  $this->list_projects();
+	  echo <<<OTHER_PROJECTS
         <li>
           <h3>things i've done for others:</h3>
         </li>
@@ -162,12 +161,14 @@ class index extends cms {
         <li>
         </li>
 OTHER_PROJECTS;
-        // Because of the CSS necessary for the animations,
-		// the contact link needs to be in #portfolio to clear
-		// the floats.
-	    $this->display_contact();
+      // Because of the CSS necessary for the animations,
+	  // the contact link needs to be in #portfolio to clear
+	  // the floats.
+      echo "<li>";
+	  $this->display_contact();
+      echo "</li>";
       echo "</ul>";
-		$this->display_close($show_contact = false);
+	  $this->display_close($show_contact = false);
 	}
 
 	protected function display_exhibits() {
@@ -181,7 +182,6 @@ OTHER_PROJECTS;
 	}
 
 	private function list_projects() {
-	  echo "<div id=\"exhibit\">";
 	  echo <<<HEREDOC
         <li>
           <h3>my projects:</h3>
