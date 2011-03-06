@@ -29,13 +29,12 @@ for note in notes:
     url = note[:note.index('.')]
     f = open(os.path.join(NOTES_DIRECTORY, note))
     title = str(f.readline()[:-1])
+    date_posted = time.strptime(str(f.readline()[:-1]), "%Y/%m/%d %I:%M%p")
     text = ''.join(f.readlines()) #converts list to single string
     if title in existing_titles: continue
-    mtime = time.localtime(os.path.getmtime(os.path.join(NOTES_DIRECTORY, note)))
-    date_posted = "%s-%s-%s" % (str(mtime.tm_year)[2:], mtime.tm_mon, mtime.tm_mday)
     sql = "INSERT INTO notes (date_posted, url, title, text)\
              VALUES(\"%s\", \"%s\", \"%s\", \"%s\")"\
-             % (date_posted, url, title, db.escape_string(text))
+             % (time.strftime("%Y/%m/%d %I:%M:00", date_posted), url, title, db.escape_string(text))
 
     #print sql
     cursor.execute(sql)
