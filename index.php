@@ -22,6 +22,8 @@ abstract class cms {
   public static function determine_type() {
     if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 	  return 'page';
+	} else if (isset($_GET['year'])) {
+	  return 'archive';
 	} else if (isset($_GET['note'])) {
 	  return 'note';
 	} else if ($_SERVER['REQUEST_URI'] == '/') {
@@ -329,6 +331,92 @@ class note extends cms {
   }
 }
 
+
+class archive extends cms {
+
+  public function __construct() {
+    parent::__construct();
+  }
+
+  private function check_exists() {
+    $sql = "SELECT COUNT(*) FROM notes
+			  WHERE url = ?";
+	$results = $this->query($sql, "s", $_GET['note']);
+	if ($results[0]["COUNT(*)"] != 1) {
+	  $this->not_found();
+	}
+  }
+
+  public function display() {
+    // this really needs its own pagination...
+	// there should be a class for that.
+	$this->display_head();
+	switch (true) {
+	  case (isset($_GET['year']) && !isset($_GET['month'])
+	  		  && !isset($_GET['day'])):
+    	$sql = "SELECT title, url, date_posted, text
+			  	FROM notes WHERE YEAR(date_posted) = ?
+				ORDER BY date_posted DESC";
+		$result = $this->query($sql, "d",
+							  	$_GET['year']);
+	    break;
+	  case (isset($_GET['year']) && isset($_GET['month'])
+	 		  && !isset($_GET['day'])):
+    	$sql = "SELECT title, url, date_posted, text
+			  	FROM notes WHERE YEAR(date_posted) = ?
+				AND MONTH(date_posted) = ?
+				ORDER BY date_posted DESC";
+		$result = $this->query($sql, "dd",
+							  	$_GET['year'], $_GET['month']);
+	    break;
+	  case (isset($_GET['year']) && isset($_GET['month'])
+	          && isset($_GET['day'])):
+    	$sql = "SELECT title, url, date_posted, text
+			  	FROM notes WHERE YEAR(date_posted) = ?
+				AND MONTH(date_posted) = ?
+				AND DAY(date_posted) = ?
+				ORDER BY date_posted DESC";
+		$result = $this->query($sql, "ddd",
+							  	$_GET['year'], $_GET['month'],
+								$_GET['day']);
+	    break;
+	}
+	if (count($result) >= 1) {
+	  echo "<div id=\"notes\">";
+	  foreach ($result as $row => $entry) {
+	    $title = $entry['title'];
+	    $url = '/note/' . $entry['url'];
+	    $date_posted =  explode("-", $entry['date_posted']);
+	    $year_posted = $date_posted[0];
+	    $month_posted = $date_posted[1];
+	    $datetime_posted = explode(' ', $date_posted[2]);
+	    $day_posted = $datetime_posted[0];
+	    echo "<div class=\"note\">";
+        echo "<h2><span style=\"color:grey;\">$year_posted/$month_posted/$day_posted/</span><a href=\"$url\">$title</a></h2>";
+	    echo $entry['text'];
+	    echo "</div>";
+	  }
+	  echo "</div>";
+	  $this->write_navigation();
+	} else {
+	  echo "<br>";
+	  echo "<h2 style=\"font-family:sans-serif;\">sorry, nothing here</h2>";
+	  echo "<pre>Empty set (0.00 sec)</pre>";
+	}
+    $this->display_close();
+  }
+
+  private function write_navigation() {
+	echo "<br>";
+    echo "<div id=\"navigation\">";
+    echo "<h2>";
+	// fill me in!
+    echo "</h2>";
+    echo "</div>";
+  }
+}
+
+
 class notFound extends Exception {
 	public function __construct() {
       header("HTTP/1.0 404 Not Found");
@@ -355,6 +443,10 @@ switch (cms::determine_type()) {
   case "page":
     $page = new page;
 	$page->display();
+	break;
+  case "archive":
+    $archive = new archive;
+	$archive->display();
 	break;
 }
 

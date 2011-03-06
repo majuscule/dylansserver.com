@@ -9,4 +9,10 @@ RewriteRule ^notes/?$ notes/page/1
 RewriteRule ^notes/page/?$ notes/page/1
 RewriteRule ^notes/page/([0-9]+)/?$ /index.php?page=$1 [L]
 
+RewriteRule ^notes/([0-9]{4})/?$ /index.php?year=$1 [L]
+RewriteRule ^notes/([0-9]{4})/([0-9]{2})/?$ /index.php?year=$1&month=$2 [L]
+RewriteRule ^notes/([0-9]{4})/([0-9]{2})/([0-9]{2})/?$ /index.php?year=$1&month=$2&day=$3 [L]
+
+## This needs to be last as to avoid catching /notes/ etc.
 RewriteRule ^([^/\.]+)/?$ /index.php?project=$1 [L]
+
