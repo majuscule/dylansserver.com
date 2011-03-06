@@ -135,7 +135,6 @@ li {
 
 /* notes */
 #notes, #note {
-	float:right;
 	text-align:right;
 	margin-top:20px;
 }
@@ -167,6 +166,7 @@ pre {
 
 #navigation {
 	text-align:right;
+	font-family:sans-serif;
 }
 
 #comments {
