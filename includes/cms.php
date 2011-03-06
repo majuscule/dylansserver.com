@@ -16,6 +16,7 @@ abstract class cms {
 	  echo mysqli_connect_error();
 	  exit();
 	}
+	ob_start();
   }
 
   public static function determine_type() {
@@ -32,6 +33,7 @@ abstract class cms {
 
   protected function not_found() {
     header("HTTP/1.0 404 Not Found");
+	ob_end_clean();
 	include("404.php");
 	exit();
   }
@@ -111,6 +113,7 @@ END_OF_HEAD;
 </body>
 </html>
 END_OF_CLOSE;
+  ob_flush();
   }
 
 }
