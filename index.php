@@ -93,12 +93,20 @@ abstract class cms {
 END_OF_HEAD;
   }
 
-  public function display_close(){
-    echo <<<END_OF_CLOSE
+  public function display_contact() {
+    echo <<<END_OF_CONTACT
       <div id="contact_me"><h1><a href=
       "mailto:dylan@psu.edu">dylan</a></h1><a href=
       "mailto:dylan@psu.edu">@psu.edu</a>
 	  </div>
+END_OF_CONTACT;
+  }
+
+  public function display_close($show_contact = true) {
+    if ($show_contact) {
+	  $this->display_contact();
+	}
+    echo <<<END_OF_CLOSE
     </div>
 	<br>
     <br>
@@ -151,9 +159,13 @@ class index extends cms {
 
         <li>
         </li>
-      </ul>
 OTHER_PROJECTS;
-		$this->display_close();
+        // Because of the CSS necessary for the animations,
+		// the contact link needs to be in #portfolio to clear
+		// the floats.
+	    $this->display_contact();
+      echo "</ul>";
+		$this->display_close($show_contact = false);
 	}
 
 	protected function display_exhibits() {
