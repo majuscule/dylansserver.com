@@ -36,12 +36,12 @@ li {
 	padding:5px;
 	padding-left:20px;
 	padding-bottom:25px;
+	text-align:right;
 }
 
 #portfolio {
 	float:right;
 	width:350px;
-	margin-right:17px;
 }
 
 #portfolio li{
@@ -62,6 +62,7 @@ li {
 	border:1px solid black;
 	padding:10px;
 	display:none;
+	text-align:left;
 }
 
 .shownDiv {
@@ -69,9 +70,10 @@ li {
 }
 
 #contact_me {
+	margin-top:100px;
 	font-family:sans-serif;
 	text-align:right;
-	float:right;
+	clear:both;
 }
 
 /* reprap */
@@ -130,13 +132,13 @@ li {
 }
 
 /* notes */
-#notes {
+#notes, #note {
 	float:right;
 	text-align:right;
 	margin-top:20px;
 }
 
-#notes h2 {
+#notes h2, #note h2 {
 	margin-bottom:10px;
 	font-family:sans-serif;
 }
