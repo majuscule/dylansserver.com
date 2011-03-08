@@ -3,19 +3,23 @@
 abstract class cms {
   private $config_file = '/etc/dylanstestserver.ini';
   protected $db;
+  protected $recaptcha_publickey;
+  protected $recaptcha_privatekey;
 
   public function __construct() {
-    $config = parse_ini_file($this->config_file);
+    $config = parse_ini_file($this->config_file, true);
     $this->db = new mysqli(
-	  $config['domain'],
-	  $config['user'],
-	  $config['password'],
-      $config['database']);
+	  $config[database]['domain'],
+	  $config[database]['user'],
+	  $config[database]['password'],
+      $config[database]['database']);
 	if (mysqli_connect_errno()) {
 	  echo "Problem connecting to database: ";
 	  echo mysqli_connect_error();
 	  exit();
 	}
+	$this->recaptcha_publickey = $config[recaptcha]['publickey'];
+	$this->recaptcha_privatekey = $config[recaptcha]['privatekey'];
 	ob_start();
   }
 
@@ -62,8 +66,7 @@ abstract class cms {
   								$home_link = "/") {
     $scripts = "";
 	$stylesheets = "<link href=\"/includes/style.css\" rel=\"stylesheet\" type=\"text/css\">";
-	if (cms::determine_type() == "index") {
-	  $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\">";
+	if (cms::determine_type() == "index") { $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\">";
 	  $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
 	}
   echo <<<END_OF_HEAD
@@ -118,6 +121,10 @@ END_OF_CONTACT;
 END_OF_CLOSE;
   ob_flush();
   }
+
+}
+
+class blank_page extends cms {
 
 }
 
@@ -287,9 +294,19 @@ class page extends cms {
 
 class note extends cms {
 
-  public function __construct() {
+  private $id;
+  private $comments_enabled = false;
+  private $url;
+
+  public function __construct($comments_enabled = false) {
     parent::__construct();
 	$this->check_exists();
+	$this->comments_enabled = $comments_enabled;
+    $url = htmlspecialchars($_SERVER['REQUEST_URI']);
+	if (isset($_GET['verify'])) {
+      $url = substr($url, 0, (strlen($url)-7));
+	}
+	$this->url = $url;
   }
 
   private function check_exists() {
@@ -303,11 +320,36 @@ class note extends cms {
 
   public function display() {
 	$this->display_head();
-    $sql = "SELECT title, date_posted, text
+	$this->display_note();
+	if (isset($_GET['verify'])) {
+	  $this->verify();
+	}
+	if ($this->comments_enabled) {
+	  $this->display_comments();  // but where are they?
+	  $this->display_comment_form();
+	}
+	$this->write_navigation();
+    $this->display_close();
+  }
+
+  private function verify() {
+    require_once('includes/recaptchalib.php');
+    $resp = recaptcha_check_answer ($this->recaptcha_privatekey,
+								    $_SERVER["REMOTE_ADDR"],
+								    $_POST["recaptcha_challenge_field"],
+								    $_POST["recaptcha_response_field"]);
+    if (!$resp->is_valid) {
+      echo "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
+    }
+  }
+
+  private function display_note() {
+    $sql = "SELECT title, date_posted, text, id
 			  FROM notes WHERE url = ?";
 	$result = $this->query($sql, "s",
 							  $_GET['note']);
 	$entry = $result[0];
+	$this->id = $entry["id"]; // This is needed for display_comments()
 	$title = $entry["title"];
 	$date_posted =  explode("-", $entry["date_posted"]);
 	$year_posted = $date_posted[0];
@@ -316,9 +358,10 @@ class note extends cms {
 	$day_posted = $datetime_posted[0];
 	echo "<div id=\"note\">";
     echo "<h2><span style=\"color:grey;\">$year_posted/$month_posted/$day_posted/</span>$title</h2>";
+	if (!$this->comments_enabled) {
+	  $this->display_comment_link();
+	}
 	echo $entry['text'];
-	$this->write_navigation();
-    $this->display_close();
   }
 
   private function write_navigation() {
@@ -328,6 +371,41 @@ class note extends cms {
     echo "<a href=\"/notes/\">notes</a>/";
     echo "</h2>";
     echo "</div>";
+  }
+
+  private function display_comment_link() {
+    $url = $this->url . 'comments/';
+    echo "<a id=\"comment_link\" href=\"$url\">comments</a>";
+  }
+
+  private function display_comments() {
+    echo "<div id=\"comments\">";
+	$sql= "SELECT date_posted, author, email, text
+	         FROM comments WHERE note = ?";
+    $result = $this->query($sql, "d", $this->id);
+	foreach ($result as $row => $entry) {
+	  $date_posted = $entry['date_posted'];
+	  $author = $entry['author'];
+	  $email = $entry['email'];
+	  $text = htmlspecialchars($entry['text']);
+	  echo <<<END_OF_COMMENT
+	  <h3><a href="mailto:$email">$author</a></h3>
+	  $text
+	  <br>
+	  <br>
+END_OF_COMMENT;
+	}
+	echo "</div>";
+  }
+
+  private function display_comment_form() {
+	// Trailing slash is necessary for reloads to work
+    $url = $this->url . "verify/";
+	echo "<form id=\"comment\" method=\"post\" action=\"$url\">";
+    require_once('includes/recaptchalib.php');
+	echo recaptcha_get_html($this->recaptcha_publickey);
+	echo "<input type=\"submit\">";
+	echo "</form>";
   }
 }
 
@@ -437,7 +515,11 @@ switch (cms::determine_type()) {
 	$project->display();
 	break;
   case "note":
-    $note = new note;
+    if (isset($_GET['comments'])) {
+      $note = new note($comments_enabled = true);
+	} else {
+      $note = new note;
+	}
 	$note->display();
 	break;
   case "page":

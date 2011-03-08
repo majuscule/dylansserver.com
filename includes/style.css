@@ -139,9 +139,17 @@ li {
 	margin-top:20px;
 }
 
-#notes h2, #note h2 {
+#notes h2 {
 	margin-bottom:10px;
 	font-family:sans-serif;
+}
+
+#note h2 {
+	font-family:sans-serif;
+}
+
+#comment_link {
+	font-size:80%;
 }
 
 .note {
@@ -158,4 +166,16 @@ pre {
 
 #navigation {
 	text-align:right;
+}
+
+#comments {
+	border-right:3px solid black;
+	padding-right:15px;
+}
+
+#comment {
+}
+
+#recaptcha_widget_div {
+	float:right;
 }
