@@ -321,11 +321,8 @@ class note extends cms {
   public function display() {
 	$this->display_head();
 	$this->display_note();
-	if (isset($_GET['verify'])) {
-	  $this->verify();
-	}
 	if ($this->comments_enabled) {
-	  $this->display_comments();  // but where are they?
+	  $this->display_comments();
 	  $this->display_comment_form();
 	}
 	$this->write_navigation();
@@ -334,19 +331,26 @@ class note extends cms {
 
   private function verify() {
     require_once('includes/recaptchalib.php');
+	echo "<br>";
     $resp = recaptcha_check_answer ($this->recaptcha_privatekey,
 								    $_SERVER["REMOTE_ADDR"],
 								    $_POST["recaptcha_challenge_field"],
 								    $_POST["recaptcha_response_field"]);
     if (!$resp->is_valid) {
-      echo "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
+      echo "<span style=\"color:red;border:1px solid black;padding:15px;\">sorry, reCAPTCHA said you're not human.</span><br><br><br>";
     } else {
 	  $sql = ("INSERT INTO comments (date_posted, author,
-	  			email, text, note
-				VALUES(NOW(), ?, ?, ?, ?, ?");
-	  echo htmlspecialchars($_POST['author']);
-	  echo htmlspecialchars($_POST['email']);
-	  echo htmlspecialchars($_POST['text']);
+	  			email, text, note)
+				VALUES(NOW(), ?, ?, ?, ?)");
+	  $stmt = $this->db->prepare($sql);
+	  // Checks are needed here (no blank text,
+	  // and a default author / email need to be set
+	  $stmt->bind_param('ssss',
+	  					htmlspecialchars($_POST['author']),
+	  					htmlspecialchars($_POST['email']),
+	  					htmlspecialchars($_POST['text']),
+						$this->id);
+	  $stmt->execute();
 	}
   }
 
@@ -383,6 +387,8 @@ END_OF_NAVIGATION;
   }
 
   private function display_comment_link() {
+	// somehow I should be checking if there are any first,
+	// change to 'comment?'
     $url = $this->url . 'comments/';
     echo "<a id=\"comment_link\" href=\"$url\">comments</a>";
   }
@@ -390,7 +396,8 @@ END_OF_NAVIGATION;
   private function display_comments() {
     echo "<div id=\"comments\">";
 	$sql= "SELECT date_posted, author, email, text
-	         FROM comments WHERE note = ?";
+	         FROM comments WHERE note = ?
+			 ORDER BY date_posted DESC";
     $result = $this->query($sql, "d", $this->id);
 	foreach ($result as $row => $entry) {
 	  $date_posted = $entry['date_posted'];
@@ -424,7 +431,7 @@ END_CAPTCHA_STYLE;
 	<div id="comment">
 
 <h3>comment:</h3><br>
-<textarea rows="10" cols="30" name=text></textarea><br>
+<textarea rows="10" cols="70" name=text></textarea><br>
 <h3>name:</h3><br>
 <input type=text name=author><br>
 <h3>email:</h3><br>
@@ -438,14 +445,17 @@ END_CAPTCHA_STYLE;
   <span class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</span>
   <br>
   <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-  <div><a href="javascript:Recaptcha.reload()">get another CAPTCHA</a></div>
-  <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">get an audio CAPTCHA</a></div>
-  <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
-  <div><a href="javascript:Recaptcha.showhelp()">help?</a></div>
-  <br><br>
+  <div><a href="javascript:Recaptcha.reload()"><small>another CAPTCHA?</small></a></div>
+  <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><small>audio CAPTCHA?</small></a></div>
+  <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><small>Get an image CAPTCHA</small></a></div>
+  <div><a href="javascript:Recaptcha.showhelp()"><small>help?</small></a></div>
+  <br>
 </div>
 FORM;
 	echo recaptcha_get_html($this->recaptcha_publickey);
+	if (isset($_GET['verify'])) {
+	  $this->verify();
+	}
 	echo  <<<END_OF_FORM
 	<input class="submit" type="submit" value="comment">
 	</form>
