@@ -3,6 +3,8 @@ ErrorDocument 404 /404.php
 
 RewriteEngine on
 
+RewriteRule ^notes/rss/?$ /index.php?rss=true [L]
+
 RewriteRule ^note/([^/\.]+)?/?$ /index.php?note=$1 [L]
 
 RewriteRule ^notes/?$ notes/page/1
