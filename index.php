@@ -304,7 +304,7 @@ class note extends cms {
 	$this->comments_enabled = $comments_enabled;
     $url = htmlspecialchars($_SERVER['REQUEST_URI']);
 	if (isset($_GET['verify'])) {
-      $url = substr($url, 0, (strlen($url)-7));
+      $url = substr($url, 0, (strlen($url)-6));
 	}
 	$this->url = $url;
   }
@@ -389,7 +389,11 @@ END_OF_NAVIGATION;
   private function display_comment_link() {
 	// somehow I should be checking if there are any first,
 	// change to 'comment?'
-    $url = $this->url . 'comments/';
+	if (substr($this->url, (strlen($this->url)-1), strlen($this->url)) == '/') {
+      $url = $this->url . 'comments/';
+	} else {
+      $url = $this->url . '/comments/';
+	}
     echo "<a id=\"comment_link\" href=\"$url\">comments</a>";
   }
 
@@ -425,7 +429,7 @@ var RecaptchaOptions = {
 END_CAPTCHA_STYLE;
     require_once('includes/recaptchalib.php');
 	// Trailing slash is necessary for reloads to work
-    $url = $this->url . "verify/";
+    $url = $this->url . "verify";
 	echo "<form method=\"post\" action=\"$url\">";
 	echo  <<<FORM
 	<div id="comment">
