@@ -169,13 +169,29 @@ pre {
 }
 
 #comments {
-	border-right:3px solid black;
+	border-right:1px solid black;
 	padding-right:15px;
 }
 
 #comment {
+	padding-right:15px;
+	border-right:1px solid black;
+	margin-top:15px;
+	text-align:right;
 }
 
-#recaptcha_widget_div {
-	float:right;
+#comment input {
+	border:1px solid grey;
+}
+
+#comment textarea {
+	border:1px solid grey;
+}
+
+#comment .submit {
+	background:#FFF;
+	border:1px solid white;
+	color:blue;
+	cursor:pointer;
+	font-size:120%;
 }

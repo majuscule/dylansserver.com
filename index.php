@@ -340,7 +340,14 @@ class note extends cms {
 								    $_POST["recaptcha_response_field"]);
     if (!$resp->is_valid) {
       echo "The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")";
-    }
+    } else {
+	  $sql = ("INSERT INTO comments (date_posted, author,
+	  			email, text, note
+				VALUES(NOW(), ?, ?, ?, ?, ?");
+	  echo htmlspecialchars($_POST['author']);
+	  echo htmlspecialchars($_POST['email']);
+	  echo htmlspecialchars($_POST['text']);
+	}
   }
 
   private function display_note() {
@@ -365,12 +372,14 @@ class note extends cms {
   }
 
   private function write_navigation() {
-	echo "<br>";
-    echo "<div id=\"navigation\">";
-    echo "<h2>";
-    echo "<a href=\"/notes/\">notes</a>/";
-    echo "</h2>";
-    echo "</div>";
+    echo <<<END_OF_NAVIGATION
+	<br>
+    <div id=\"navigation\">
+    <h2>
+    <a href=\"/notes/\">notes</a>/
+    </h2>
+    </div>
+END_OF_NAVIGATION;
   }
 
   private function display_comment_link() {
@@ -399,13 +408,49 @@ END_OF_COMMENT;
   }
 
   private function display_comment_form() {
+    echo <<<END_CAPTCHA_STYLE
+<script type="text/javascript">
+var RecaptchaOptions = {
+   theme : 'custom',
+   custom_theme_widget: 'recaptcha_widget'
+   };
+</script>
+END_CAPTCHA_STYLE;
+    require_once('includes/recaptchalib.php');
 	// Trailing slash is necessary for reloads to work
     $url = $this->url . "verify/";
-	echo "<form id=\"comment\" method=\"post\" action=\"$url\">";
-    require_once('includes/recaptchalib.php');
+	echo "<form method=\"post\" action=\"$url\">";
+	echo  <<<FORM
+	<div id="comment">
+
+<h3>comment:</h3><br>
+<textarea rows="10" cols="30" name=text></textarea><br>
+<h3>name:</h3><br>
+<input type=text name=author><br>
+<h3>email:</h3><br>
+<input type=text name=email><br>
+<nowiki>
+
+<div id="recaptcha_widget"> 
+  <div id="recaptcha_image"></div>
+  <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+  <span class="recaptcha_only_if_image"><b>enter the words above</b>:</span>
+  <span class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</span>
+  <br>
+  <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+  <div><a href="javascript:Recaptcha.reload()">get another CAPTCHA</a></div>
+  <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">get an audio CAPTCHA</a></div>
+  <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
+  <div><a href="javascript:Recaptcha.showhelp()">help?</a></div>
+  <br><br>
+</div>
+FORM;
 	echo recaptcha_get_html($this->recaptcha_publickey);
-	echo "<input type=\"submit\">";
-	echo "</form>";
+	echo  <<<END_OF_FORM
+	<input class="submit" type="submit" value="comment">
+	</form>
+	</div>
+END_OF_FORM;
   }
 }
 
