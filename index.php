@@ -380,7 +380,7 @@ class note extends cms {
 	<br>
     <div id=\"navigation\">
     <h2>
-    <a href=\"/notes/\">notes</a>/
+	<a href="/notes/">notes</a>/
     </h2>
     </div>
 END_OF_NAVIGATION;
