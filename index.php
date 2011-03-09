@@ -55,7 +55,7 @@ abstract class cms {
 	call_user_func_array("mysqli_stmt_bind_result", $fields);
 	$i = 0;
 	while ($statement->fetch()) {
-  	  foreach ($row as $key1=>$value1) $return[$i][$key1] = $value1;
+  	  foreach ($row as $key=>$value) $return[$i][$key] = $value;
 	  $i++;
 	}
 	$statement->free_result();
@@ -66,8 +66,11 @@ abstract class cms {
   								$home_link = "/") {
     $scripts = "";
 	$stylesheets = "<link href=\"/includes/style.css\" rel=\"stylesheet\" type=\"text/css\">";
-	if (cms::determine_type() == "index") { $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\">";
+	if ($this->determine_type() == "index") {
+	  $scripts = "<script type=\"text/javascript\" src=\"/includes/all.js\">";
 	  $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
+	} else if ($this->determine_type() == 'note') {
+	  $scripts = "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/js/recaptcha_ajax.js\"></script>";
 	}
   echo <<<END_OF_HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -296,6 +299,7 @@ class note extends cms {
 
   private $id;
   private $comments_enabled = false;
+  private $failed_captcha;
   public $url;
   public $title;
   public $year_posted;
@@ -334,6 +338,9 @@ class note extends cms {
 	$result = $this->db->query($sql);
 	$result = $result->fetch_array();
 	$this->number_of_comments = $result[0];
+	if (isset($_GET['verify'])) {
+	  $this->verify();
+	}
   }
 
   public function display() {
@@ -355,7 +362,7 @@ class note extends cms {
 								    $_POST["recaptcha_challenge_field"],
 								    $_POST["recaptcha_response_field"]);
     if (!$resp->is_valid) {
-      echo "<span style=\"color:red;border:1px solid black;padding:15px;\">sorry, reCAPTCHA said you're not human.</span><br><br><br>";
+	  $this->failed_captcha = true;
     } else {
 	  $sql = ("INSERT INTO comments (date_posted, author,
 	  			email, text, note)
@@ -384,6 +391,9 @@ class note extends cms {
     <div id=\"navigation\">
     <h2>
 END_OF_NAVIGATION;
+    if ($this->failed_captcha) {
+      echo "<span style=\"color:red;border:1px solid black;padding:15px;\">sorry, reCAPTCHA said you're not human.</span><br><br><br>";
+	}
 	if (!$this->comments_enabled) {
 	  $this->display_comment_link();
 	}
@@ -430,21 +440,30 @@ END_OF_COMMENT;
   }
 
   private function display_comment_form() {
+    $publickey = $this->recaptcha_publickey;
     echo <<<END_CAPTCHA_STYLE
 <script type="text/javascript">
-var RecaptchaOptions = {
-   theme : 'custom',
-   custom_theme_widget: 'recaptcha_widget'
-   };
+function showRecaptcha(element) {
+Recaptcha.create("$publickey",
+   "recaptcha_div", 
+   {
+     theme : 'custom',
+     custom_theme_widget: 'recaptcha_widget',
+     callback: Recaptcha.focus_response_field
+   });
+}
 </script>
 END_CAPTCHA_STYLE;
     require_once('includes/recaptchalib.php');
 	// Trailing slash is necessary for reloads to work
     $url = $this->url . "verify";
 	echo "<form method=\"post\" action=\"$url\">";
-	echo  <<<FORM
-	<div id="comment">
+	echo  <<<END_OF_FORM
+<div id="comment">
+<input type="button" value="comment" onclick="showRecaptcha('recaptcha_div');"></input>
 
+<div id="recaptcha_div">
+<br>
 <h3>comment:</h3>
 <textarea rows="10" cols="70" name=text></textarea>
 <h3>name:</h3>
@@ -455,22 +474,17 @@ END_CAPTCHA_STYLE;
 
 <div id="recaptcha_widget"> 
 <h3 class="recaptcha_only_if_image"><b>what's this say</b>?</h3>
-<h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
-<span style="font-size:80%;">(<a href="javascript:Recaptcha.reload()">another</a>/<span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span>/<span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a>)</span><br><br>
+<h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3><span style="font-size:80%;">(<a href="javascript:Recaptcha.reload()">another</a>/<span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span>/<span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a>)</span><br><br>
   <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-  <br><br>
-  <div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
-  <br><br><br><br>
+<br><br>
+<div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
+<br><br><br><br>
 </div>
-FORM;
-	echo recaptcha_get_html($this->recaptcha_publickey);
-	if (isset($_GET['verify'])) {
-	  $this->verify();
-	}
-	echo  <<<END_OF_FORM
-	<input class="submit" type="submit" value="comment">
-	</form>
-	</div>
+</div>
+
+<input class="submit" type="submit" value="comment">
+</form>
+</div>
 END_OF_FORM;
   }
 }
