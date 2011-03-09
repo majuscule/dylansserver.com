@@ -296,26 +296,44 @@ class note extends cms {
 
   private $id;
   private $comments_enabled = false;
-  private $url;
+  public $url;
+  public $title;
+  public $year_posted;
+  public $month_posted;
+  public $day_posted;
+  public $text;
+  public $number_of_comments;
 
   public function __construct($comments_enabled = false) {
     parent::__construct();
-	$this->check_exists();
 	$this->comments_enabled = $comments_enabled;
     $url = htmlspecialchars($_SERVER['REQUEST_URI']);
 	if (isset($_GET['verify'])) {
       $url = substr($url, 0, (strlen($url)-6));
 	}
 	$this->url = $url;
-  }
-
-  private function check_exists() {
-    $sql = "SELECT COUNT(*) FROM notes
-			  WHERE url = ?";
-	$results = $this->query($sql, "s", $_GET['note']);
-	if ($results[0]["COUNT(*)"] != 1) {
+    $sql = "SELECT title, date_posted, text, id
+			  FROM notes WHERE url = ?";
+	$result = $this->query($sql, "s",
+							  $_GET['note']);
+	if ($result) {
+	  $entry = $result[0];
+	  $this->id = $entry["id"];
+	  $this->title = $entry["title"];
+	  $date_posted =  explode("-", $entry["date_posted"]);
+	  $this->year_posted = $date_posted[0];
+	  $this->month_posted = $date_posted[1];
+	  $datetime_posted = explode(' ', $date_posted[2]);
+	  $this->day_posted = $datetime_posted[0];
+	  $this->text = $entry["text"];
+	} else {
 	  throw new notFound();
 	}
+	$sql = "SELECT COUNT(*) FROM comments
+			  WHERE note = $this->id";
+	$result = $this->db->query($sql);
+	$result = $result->fetch_array();
+	$this->number_of_comments = $result[0];
   }
 
   public function display() {
@@ -355,24 +373,9 @@ class note extends cms {
   }
 
   private function display_note() {
-    $sql = "SELECT title, date_posted, text, id
-			  FROM notes WHERE url = ?";
-	$result = $this->query($sql, "s",
-							  $_GET['note']);
-	$entry = $result[0];
-	$this->id = $entry["id"]; // This is needed for display_comments()
-	$title = $entry["title"];
-	$date_posted =  explode("-", $entry["date_posted"]);
-	$year_posted = $date_posted[0];
-	$month_posted = $date_posted[1];
-	$datetime_posted = explode(' ', $date_posted[2]);
-	$day_posted = $datetime_posted[0];
 	echo "<div id=\"note\">";
-    echo "<h2><span style=\"color:grey;\">$year_posted/$month_posted/$day_posted/</span>$title</h2>";
-	if (!$this->comments_enabled) {
-	  $this->display_comment_link();
-	}
-	echo $entry['text'];
+    echo "<h2><span style=\"color:grey;\">$this->year_posted/$this->month_posted/$this->day_posted/</span>$this->title</h2>";
+	echo $this->text;
   }
 
   private function write_navigation() {
@@ -380,6 +383,11 @@ class note extends cms {
 	<br>
     <div id=\"navigation\">
     <h2>
+END_OF_NAVIGATION;
+	if (!$this->comments_enabled) {
+	  $this->display_comment_link();
+	}
+    echo <<<END_OF_NAVIGATION
 	<a href="/notes/">notes</a>/
     </h2>
     </div>
@@ -387,14 +395,17 @@ END_OF_NAVIGATION;
   }
 
   private function display_comment_link() {
-	// somehow I should be checking if there are any first,
-	// change to 'comment?'
+    if ($this->number_of_comments > 0) {
+	  $anchor_text = "comments ($this->number_of_comments)";
+	} else {
+	  $anchor_text = "comment?";
+	}
 	if (substr($this->url, (strlen($this->url)-1), strlen($this->url)) == '/') {
       $url = $this->url . 'comments/';
 	} else {
       $url = $this->url . '/comments/';
 	}
-    echo "<a id=\"comment_link\" href=\"$url\">comments</a>";
+    echo "<a id=\"comment_link\" href=\"$url\">$anchor_text</a>";
   }
 
   private function display_comments() {
@@ -414,7 +425,7 @@ END_OF_NAVIGATION;
 	  <br>
 	  <br>
 END_OF_COMMENT;
-	}
+	  }
 	echo "</div>";
   }
 
@@ -434,26 +445,22 @@ END_CAPTCHA_STYLE;
 	echo  <<<FORM
 	<div id="comment">
 
-<h3>comment:</h3><br>
-<textarea rows="10" cols="70" name=text></textarea><br>
-<h3>name:</h3><br>
-<input type=text name=author><br>
-<h3>email:</h3><br>
+<h3>comment:</h3>
+<textarea rows="10" cols="70" name=text></textarea>
+<h3>name:</h3>
+<input type=text name=author>
+<h3>email:</h3>
 <input type=text name=email><br>
 <nowiki>
 
 <div id="recaptcha_widget"> 
-  <div id="recaptcha_image"></div>
-  <div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
-  <span class="recaptcha_only_if_image"><b>enter the words above</b>:</span>
-  <span class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</span>
-  <br>
+<h3 class="recaptcha_only_if_image"><b>what's this say</b>?</h3>
+<h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
+<span style="font-size:80%;">(<a href="javascript:Recaptcha.reload()">another</a>/<span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span>/<span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a>)</span><br><br>
   <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-  <div><a href="javascript:Recaptcha.reload()"><small>another CAPTCHA?</small></a></div>
-  <div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')"><small>audio CAPTCHA?</small></a></div>
-  <div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')"><small>Get an image CAPTCHA</small></a></div>
-  <div><a href="javascript:Recaptcha.showhelp()"><small>help?</small></a></div>
-  <br>
+  <br><br>
+  <div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
+  <br><br><br><br>
 </div>
 FORM;
 	echo recaptcha_get_html($this->recaptcha_publickey);

@@ -5,6 +5,7 @@
 
 h3 {
 	margin-top:15px;
+	font-family:sans-serif;
 }
 
 a {
@@ -194,4 +195,15 @@ pre {
 	color:blue;
 	cursor:pointer;
 	font-size:120%;
+	font-weight:bold;
+}
+
+#recaptcha_widget {
+	position:relative;
+}
+
+#recaptcha_image {
+	position:absolute;
+	top:0px;
+	right:0px;
 }
