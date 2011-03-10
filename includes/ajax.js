@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('#recaptcha_widget').show();
   $('.submit').click(function() {
     if ($('#comment_text').val() != '') {
 	 var challenge = Recaptcha.get_challenge();

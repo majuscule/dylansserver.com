@@ -208,5 +208,6 @@ pre {
 	right:0px;
 }
 
-#recaptcha_div {
+#recaptcha_widget {
+	display:none;
 }

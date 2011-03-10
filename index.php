@@ -361,9 +361,6 @@ class note extends cms {
   }
 
   private function verify() {
-    var_dump($_POST['captcha']);
-    var_dump(isset($_POST['captcha']));
-    var_dump(isset($_POST['captcha']) || false);
     if (!isset($_POST['captcha'])) {
       require_once('includes/recaptchalib.php');
 	  echo "<br>";
@@ -404,9 +401,6 @@ class note extends cms {
     <div id=\"navigation\">
     <h2>
 END_OF_NAVIGATION;
-    if ($this->failed_captcha) {
-      echo "<span style=\"color:red;border:1px solid black;padding:15px;\">sorry, reCAPTCHA said you're not human.</span><br><br><br>";
-	}
 	if (!$this->comments_enabled) {
 	  $this->display_comment_link();
 	}
@@ -466,8 +460,7 @@ Recaptcha.create("$publickey",
 </script>
 END_CAPTCHA_STYLE;
     require_once('includes/recaptchalib.php');
-	// Trailing slash is necessary for reloads to work
-    $url = $this->url . "verify/";
+    $url = $this->url . "verify";
 	echo "<form id=\"comment_form\"  method=\"post\" action=\"$url\">";
 	echo <<<END_OF_FORM
 <div id="comment">
@@ -490,15 +483,23 @@ END_CAPTCHA_STYLE;
 <div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
 <br><br><br><br>
 </div>
+</div>
 END_OF_FORM;
     echo recaptcha_get_html($this->recaptcha_publickey); 
+    if ($this->failed_captcha) {
     echo <<<END_OF_FORM
-</div>
-
-<input class="submit" type="submit" value="comment">
-</form>
-</div>
+      <span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human,</span>
+      <input class="submit" type="submit" value="try again?">
+      </form>
+      </div>
 END_OF_FORM;
+    } else {
+	  echo <<<END_OF_FORM
+      <input class="submit" type="submit" value="post comment">
+      </form>
+      </div>
+END_OF_FORM;
+    }
   }
 }
 
