@@ -25,6 +25,11 @@ $(document).ready(function() {
 			 url: "verify",
 			 data: comment_data,
 			 success: function() {
+			   var new_post = "<h3><a href='mailto:" + email
+			                   + "'>" + name + "</a></h3>"
+							   + text + "<br><br>";
+			   $('#comments').prepend(new_post);
+			   $('#comment').hide();
 			   console.log('posted new comment');
 			 }
 		   });

@@ -456,7 +456,6 @@ END_OF_COMMENT;
     $publickey = $this->recaptcha_publickey;
     echo <<<END_CAPTCHA_STYLE
 <script type="text/javascript">
-function showRecaptcha() {
 Recaptcha.create("$publickey",
    "recaptcha_div", 
    {
@@ -464,16 +463,14 @@ Recaptcha.create("$publickey",
      custom_theme_widget: 'recaptcha_widget',
      callback: Recaptcha.focus_response_field
    });
-}
 </script>
 END_CAPTCHA_STYLE;
     require_once('includes/recaptchalib.php');
 	// Trailing slash is necessary for reloads to work
-    $url = $this->url . "verify";
+    $url = $this->url . "verify/";
 	echo "<form id=\"comment_form\"  method=\"post\" action=\"$url\">";
-	echo  <<<END_OF_FORM
+	echo <<<END_OF_FORM
 <div id="comment">
-<h3><a onclick="showRecaptcha();">comment?</a></h3>
 
 <div id="recaptcha_div">
 <br>
@@ -493,6 +490,9 @@ END_CAPTCHA_STYLE;
 <div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
 <br><br><br><br>
 </div>
+END_OF_FORM;
+    echo recaptcha_get_html($this->recaptcha_publickey); 
+    echo <<<END_OF_FORM
 </div>
 
 <input class="submit" type="submit" value="comment">
