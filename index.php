@@ -34,7 +34,10 @@ abstract class cms {
       return 'index';
 	} else if (isset($_GET['project'])) {
       return 'project';
+	} else if (isset($_GET['challenge'])) {
+      return 'captcha';
 	}
+
   }
 
   public function query() {
@@ -71,6 +74,9 @@ abstract class cms {
 	  $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
 	} else if ($this->determine_type() == 'note') {
 	  $scripts = "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/js/recaptcha_ajax.js\"></script>";
+	  $scripts .= "<script type=\"text/javascript\" src=\"/includes/jquery-core.js\"></script>";
+	  $scripts .= "<script type=\"text/javascript\" src=\"/includes/jquery-all-components.js\"></script>";
+	  $scripts .= "<script type=\"text/javascript\" src=\"/includes/ajax.js\"></script>";
 	}
   echo <<<END_OF_HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -355,23 +361,30 @@ class note extends cms {
   }
 
   private function verify() {
-    require_once('includes/recaptchalib.php');
-	echo "<br>";
-    $resp = recaptcha_check_answer ($this->recaptcha_privatekey,
-								    $_SERVER["REMOTE_ADDR"],
-								    $_POST["recaptcha_challenge_field"],
-								    $_POST["recaptcha_response_field"]);
-    if (!$resp->is_valid) {
-	  $this->failed_captcha = true;
-    } else {
+    var_dump($_POST['captcha']);
+    var_dump(isset($_POST['captcha']));
+    var_dump(isset($_POST['captcha']) || false);
+    if (!isset($_POST['captcha'])) {
+      require_once('includes/recaptchalib.php');
+	  echo "<br>";
+      $resp = recaptcha_check_answer ($this->recaptcha_privatekey,
+								      $_SERVER["REMOTE_ADDR"],
+								      $_POST["recaptcha_challenge_field"],
+								      $_POST["recaptcha_response_field"]);
+      if (!$resp->is_valid) {
+	    $this->failed_captcha = true;
+	  }
+    }
+	if (isset($_POST['captcha']) || $resp->is_valid) {
 	  $sql = ("INSERT INTO comments (date_posted, author,
 	  			email, text, note)
 				VALUES(NOW(), ?, ?, ?, ?)");
 	  $stmt = $this->db->prepare($sql);
 	  // Checks are needed here (no blank text,
 	  // and a default author / email need to be set
+	  // for no-javascript users.
 	  $stmt->bind_param('ssss',
-	  					htmlspecialchars($_POST['author']),
+	  					htmlspecialchars($_POST['name']),
 	  					htmlspecialchars($_POST['email']),
 	  					htmlspecialchars($_POST['text']),
 						$this->id);
@@ -443,7 +456,7 @@ END_OF_COMMENT;
     $publickey = $this->recaptcha_publickey;
     echo <<<END_CAPTCHA_STYLE
 <script type="text/javascript">
-function showRecaptcha(element) {
+function showRecaptcha() {
 Recaptcha.create("$publickey",
    "recaptcha_div", 
    {
@@ -457,19 +470,19 @@ END_CAPTCHA_STYLE;
     require_once('includes/recaptchalib.php');
 	// Trailing slash is necessary for reloads to work
     $url = $this->url . "verify";
-	echo "<form method=\"post\" action=\"$url\">";
+	echo "<form id=\"comment_form\"  method=\"post\" action=\"$url\">";
 	echo  <<<END_OF_FORM
 <div id="comment">
-<input type="button" value="comment" onclick="showRecaptcha('recaptcha_div');"></input>
+<h3><a onclick="showRecaptcha();">comment?</a></h3>
 
 <div id="recaptcha_div">
 <br>
 <h3>comment:</h3>
-<textarea rows="10" cols="70" name=text></textarea>
+<textarea rows="10" cols="70" name="text" id="comment_text"></textarea>
 <h3>name:</h3>
-<input type=text name=author>
+<input type=text name="name" id="comment_name">
 <h3>email:</h3>
-<input type=text name=email><br>
+<input type=text name="email" id="comment_email"><br>
 <nowiki>
 
 <div id="recaptcha_widget"> 
@@ -584,6 +597,19 @@ class notFound extends Exception {
 	}
 }
 
+class captcha extends cms {
+	public function display() {
+	  $challenge = $_GET['challenge'];
+	  $response = $_GET['response'];
+	  $remoteip = $_SERVER['REMOTE_ADDR'];
+      $curl = curl_init('http://api-verify.recaptcha.net/verify?');
+      curl_setopt ($curl, CURLOPT_POST, 4);
+      curl_setopt ($curl, CURLOPT_POSTFIELDS, "privatekey=$this->recaptcha_privatekey&remoteip=$remoteip&challenge=$challenge&response=$response");
+	  $result = curl_exec ($curl);
+	  curl_close ($curl);
+	}
+}
+
 ## now actually do something:
 switch (cms::determine_type()) {
   case "index":
@@ -609,6 +635,10 @@ switch (cms::determine_type()) {
   case "archive":
     $archive = new archive;
 	$archive->display();
+	break;
+  case "captcha":
+    $captcha = new captcha;
+	$captcha->display();
 	break;
 }
 
