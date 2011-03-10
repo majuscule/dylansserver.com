@@ -182,9 +182,9 @@ OTHER_PROJECTS;
     // Because of the CSS necessary for the animations,
     // the contact link needs to be in #portfolio to clear
     // the floats.
-	echo "<li>";
+    echo "<li>";
     $this->display_contact();
-	echo "</li>";
+    echo "</li>";
     echo "</ul>";
     $this->display_close($show_contact = false);
   }
@@ -450,6 +450,11 @@ END_OF_NAVIGATION;
       $author = $entry['author'];
       $email = $entry['email'];
       $text = htmlspecialchars($entry['text']);
+      if ($email == '') {
+        $head = "<h3>$author</h3>";
+      } else {
+        $head = "<h3><a href='mailto:$email'>$author</a></h3>";
+      }
       echo <<<END_OF_COMMENT
       <div class='comment'>
       $head
@@ -565,7 +570,7 @@ class archive extends cms {
                 AND DAY(date_posted) = ?
                 ORDER BY date_posted DESC";
         $result = $this->query($sql, "ddd",
-                                  $_GET['year'], $_GET['month'],
+                                $_GET['year'], $_GET['month'],
                                 $_GET['day']);
         break;
     }
@@ -581,8 +586,8 @@ class archive extends cms {
         $day_posted = $datetime_posted[0];
         echo "<div class='note'>";
         echo "<h2><span style='color:grey;'>";
-		echo "$year_posted/$month_posted/$day_posted/";
-		echo "</span><a href='$url'>$title</a></h2>";
+        echo "$year_posted/$month_posted/$day_posted/";
+        echo "</span><a href='$url'>$title</a></h2>";
         echo $entry['text'];
         echo "</div>";
       }
