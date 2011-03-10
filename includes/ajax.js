@@ -15,6 +15,7 @@ $(document).ready(function() {
 	       var name = $("#comment_name").val();
 	       var email = $("#comment_email").val();
 	       var text = $("#comment_text").val();
+		   if (name == '') { name = "anon" }
            var comment_data = { "captcha" : "passed",
 		                        "name" : name,
                                 "email" : email,

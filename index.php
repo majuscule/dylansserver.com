@@ -436,11 +436,16 @@ END_OF_NAVIGATION;
 	  $author = $entry['author'];
 	  $email = $entry['email'];
 	  $text = htmlspecialchars($entry['text']);
+	  if ($email == '') {
+	    $head = "<h3>$author</h3>";
+	  } else {
+	    $head = "<h3><a href='mailto:$email'>$author</a></h3>";
+	  }
 	  echo <<<END_OF_COMMENT
-	  <h3><a href="mailto:$email">$author</a></h3>
+	  <div class='comment'>
+	  $head
 	  $text
-	  <br>
-	  <br>
+	  </div>
 END_OF_COMMENT;
 	  }
 	echo "</div>";
@@ -463,34 +468,38 @@ END_CAPTCHA_STYLE;
     $url = $this->url . "verify";
 	echo "<form id=\"comment_form\"  method=\"post\" action=\"$url\">";
 	echo <<<END_OF_FORM
-<div id="comment">
-
-<div id="recaptcha_div">
-<br>
-<h3>comment:</h3>
-<textarea rows="10" cols="70" name="text" id="comment_text"></textarea>
-<h3>name:</h3>
-<input type=text name="name" id="comment_name">
-<h3>email:</h3>
-<input type=text name="email" id="comment_email"><br>
-<nowiki>
-
-<div id="recaptcha_widget"> 
-<h3 class="recaptcha_only_if_image"><b>what's this say</b>?</h3>
-<h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3><span style="font-size:80%;">(<a href="javascript:Recaptcha.reload()">another</a>/<span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span>/<span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a>)</span><br><br>
-  <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-<br><br>
-<div style="float:right;position:relative;width:100px;"><div id="recaptcha_image"></div></div>
-<br><br><br><br>
-</div>
-</div>
+    <div id="comment">
+      <h3>comment:</h3>
+      <textarea rows="10" cols="70" name="text" id="comment_text"></textarea>
+      <h3>name:</h3>
+      <input type=text name="name" id="comment_name">
+      <h3>email:</h3>
+      <input type=text name="email" id="comment_email"><br>
+  
+      <nowiki>
+      <div id="recaptcha_widget"> 
+        <h3 class="recaptcha_only_if_image"><b>what's this say</b>?</h3>
+        <h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
+        <span style="font-size:80%;">
+	      ( <a href="javascript:Recaptcha.reload()">another</a> /
+          <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span> /
+          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a> )
+	    </span>
+        <br><br>
+        <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+        <br><br>
+        <div style="float:right;position:relative;width:100px;">
+	      <div id="recaptcha_image"></div>
+	    </div>
+        <br><br><br><br>
+      </div>
 END_OF_FORM;
     echo recaptcha_get_html($this->recaptcha_publickey); 
     if ($this->failed_captcha) {
     echo <<<END_OF_FORM
-      <span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human,</span>
-      <input id="submit" class="submit" type="submit" value="try again?">
-      </form>
+        <span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human,</span>
+        <input id="submit" class="submit" type="submit" value="try again?">
+        </form>
       </div>
 END_OF_FORM;
     } else {
