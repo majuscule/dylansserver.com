@@ -489,13 +489,13 @@ END_OF_FORM;
     if ($this->failed_captcha) {
     echo <<<END_OF_FORM
       <span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human,</span>
-      <input class="submit" type="submit" value="try again?">
+      <input id="submit" class="submit" type="submit" value="try again?">
       </form>
       </div>
 END_OF_FORM;
     } else {
 	  echo <<<END_OF_FORM
-      <input class="submit" type="submit" value="post comment">
+      <input id="submit" class="submit" type="submit" value="post comment">
       </form>
       </div>
 END_OF_FORM;

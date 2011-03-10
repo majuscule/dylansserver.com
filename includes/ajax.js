@@ -35,7 +35,8 @@ $(document).ready(function() {
 			 }
 		   });
 		 } else {
-		   console.log('reCAPTCHA said you\'re not human.');
+           var error = "<span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human</span>";
+		   $('#comment').append(error);
 		 }
        },
 	   error: function() {
@@ -46,7 +47,8 @@ $(document).ready(function() {
 	   }
      }); 
 	} else {
-	  console.log('but you didn\'t write anything!');
+      var error = "<span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>but you didn't write anything!<br></span>";
+	  $('#submit').before(error);
 	}
 	return false;
   });
