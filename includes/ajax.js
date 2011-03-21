@@ -49,7 +49,7 @@ $(document).ready(function() {
 	     console.log('error');
 	   },  
 	   complete: function() {
-	     Recaptcha.destroy();
+                   Recaptcha.reload();
 	   }
      }); 
 	} else {
