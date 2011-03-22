@@ -385,15 +385,14 @@ class note extends cms {
     }
     if (isset($_POST['captcha']) || $resp->is_valid) {
       $sql = ("INSERT INTO comments (date_posted, author,
-                  email, text, note)
-                VALUES(NOW(), ?, ?, ?, ?)");
+                  text, note)
+                VALUES(NOW(), ?, ?, ?)");
       $stmt = $this->db->prepare($sql);
       // Checks are needed here (no blank text,
-      // and a default author / email need to be set
+      // and a default author needs to be set
       // for no-javascript users.
-      $stmt->bind_param('ssss',
+      $stmt->bind_param('sss',
                           htmlspecialchars($_POST['name']),
-                          htmlspecialchars($_POST['email']),
                           htmlspecialchars($_POST['text']),
                         $this->id);
       $stmt->execute();
@@ -441,20 +440,15 @@ END_OF_NAVIGATION;
 
   private function display_comments() {
     echo "<div id='comments'>";
-    $sql= "SELECT date_posted, author, email, text
+    $sql= "SELECT date_posted, author, text
              FROM comments WHERE note = ?
              ORDER BY date_posted DESC";
     $result = $this->query($sql, 'd', $this->id);
     foreach ($result as $row => $entry) {
       $date_posted = $entry['date_posted'];
       $author = $entry['author'];
-      $email = $entry['email'];
       $text = htmlspecialchars($entry['text']);
-      if ($email == '') {
-        $head = "<h3>$author</h3>";
-      } else {
-        $head = "<h3><a href='mailto:$email'>$author</a></h3>";
-      }
+      $head = "<h3>$author</h3>";
       echo <<<END_OF_COMMENT
       <div class='comment'>
       $head
@@ -487,8 +481,6 @@ END_CAPTCHA_STYLE;
       <textarea rows="10" cols="70" name="text" id="comment_text"></textarea>
       <h3>name:</h3>
       <input type=text name="name" id="comment_name">
-      <h3>email:</h3>
-      <input type=text name="email" id="comment_email"><br>
   
       <nowiki>
       <div id="recaptcha_widget"> 
@@ -497,7 +489,7 @@ END_CAPTCHA_STYLE;
         <span style="font-size:80%;">
           ( <a href="javascript:Recaptcha.reload()">another</a> /
           <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span> /
-          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></span><a href="javascript:Recaptcha.showhelp()">help</a> )
+          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">image</a></span><a href="javascript:Recaptcha.showhelp()">help</a> )
         </span>
         <br><br>
         <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
@@ -510,19 +502,31 @@ END_CAPTCHA_STYLE;
 END_OF_FORM;
     echo recaptcha_get_html($this->recaptcha_publickey); 
     if ($this->failed_captcha) {
-    echo <<<END_OF_FORM
-        <span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human,</span>
-        <input id="submit" class="submit" type="submit" value="try again?">
+    echo <<<END_OF_ERRORS
+        <div id="not_human">
+          reCAPTCHA said you're not human, <br>
+          try again?
+        </div>
+        <input id="submit" class="submit" type="submit" value="post comment">
         </form>
       </div>
-END_OF_FORM;
+END_OF_ERRORS;
     } else {
-      echo <<<END_OF_FORM
+      echo <<<END_OF_ERRORS
+        <div id="not_human">
+          reCAPTCHA said you're not human, <br>
+          try again?
+        </div>
+        <div id="blank_comment">
+          but you didn't write anything! <br>
+        </div>
+END_OF_ERRORS;
+    }
+    echo <<<END_OF_FORM
       <input id="submit" class="submit" type="submit" value="post comment">
       </form>
       </div>
 END_OF_FORM;
-    }
   }
 }
 

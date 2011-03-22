@@ -1,6 +1,10 @@
 $(document).ready(function() {
   $('#recaptcha_widget').show();
   $('.submit').click(function() {
+    $('#not_human').hide();
+    $('#blank_comment').hide();
+    $('#comment_text').css('border', '1px solid grey')
+    $('#recaptcha_response_field').css('border', '1px solid grey')
     if ($('#comment_text').val() != '') {
 	 var challenge = Recaptcha.get_challenge();
 	 var response = Recaptcha.get_response();
@@ -13,12 +17,10 @@ $(document).ready(function() {
        success: function(data) {  
 	     if (data.split('\n')[0] == 'true') {
 	       var name = $("#comment_name").val();
-	       var email = $("#comment_email").val();
 	       var text = $("#comment_text").val();
 		   if (name == '') { name = "anon" }
            var comment_data = { "captcha" : "passed",
 		                        "name" : name,
-                                "email" : email,
                                 "text" : text};
 		   $.ajax({
 		     type: "POST",
@@ -27,22 +29,15 @@ $(document).ready(function() {
 			 url: "verify",
 			 data: comment_data,
 			 success: function() {
-			   if (email != '') {
-			     var new_post = "<h3><a href='mailto:" + email
-			                     + "'>" + name + "</a></h3>"
+			   var new_post = "<h3>" + name + "</h3>"
 							     + text + "<br><br>";
-			   } else {
-			     var new_post = "<h3>" + name + "</h3>"
-							     + text + "<br><br>";
-			   }
 			   $('#comments').prepend(new_post);
 			   $('#comment').hide();
-			   console.log('posted new comment');
 			 }
 		   });
 		 } else {
-           var error = "<span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>reCAPTCHA said you're not human</span>";
-		   $('#comment').append(error);
+		   $('#not_human').show();
+           $('#recaptcha_response_field').css('border', '2px solid red')
 		 }
        },
 	   error: function() {
@@ -53,8 +48,8 @@ $(document).ready(function() {
 	   }
      }); 
 	} else {
-      var error = "<span style='font-weight:bold;font-family:sans-serif;color:red;margin-top:15px;'>but you didn't write anything!<br></span>";
-	  $('#submit').before(error);
+	  $('#blank_comment').show();
+      $('#comment_text').css('border', '2px solid red')
 	}
 	return false;
   });

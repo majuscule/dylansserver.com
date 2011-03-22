@@ -215,3 +215,21 @@ pre {
 #recaptcha_widget {
 	display:none;
 }
+
+#not_human {
+    display:none;
+    font-weight:bold;
+    font-family:sans-serif;
+    color:red;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+#blank_comment {
+    display:none;
+    font-weight:bold;
+    font-family:sans-serif;
+    color:red;
+    margin-top:15px;
+    margin-bottom:15px;
+}
