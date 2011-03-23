@@ -11,7 +11,6 @@ domain = config.get('database', 'domain')
 user = config.get('database', 'user')
 password = config.get('database', 'password').replace('"', '')
 database = config.get('database', 'database')
-print domain, user, password, database
 cursor = db.connect(domain, user, password, database).cursor()
 
 notes = os.listdir('projects')
