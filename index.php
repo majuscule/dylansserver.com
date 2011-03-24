@@ -190,13 +190,13 @@ OTHER_PROJECTS;
   }
 
   protected function display_exhibits() {
+    echo "<div id='exhibit'>";
     $sql = "SELECT text FROM projects";
     $result = $this->db->query($sql);
     while ($entry = $result->fetch_object()) {
-      echo "<div class='exhibit'>";
       echo $entry->text;
-      echo "</div>";
     }
+    echo "</div>";
   }
 
   private function list_projects() {
