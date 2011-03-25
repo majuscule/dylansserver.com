@@ -145,6 +145,7 @@ class index extends cms {
     echo "<ul id='portfolio' style='text-align:right'>";
     $this->list_projects();
     echo <<<OTHER_PROJECTS
+        <li>
           <h3>things i've done for others:</h3>
         </li>
 
