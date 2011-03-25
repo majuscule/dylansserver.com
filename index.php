@@ -281,10 +281,17 @@ class page extends cms {
       $month_posted = $date_posted[1];
       $datetime_posted = explode(' ', $date_posted[2]);
       $day_posted = $datetime_posted[0];
-      echo "<div class='note'>";
-      echo "<h1><span class='date'>$year_posted/$month_posted/$day_posted/</span><a href='$url'>$title</a></h1>";
-      echo $entry['text'];
-      echo "</div>";
+      $text = $entry['text'];
+      echo <<<END_NOTE
+      <div class='note'>
+      <h1>
+        <span class='date'>
+          $year_posted/$month_posted/$day_posted/
+        </span><a rel="canonical" href='$url'>$title</a>
+      </h1>
+      $text
+      </div>
+END_NOTE;
     }
     echo "</div>";
     $this->write_navigation();
