@@ -282,7 +282,7 @@ class page extends cms {
       $datetime_posted = explode(' ', $date_posted[2]);
       $day_posted = $datetime_posted[0];
       echo "<div class='note'>";
-      echo "<h2><span style='color:grey;'>$year_posted/$month_posted/$day_posted/</span><a href='$url'>$title</a></h2>";
+      echo "<h1><span class='date'>$year_posted/$month_posted/$day_posted/</span><a href='$url'>$title</a></h1>";
       echo $entry['text'];
       echo "</div>";
     }
@@ -293,7 +293,7 @@ class page extends cms {
 
   private function write_navigation() {
     echo "<div id='navigation'>";
-    echo "<h2>";
+    echo "<h1>";
     if($this->page > 1){
       $previous_page = $this->page - 1;
       echo "<a href='/notes/page/$previous_page'>prev</a>";
@@ -302,7 +302,7 @@ class page extends cms {
     $forward_page = $this->page + 1;
     echo " <a href='/notes/page/$forward_page'>next</a>";
     }
-    echo "</h2>";
+    echo "</h1>";
     echo "</div>";
   }
 
@@ -401,7 +401,7 @@ class note extends cms {
   private function display_note() {
     echo <<<END_OF_NOTE
     <div id='note'>
-    <h2><span style='color:grey;'>$this->year_posted/$this->month_posted/$this->day_posted/</span>$this->title</h2>
+    <h1><span class='date'>$this->year_posted/$this->month_posted/$this->day_posted/</span>$this->title</h1>
     $this->text
     </div>
 END_OF_NOTE;
@@ -411,14 +411,14 @@ END_OF_NOTE;
     echo <<<END_OF_NAVIGATION
     <br>
     <div id='navigation'>
-    <h2>
+    <h1>
 END_OF_NAVIGATION;
     if (!$this->comments_enabled) {
       $this->display_comment_link();
     }
     echo <<<END_OF_NAVIGATION
     <a href="/notes/">back to notes</a>/
-    </h2>
+    </h1>
     </div>
 END_OF_NAVIGATION;
   }
@@ -588,9 +588,9 @@ class archive extends cms {
         $datetime_posted = explode(' ', $date_posted[2]);
         $day_posted = $datetime_posted[0];
         echo "<div class='note'>";
-        echo "<h2><span style='color:grey;'>";
+        echo "<h1><span class='date'>";
         echo "$year_posted/$month_posted/$day_posted/";
-        echo "</span><a href='$url'>$title</a></h2>";
+        echo "</span><a href='$url'>$title</a></h1>";
         echo $entry['text'];
         echo "</div>";
       }
@@ -598,7 +598,7 @@ class archive extends cms {
       $this->write_navigation();
     } else {
       echo "<br>";
-      echo "<h2 style='font-family:sans-serif;'>sorry, nothing here</h2>";
+      echo "<h1>sorry, nothing here</h2>";
       echo "<pre>Empty set (0.00 sec)</pre>";
     }
     $this->display_close();
@@ -607,9 +607,7 @@ class archive extends cms {
   private function write_navigation() {
     echo "<br>";
     echo "<div id='navigation'>";
-    echo "<h2>";
     // fill me in!
-    echo "</h2>";
     echo "</div>";
   }
 
