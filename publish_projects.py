@@ -25,9 +25,10 @@ for row in results:
     existing_titles.append(row[0])
 
 for note in notes:
+    if (note[:1] == '.'): continue
     title = note[:note.index('.')]
     f = open(os.path.join(PROJECTS_DIRECTORY, note))
     if title in existing_titles: continue
     text = f.read()
     cursor.execute("INSERT INTO projects (title, text)\
-                      VALUES (%s, %s)", (title, text))
+                        VALUES (%s, %s)", (title, text))
