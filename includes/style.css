@@ -156,12 +156,13 @@ li {
 	margin-bottom:40px;
 }
 
-.note p {
-	margin-bottom:5px;
+p {
+	margin-top:15px;
 }
 
 pre {
-	margin-top:10px;
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 #navigation {
