@@ -3,6 +3,8 @@ ErrorDocument 404 /404.php
 
 RewriteEngine on
 
+RewriteRule ^git/?$ /git/gitweb.cgi%{REQUESTURI} [L]
+
 RewriteRule ^captcha/?$ /index.php [L]
 
 RewriteRule ^note/([^/\.]+)?/?$ /index.php?note=$1 [L]
