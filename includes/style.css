@@ -5,6 +5,7 @@
 
 h3 {
 	margin-top:15px;
+	font-family:sans-serif;
 }
 
 a {
@@ -134,14 +135,21 @@ li {
 
 /* notes */
 #notes, #note {
-	float:right;
 	text-align:right;
 	margin-top:20px;
 }
 
-#notes h2, #note h2 {
+#notes h2 {
 	margin-bottom:10px;
 	font-family:sans-serif;
+}
+
+#note h2 {
+	font-family:sans-serif;
+}
+
+#comment_link {
+	font-size:80%;
 }
 
 .note {
@@ -158,4 +166,70 @@ pre {
 
 #navigation {
 	text-align:right;
+	font-family:sans-serif;
+}
+
+#comments {
+	border-right:1px solid black;
+	padding-right:15px;
+}
+
+.comment {
+	margin-bottom:30px;
+}
+
+#comment {
+	padding-right:15px;
+	border-right:1px solid black;
+	margin-top:15px;
+	text-align:right;
+}
+
+#comment input {
+	border:1px solid grey;
+}
+
+#comment textarea {
+	border:1px solid grey;
+}
+
+#comment .submit {
+	background:#FFF;
+	border:1px solid white;
+	color:blue;
+	cursor:pointer;
+	font-size:120%;
+	font-weight:bold;
+}
+
+#recaptcha_widget {
+	position:relative;
+}
+
+#recaptcha_image {
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+
+#recaptcha_widget {
+	display:none;
+}
+
+#not_human {
+    display:none;
+    font-weight:bold;
+    font-family:sans-serif;
+    color:red;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+#blank_comment {
+    display:none;
+    font-weight:bold;
+    font-family:sans-serif;
+    color:red;
+    margin-top:15px;
+    margin-bottom:15px;
 }
