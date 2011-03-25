@@ -248,11 +248,16 @@ b.callback.apply(this,arguments);a.dequeue()}})})}})(jQuery);
 (function(c){c.effects.slide=function(d){return this.queue(function(){var a=c(this),h=["position","top","left"],f=c.effects.setMode(a,d.options.mode||"show"),b=d.options.direction||"left";c.effects.save(a,h);a.show();c.effects.createWrapper(a).css({overflow:"hidden"});var g=b=="up"||b=="down"?"top":"left";b=b=="up"||b=="left"?"pos":"neg";var e=d.options.distance||(g=="top"?a.outerHeight({margin:true}):a.outerWidth({margin:true}));if(f=="show")a.css(g,b=="pos"?isNaN(e)?"-"+e:-e:e);var i={};i[g]=(f==
 "show"?b=="pos"?"+=":"-=":b=="pos"?"-=":"+=")+e;a.animate(i,{queue:false,duration:d.duration,easing:d.options.easing,complete:function(){f=="hide"&&a.hide();c.effects.restore(a,h);c.effects.removeWrapper(a);d.callback&&d.callback.apply(this,arguments);a.dequeue()}})})}})(jQuery);
 ;$(document).ready(function() {
-	$(".exhibit").hide();
-	var divs = document.getElementsByTagName('div');
 	if(document.location.hash){
 		$(document.location.hash + '_').show();
 	}
+	$("ul#portfolio li a.tab").each(function(){
+		if (document.location.href.indexOf($(this).attr("href")) == 0) {
+			$("#" + this.attr("href")).show("slide", 600);
+		}
+		$(this).attr("href", "#" + $(this).attr("href"));
+	});
+	var divs = document.getElementsByTagName('div');
 	var i = 0;
 	$("ul#portfolio li a.tab").click(function() {
 		i++;
@@ -269,5 +274,4 @@ b.callback.apply(this,arguments);a.dequeue()}})})}})(jQuery);
 			divs[i].className += (" shownDiv");
 		}
 	});
-
 });

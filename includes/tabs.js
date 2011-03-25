@@ -1,9 +1,14 @@
 $(document).ready(function() {
-	$(".exhibit").hide();
-	var divs = document.getElementsByTagName('div');
 	if(document.location.hash){
 		$(document.location.hash + '_').show();
 	}
+	$("ul#portfolio li a.tab").each(function(){
+		if (document.location.href.indexOf($(this).attr("href")) == 0) {
+			$("#" + this.attr("href")).show("slide", 600);
+		}
+		$(this).attr("href", "#" + $(this).attr("href"));
+	});
+	var divs = document.getElementsByTagName('div');
 	var i = 0;
 	$("ul#portfolio li a.tab").click(function() {
 		i++;
@@ -20,5 +25,4 @@ $(document).ready(function() {
 			divs[i].className += (" shownDiv");
 		}
 	});
-
 });
