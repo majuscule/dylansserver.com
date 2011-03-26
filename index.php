@@ -6,6 +6,7 @@ abstract class cms {
   protected $db;
   protected $recaptcha_publickey;
   protected $recaptcha_privatekey;
+  protected  $scripts;
   public $title;
   public $home_link;
 
@@ -71,17 +72,9 @@ abstract class cms {
 
   public function display_head($title = "dylansserver",
                                   $home_link = "/") {
-    $scripts = "";
+    $scripts = $this->scripts;
     $stylesheets = "<link href='/includes/style.css' rel='stylesheet' type='text/css'>";
-    if (cms::determine_type() == "index") {
-      $scripts = "<script type='text/javascript' src='/includes/all.js'></script>"; 
-      $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
-    } else if ($this->determine_type() == 'note') {
-      $scripts = "<script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-core.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-all-components.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/ajax.js'></script>";
-    }
+    $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
     echo <<<END_OF_HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -140,6 +133,7 @@ END_OF_CLOSE;
 class index extends cms {
 
   public function display() {
+    $this->scripts = "<script type='text/javascript' src='/includes/index.js'></script>"; 
     $this->display_head();
     $this->display_exhibits();
     echo "<ul id='portfolio' style='text-align:right'>";
@@ -324,6 +318,11 @@ class note extends cms {
   public $number_of_comments;
 
   public function __construct() {
+    if (isset($_GET['comments'])) {
+      $this->scripts = "
+        <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
+        <script type='text/javascript' src='/includes/comment.js'></script>";
+    }
     parent::__construct();
     if (isset($_GET['comments'])) {
       $this->comments_enabled = true;
