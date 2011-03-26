@@ -76,11 +76,10 @@ abstract class cms {
     if (cms::determine_type() == "index") {
       $scripts = "<script type='text/javascript' src='/includes/all.js'></script>"; 
       $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
-    } else if ($this->determine_type() == 'note') {
+    } else if ($this->determine_type() == 'note'
+                 && isset($_GET['comments'])) {
       $scripts = "<script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-core.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-all-components.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/ajax.js'></script>";
+      $scripts .= "<script type='text/javascript' src='/includes/comment.js'></script>";
     }
     echo <<<END_OF_HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
