@@ -133,7 +133,7 @@ END_OF_CLOSE;
 class index extends cms {
 
   public function display() {
-    $this->scripts = "<script type='text/javascript' src='/includes/all.js'></script>"; 
+    $this->scripts = "<script type='text/javascript' src='/includes/index.js'></script>"; 
     $this->display_head();
     $this->display_exhibits();
     echo "<ul id='portfolio' style='text-align:right'>";
