@@ -2,7 +2,7 @@
 
 abstract class cms {
 
-  private $config_file = '/etc/dylanstestserver.ini';
+  private $config_file = '/etc/dylansserver.ini';
   protected $db;
   protected $recaptcha_publickey;
   protected $recaptcha_privatekey;
@@ -69,13 +69,13 @@ abstract class cms {
     return $return;
       }
 
-  public function display_head($title = "dylanstestserver",
+  public function display_head($title = "dylansserver",
                                   $home_link = "/") {
     $scripts = "";
     $stylesheets = "<link href='/includes/style.css' rel='stylesheet' type='text/css'>";
     if (cms::determine_type() == "index") {
       $scripts = "<script type='text/javascript' src='/includes/all.js'></script>"; 
-      $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
+      $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
     } else if ($this->determine_type() == 'note') {
       $scripts = "<script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>";
       $scripts .= "<script type='text/javascript' src='/includes/jquery-core.js'></script>";
@@ -102,7 +102,7 @@ abstract class cms {
   <div id="structure">
     <div id="banner">
       <a href="$this->home_link">
-      <img src="/images/dylanstestserver.png" alt="dylanstestserver"
+      <img src="/images/dylansserver.png" alt="dylansserver"
       border="0"></a>
     </div>
 
@@ -167,7 +167,7 @@ class index extends cms {
         </li>
 
         <li><a href=
-        "git">git://dylanstestserver.com</a></li>
+        "git">git://dylansserver.com</a></li>
 
         <li>
           <h3>some notes:</h3>
