@@ -93,7 +93,7 @@ abstract class cms {
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
   <title>$this->title</title>
-  <link rel="icon" href="favicon.ico" type="image/png">
+  <link rel="icon" href="/favicon.ico" type="image/png">
   $stylesheets
   $scripts
 </head>
