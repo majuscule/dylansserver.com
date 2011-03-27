@@ -280,9 +280,7 @@ class page extends cms {
       echo <<<END_NOTE
       <div class='note'>
       <h1>
-        <span class='date'>
-          $year_posted/$month_posted/$day_posted/
-        </span><a rel="canonical" href='$url'>$title</a>
+        <span class='date'>$year_posted/$month_posted/$day_posted/</span><a rel="canonical" href='$url'>$title</a>
       </h1>
       $text
       </div>
