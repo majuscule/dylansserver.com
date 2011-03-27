@@ -2,10 +2,11 @@
 
 abstract class cms {
 
-  private $config_file = '/etc/dylanstestserver.ini';
+  private $config_file = '/etc/dylansserver.ini';
   protected $db;
   protected $recaptcha_publickey;
   protected $recaptcha_privatekey;
+  protected  $scripts;
   public $title;
   public $home_link;
 
@@ -69,19 +70,11 @@ abstract class cms {
     return $return;
       }
 
-  public function display_head($title = "dylanstestserver",
+  public function display_head($title = "dylansserver",
                                   $home_link = "/") {
-    $scripts = "";
+    $scripts = $this->scripts;
     $stylesheets = "<link href='/includes/style.css' rel='stylesheet' type='text/css'>";
-    if (cms::determine_type() == "index") {
-      $scripts = "<script type='text/javascript' src='/includes/all.js'></script>"; 
-      $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylanstestserver.com&amp;ucn_task=conformance#";
-    } else if ($this->determine_type() == 'note') {
-      $scripts = "<script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-core.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/jquery-all-components.js'></script>";
-      $scripts .= "<script type='text/javascript' src='/includes/ajax.js'></script>";
-    }
+    $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
     echo <<<END_OF_HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -93,7 +86,7 @@ abstract class cms {
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
   <title>$this->title</title>
-  <link rel="icon" href="favicon.ico" type="image/png">
+  <link rel="icon" href="/favicon.ico" type="image/png">
   $stylesheets
   $scripts
 </head>
@@ -102,7 +95,7 @@ abstract class cms {
   <div id="structure">
     <div id="banner">
       <a href="$this->home_link">
-      <img src="/images/dylanstestserver.png" alt="dylanstestserver"
+      <img src="/images/dylansserver.png" alt="dylansserver"
       border="0"></a>
     </div>
 
@@ -140,11 +133,13 @@ END_OF_CLOSE;
 class index extends cms {
 
   public function display() {
+    $this->scripts = "<script type='text/javascript' src='/includes/index.js'></script>"; 
     $this->display_head();
     $this->display_exhibits();
     echo "<ul id='portfolio' style='text-align:right'>";
     $this->list_projects();
     echo <<<OTHER_PROJECTS
+        <li>
           <h3>things i've done for others:</h3>
         </li>
 
@@ -166,7 +161,7 @@ class index extends cms {
         </li>
 
         <li><a href=
-        "git">git://dylanstestserver.com</a></li>
+        "git">git://dylansserver.com</a></li>
 
         <li>
           <h3>some notes:</h3>
@@ -330,6 +325,11 @@ class note extends cms {
   public $number_of_comments;
 
   public function __construct() {
+    if (isset($_GET['comments'])) {
+      $this->scripts = "
+        <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
+        <script type='text/javascript' src='/includes/comment.js'></script>";
+    }
     parent::__construct();
     if (isset($_GET['comments'])) {
       $this->comments_enabled = true;
