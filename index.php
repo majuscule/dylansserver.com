@@ -40,7 +40,9 @@ abstract class cms {
       return 'index';
     } else if (isset($_GET['project'])) {
       return 'project';
-    } else if (isset($_GET['challenge'])) {
+	} else if (isset($_GET['rss'])) {
+	  return 'rss';
+	} else if (isset($_GET['challenge'])) {
       return 'captcha';
     }
   }
@@ -168,7 +170,7 @@ class index extends cms {
         </li>
 
         <li><a href=
-        "/notes/">here</a></li>
+        "/notes/">here</a> [<a href="/notes/rss">rss</a>]</li>
 
         <li>
         </li>
@@ -619,6 +621,50 @@ class archive extends cms {
 }
 
 
+class rss extends cms {
+  public function display() {
+    $result = $this->db->query("SELECT date_posted, title, text, url
+					  FROM notes ORDER BY date_posted DESC
+					  LIMIT 5");
+	  echo <<<END_OF_ENTRY
+	  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+      <channel>
+	    <title>dylanstestserver.com/notes/rss</title>
+		<link>http://dylanstestserver.com/notes</link>
+		<description>dylanstestserver.com/notes/rss</description>
+		<atom:link href="http://dylanstestserver.com/notes/rss" rel="self" type="application/rss+xml" />
+END_OF_ENTRY;
+	while ($entry = $result->fetch_object()) {
+	  $title = $entry->title;
+	  $date_posted = $entry->date_posted;
+	  $url = "http://dylanstestserver.com/note/" . $entry->url;
+	  $text = $entry->text;
+	  $text = strip_tags($text);
+	  $end_of_first_sentence = strpos($text, '.');
+	  if ($end_of_first_sentence) {
+	    $end_of_second_sentence = strpos($text, '.', ($end_of_first_sentence + 1));
+		if ($end_of_second_sentence) {
+		  $description = substr($text, '0', ($end_of_second_sentence + 1));
+		} else {
+		  $description = substr($text, '0', ($end_of_first_sentence + 1));
+		}
+	  }
+	  echo <<<END_OF_ENTRY
+	    <item>
+		  <title>$title</title>
+		  <link>$url</link>
+		  <guid>$url</guid>
+		  <description>$description</description>
+	    </item>
+END_OF_ENTRY;
+	}
+      echo "</channel>";
+      echo "</rss>";
+    
+  }
+}
+
+
 class notFound extends Exception {
 
     public function __construct() {
@@ -665,10 +711,13 @@ switch (cms::determine_type()) {
     $page = new page;
     $page->display();
     break;
+  case "rss":
+    $rss = new rss();
+	$rss->display();
   case 'archive':
     $archive = new archive;
-    $archive->display();
-    break;
+	$archive->display();
+	break;
   case "captcha":
     $captcha = new captcha;
     $captcha->display();
