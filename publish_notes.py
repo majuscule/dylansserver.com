@@ -25,6 +25,7 @@ for row in results:
     existing_titles.append(row[0])
 
 for note in notes:
+    if note[:1] == '.': continue
     if note == 'index.php' or note == 'notes.php': continue
     url = note[:note.index('.')]
     f = open(os.path.join(NOTES_DIRECTORY, note))

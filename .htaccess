@@ -5,7 +5,13 @@ RewriteEngine on
 
 RewriteRule ^notes/rss/?$ /index.php?rss=true [L]
 
+RewriteRule ^git/?$ /git/gitweb.cgi%{REQUESTURI} [L]
+
+RewriteRule ^captcha/?$ /index.php [L]
+
 RewriteRule ^note/([^/\.]+)?/?$ /index.php?note=$1 [L]
+RewriteRule ^note/([^/\.]+)?/comments/?$ /index.php?comments=true&note=$1 [L]
+RewriteRule ^note/([^/\.]+)?/(comments/)?verify/?$ /index.php?comments=true&verify=true&note=$1 [L]
 
 RewriteRule ^notes/?$ notes/page/1
 RewriteRule ^notes/page/?$ notes/page/1
