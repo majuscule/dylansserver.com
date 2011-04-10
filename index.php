@@ -170,7 +170,7 @@ class index extends cms {
         </li>
 
         <li><a href=
-        "/notes/">here</a></li>
+        "/notes/">here</a> [<a href="/notes/rss">rss</a>]</li>
 
         <li>
         </li>
