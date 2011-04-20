@@ -416,7 +416,7 @@ END_OF_NOTE;
 
   private function write_navigation() {
     echo <<<END_OF_NAVIGATION
-    <br>
+    <br><br><br><br>
     <div id='navigation'>
     <h1>
 END_OF_NAVIGATION;
@@ -490,20 +490,22 @@ END_CAPTCHA_STYLE;
   
       <nowiki>
       <div id="recaptcha_widget"> 
-        <h3 class="recaptcha_only_if_image"><b>what's this say</b>?</h3>
-        <h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
-        <span style="font-size:80%;">
-          ( <a href="javascript:Recaptcha.reload()">another</a> /
-          <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio</a></span> /
-          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">image</a></span><a href="javascript:Recaptcha.showhelp()">help</a> )
-        </span>
-        <br><br>
-        <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-        <br><br>
+        <br>
+        <h3><b>what's this say</b>?</h3>
+        <br>
         <div style="float:right;position:relative;width:100px;">
           <div id="recaptcha_image"></div>
         </div>
-        <br><br><br><br>
+        <br><br><br>
+        <span class="recaptcha_only_if_image"><br><br><br></span>
+        <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+        <br><br>
+        <h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
+        <span style="font-size:80%;">
+          <a href="javascript:Recaptcha.reload()">another?</a> /
+          <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio?</a> /</span>
+          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">image?</a></span><a href="javascript:Recaptcha.showhelp()">help?</a>
+        </span>
       </div>
 END_OF_FORM;
     echo recaptcha_get_html($this->recaptcha_publickey); 
