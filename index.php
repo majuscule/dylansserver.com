@@ -493,7 +493,7 @@ END_CAPTCHA_STYLE;
         <br>
         <h3><b>what's this say</b>?</h3>
         <br>
-        <div style="float:right;position:relative;width:100px;">
+        <div style="float:left;position:relative;width:100px;margin-left:200px;">
           <div id="recaptcha_image"></div>
         </div>
         <br><br><br>

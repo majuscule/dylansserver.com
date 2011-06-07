@@ -29,12 +29,13 @@ li {
 }
 
 #banner {
-	float:right;
+/*	float:left;
 	margin-right:15px;
+*/
+    margin-left:15px;
 }
 
 #content {
-	float:right;
 	width:725px;
 	min-height:300px;
 	margin-bottom: 20px;
@@ -42,7 +43,7 @@ li {
 	padding:5px;
 	padding-left:20px;
 	padding-bottom:25px;
-	text-align:right;
+	text-align:left;
 }
 
 #portfolio {
@@ -79,7 +80,7 @@ li {
 #contact_me {
 	margin-top:100px;
 	font-family:sans-serif;
-	text-align:right;
+	text-align:left;
 	clear:both;
 }
 
@@ -140,7 +141,7 @@ li {
 
 /* notes */
 #notes, #note {
-	text-align:right;
+	text-align:left;
 	margin-top:20px;
 }
 
@@ -171,13 +172,13 @@ pre {
 }
 
 #navigation {
-	text-align:right;
+	text-align:left;
 	font-family:sans-serif;
 }
 
 #comments {
-	border-right:1px solid black;
-	padding-right:15px;
+	border-left:1px solid black;
+	padding-left:15px;
 }
 
 .comment {
@@ -185,10 +186,10 @@ pre {
 }
 
 #comment {
-	padding-right:15px;
-	border-right:1px solid black;
+	padding-left:15px;
+	border-left:1px solid black;
 	margin-top:15px;
-	text-align:right;
+	text-align:left;
 }
 
 #comment input {
