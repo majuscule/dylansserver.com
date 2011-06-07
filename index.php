@@ -138,7 +138,7 @@ class index extends cms {
     $this->scripts = "<script type='text/javascript' src='/includes/index.js'></script>"; 
     $this->display_head();
     $this->display_exhibits();
-    echo "<ul id='portfolio' style='text-align:right'>";
+    echo "<ul id='portfolio'";
     $this->list_projects();
     echo <<<OTHER_PROJECTS
         <li>
