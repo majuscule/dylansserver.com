@@ -424,7 +424,7 @@ END_OF_NAVIGATION;
       $this->display_comment_link();
     }
     echo <<<END_OF_NAVIGATION
-    <a href="/notes/">back to notes</a>/
+    <a href="/notes/">back to notes/</a>
     </h1>
     </div>
 END_OF_NAVIGATION;
