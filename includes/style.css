@@ -218,10 +218,17 @@ pre {
 	position:absolute;
 	top:0px;
 	right:0px;
+    float:left;
+    position:relative;
+    width:100px;
 }
 
 #recaptcha_widget {
 	display:none;
+}
+
+.recaptcha_help {
+    font-size:80%;
 }
 
 #not_human {

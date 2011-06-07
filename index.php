@@ -219,7 +219,7 @@ class project extends index {
              WHERE title = ?";
     $result = $this->query($sql, "s", $_GET['project']);
     if ($result = $result[0]['text']) {
-      $text =  str_replace("class='exhibit'", "class='exhibit' style='display:block;'", $result);
+      $text =  str_replace("class='exhibit'", "class='exhibit'", $result);
       echo $text;
       echo "</div>";
     } else {
@@ -493,15 +493,13 @@ END_CAPTCHA_STYLE;
         <br>
         <h3><b>what's this say</b>?</h3>
         <br>
-        <div style="float:left;position:relative;width:100px;margin-left:200px;">
           <div id="recaptcha_image"></div>
-        </div>
         <br><br><br>
         <span class="recaptcha_only_if_image"><br><br><br></span>
         <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
         <br><br>
         <h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
-        <span style="font-size:80%;">
+        <span class="recaptcha_help">
           <a href="javascript:Recaptcha.reload()">another?</a> /
           <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio?</a> /</span>
           <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">image?</a></span><a href="javascript:Recaptcha.showhelp()">help?</a>
