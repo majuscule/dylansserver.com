@@ -177,6 +177,7 @@ pre {
 }
 
 #comments {
+    margin-top:30px;
 	border-left:1px solid black;
 	padding-left:15px;
 }
