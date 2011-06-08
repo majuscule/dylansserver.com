@@ -219,7 +219,7 @@ class project extends index {
              WHERE title = ?";
     $result = $this->query($sql, "s", $_GET['project']);
     if ($result = $result[0]['text']) {
-      $text =  str_replace("class='exhibit'", "class='exhibit'", $result);
+      $text =  str_replace("class='exhibit'", "class='exhibit' style='display:block;'", $result);
       echo $text;
       echo "</div>";
     } else {
