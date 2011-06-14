@@ -139,6 +139,7 @@ li {
 #notes, #note {
 	text-align:left;
 	margin-top:20px;
+    font-family:'InconsolataMedium';
 }
 
 #notes h1 {
@@ -166,6 +167,8 @@ p {
 pre {
 	margin-top:20px;
 	margin-bottom:20px;
+    width:100%;
+    overflow:auto;
 }
 
 #navigation {
@@ -192,10 +195,12 @@ pre {
 
 #comment input {
 	border:1px solid grey;
+    font-family:'InconsolataMedium';
 }
 
 #comment textarea {
 	border:1px solid grey;
+    font-family:'InconsolataMedium';
 }
 
 #comment .submit {
@@ -226,6 +231,7 @@ pre {
 }
 
 .recaptcha_help {
+    font-family:'MuseoSlab500';
     font-size:80%;
 }
 
@@ -238,7 +244,8 @@ pre {
     margin-bottom:15px;
 }
 
-#blank_comment { display:none;
+#blank_comment {
+    display:none;
     font-weight:bold;
     font-family:sans-serif;
     color:red;
