@@ -139,6 +139,7 @@ li {
 #notes, #note {
 	text-align:left;
 	margin-top:20px;
+    font-family:'InconsolataMedium';
 }
 
 #notes h1 {
