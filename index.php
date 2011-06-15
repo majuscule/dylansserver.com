@@ -250,7 +250,8 @@ class page extends cms {
             SyntaxHighlighter.autoloader(
              'js /includes/syntax/scripts/shBrushJScript.js',
              'bash /includes/syntax/scripts/shBrushBash.js',
-             'sql /includes/syntax/scripts/shBrushSql.js');
+             'sql /includes/syntax/scripts/shBrushSql.js',
+             'cpp /includes/syntax/scripts/shBrushCpp.js');
             SyntaxHighlighter.defaults['gutter'] = false;
             SyntaxHighlighter.defaults['toolbar'] = false;
             SyntaxHighlighter.all();
@@ -352,7 +353,8 @@ class note extends cms {
             SyntaxHighlighter.autoloader(
              'js /includes/syntax/scripts/shBrushJScript.js',
              'bash /includes/syntax/scripts/shBrushBash.js',
-             'sql /includes/syntax/scripts/shBrushSql.js');
+             'sql /includes/syntax/scripts/shBrushSql.js',
+             'cpp /includes/syntax/scripts/shBrushCpp.js');
             SyntaxHighlighter.defaults['gutter'] = false;
             SyntaxHighlighter.defaults['toolbar'] = false;
             SyntaxHighlighter.all();
