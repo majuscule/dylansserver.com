@@ -93,7 +93,7 @@ abstract class cms {
   $scripts
 </head>
 
-<body>
+<body onload="return typeof highlight == 'function' ? highlight() : true;">
   <div id="structure">
     <div id="banner">
       <a href="$this->home_link">
@@ -240,6 +240,24 @@ class page extends cms {
   public function __construct() {
     parent::__construct();
     $this->page_offset();
+    $this->scripts = "
+        <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
+        <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'></script>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'></link>
+        <script type='text/javascript'>
+          function highlight() {
+            SyntaxHighlighter.autoloader(
+             'js /includes/syntax/scripts/shBrushJScript.js',
+             'bash /includes/syntax/scripts/shBrushBash.js',
+             'sql /includes/syntax/scripts/shBrushSql.js',
+             'cpp /includes/syntax/scripts/shBrushCpp.js');
+            SyntaxHighlighter.defaults['gutter'] = false;
+            SyntaxHighlighter.defaults['toolbar'] = false;
+            SyntaxHighlighter.all();
+          }
+        </script>
+    ";
   }
 
   private function page_offset() {
@@ -325,8 +343,27 @@ class note extends cms {
   public $number_of_comments;
 
   public function __construct() {
-    if (isset($_GET['comments'])) {
       $this->scripts = "
+        <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
+        <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'></script>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'></link>
+        <script type='text/javascript'>
+          function highlight() {
+            SyntaxHighlighter.autoloader(
+             'js /includes/syntax/scripts/shBrushJScript.js',
+             'bash /includes/syntax/scripts/shBrushBash.js',
+             'sql /includes/syntax/scripts/shBrushSql.js',
+             'cpp /includes/syntax/scripts/shBrushCpp.js');
+            SyntaxHighlighter.defaults['gutter'] = false;
+            SyntaxHighlighter.defaults['toolbar'] = false;
+            SyntaxHighlighter.all();
+          }
+        </script>
+      ";
+
+    if (isset($_GET['comments'])) {
+      $this->scripts .= "
         <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
         <script type='text/javascript' src='/includes/comment.js'></script>";
     }
