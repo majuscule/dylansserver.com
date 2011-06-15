@@ -252,6 +252,7 @@ class page extends cms {
              'bash /includes/syntax/scripts/shBrushBash.js',
              'sql /includes/syntax/scripts/shBrushSql.js');
             SyntaxHighlighter.defaults['gutter'] = false;
+            SyntaxHighlighter.defaults['toolbar'] = false;
             SyntaxHighlighter.all();
           }
         </script>
@@ -353,6 +354,7 @@ class note extends cms {
              'bash /includes/syntax/scripts/shBrushBash.js',
              'sql /includes/syntax/scripts/shBrushSql.js');
             SyntaxHighlighter.defaults['gutter'] = false;
+            SyntaxHighlighter.defaults['toolbar'] = false;
             SyntaxHighlighter.all();
           }
         </script>
