@@ -363,7 +363,7 @@ class note extends cms {
       ";
 
     if (isset($_GET['comments'])) {
-      $this->scripts += "
+      $this->scripts .= "
         <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
         <script type='text/javascript' src='/includes/comment.js'></script>";
     }
