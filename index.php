@@ -243,8 +243,8 @@ class page extends cms {
     $this->scripts = "
         <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
         <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css' />
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css' />
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
         <script type='text/javascript'>
           function highlight() {
             SyntaxHighlighter.autoloader(
@@ -346,8 +346,8 @@ class note extends cms {
       $this->scripts = "
         <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
         <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css' />
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css' />
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
+        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
         <script type='text/javascript'>
           function highlight() {
             SyntaxHighlighter.autoloader(
