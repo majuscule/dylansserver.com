@@ -8,7 +8,7 @@ import MySQLdb as db
 import ConfigParser
 
 config = ConfigParser.RawConfigParser()
-config.read('/etc/dylanstestserver.ini')
+config.read('/etc/dylansserver.ini')
 domain = config.get('database', 'domain')
 user = config.get('database', 'user')
 password = config.get('database', 'password').replace('"', '')
