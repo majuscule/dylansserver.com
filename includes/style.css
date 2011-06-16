@@ -27,7 +27,6 @@
 
 h3 {
 	margin-top:15px;
-	font-family:sans-serif;
     font-family:'MuseoSlab500';
 }
 
@@ -52,9 +51,6 @@ li {
 }
 
 #banner {
-/*	float:left;
-	margin-right:15px;
-*/
     margin-left:15px;
 }
 
@@ -75,7 +71,7 @@ li {
 }
 
 #portfolio li{
-	font-family:sans-serif;
+    font-family:'InconsolataMedium';
 }
 
 #exhibit {
@@ -103,7 +99,6 @@ li {
 
 #contact_me {
 	margin-top:100px;
-	font-family:sans-serif;
 	text-align:left;
 	clear:both;
 }
@@ -173,7 +168,6 @@ pre {
 
 #navigation {
 	text-align:left;
-	font-family:sans-serif;
 }
 
 #comments {
@@ -238,7 +232,6 @@ pre {
 #not_human {
     display:none;
     font-weight:bold;
-    font-family:sans-serif;
     color:red;
     margin-top:15px;
     margin-bottom:15px;
@@ -247,7 +240,6 @@ pre {
 #blank_comment {
     display:none;
     font-weight:bold;
-    font-family:sans-serif;
     color:red;
     margin-top:15px;
     margin-bottom:15px;
