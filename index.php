@@ -13,10 +13,10 @@ abstract class cms {
   public function __construct() {
     $config = parse_ini_file($this->config_file, true);
     $this->db = new mysqli(
-      $config[database]['domain'],
-      $config[database]['user'],
-      $config[database]['password'],
-      $config[database]['database']);
+      $config['database']['domain'],
+      $config['database']['user'],
+      $config['database']['password'],
+      $config['database']['database']);
     if (mysqli_connect_errno()) {
       echo "Problem connecting to database: ";
       echo mysqli_connect_error();
