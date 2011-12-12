@@ -435,8 +435,8 @@ class note extends cms {
       // and a default author needs to be set
       // for no-javascript users.
       $stmt->bind_param('sss',
-                          htmlspecialchars($_POST['name']),
-                          htmlspecialchars($_POST['text']),
+                          $_POST['name'],
+                          $_POST['text'],
                         $this->id);
       $stmt->execute();
     }
@@ -491,7 +491,7 @@ END_OF_NAVIGATION;
       $date_posted = $entry['date_posted'];
       $author = $entry['author'];
       $text = htmlspecialchars($entry['text']);
-      $head = "<h3>$author</h3>";
+      $head = "<h3>" . htmlspecialchars($author) . "</h3>";
       echo <<<END_OF_COMMENT
       <div class='comment'>
       $head
