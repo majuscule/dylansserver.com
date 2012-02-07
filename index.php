@@ -163,7 +163,7 @@ class index extends cms {
         </li>
 
         <li><a href=
-        "git">git://dylansserver.com</a></li>
+        "/git/">git://dylansserver.com</a></li>
 
         <li>
           <h3>some notes:</h3>

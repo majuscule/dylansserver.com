@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 NOTES_DIRECTORY = '/home/dylan/docs/notes'
 
@@ -37,5 +37,5 @@ for note in notes:
              VALUES(\"%s\", \"%s\", \"%s\", \"%s\")"\
              % (time.strftime("%Y/%m/%d %I:%M:00", date_posted), url, title, db.escape_string(text))
 
-    #print sql
-    cursor.execute(sql)
+    print sql
+    #cursor.execute(sql)
