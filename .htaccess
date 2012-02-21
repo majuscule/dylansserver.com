@@ -3,6 +3,8 @@ ErrorDocument 404 /404.php
 
 RewriteEngine on
 
+RewriteRule ^resume$ /res.pdf [L]
+
 RewriteRule ^notes/rss/?$ /index.php?rss=true [L]
 
 RewriteRule ^git/?$ /git/gitweb.cgi%{REQUESTURI} [L]
