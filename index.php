@@ -673,15 +673,15 @@ class rss extends cms {
 	  echo <<<END_OF_ENTRY
 	  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
-	    <title>dylanstestserver.com/notes/rss</title>
-		<link>http://dylanstestserver.com/notes</link>
-		<description>dylanstestserver.com/notes/rss</description>
-		<atom:link href="http://dylanstestserver.com/notes/rss" rel="self" type="application/rss+xml" />
+	    <title>dylansserver.com/notes/rss</title>
+		<link>http://dylansserver.com/notes</link>
+		<description>dylansserver.com/notes/rss</description>
+		<atom:link href="http://dylansserver.com/notes/rss" rel="self" type="application/rss+xml" />
 END_OF_ENTRY;
 	while ($entry = $result->fetch_object()) {
 	  $title = $entry->title;
 	  $date_posted = $entry->date_posted;
-	  $url = "http://dylanstestserver.com/note/" . $entry->url;
+	  $url = "http://dylansserver.com/note/" . $entry->url;
 	  $text = $entry->text;
 	  $text = strip_tags($text);
 	  $end_of_first_sentence = strpos($text, '.');
