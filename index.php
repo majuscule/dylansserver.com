@@ -173,6 +173,13 @@ class index extends cms {
         "/notes/">here</a> [<a href="/notes/rss">rss</a>]</li>
 
         <li>
+          <h3>my resume:</h3>
+        </li>
+
+        <li>[<a href=
+        "/resume">pdf</a>]</li>
+
+        <li>
         </li>
 OTHER_PROJECTS;
     // Because of the CSS necessary for the animations,
