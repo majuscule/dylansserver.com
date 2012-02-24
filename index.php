@@ -758,6 +758,7 @@ switch (cms::determine_type()) {
   case "rss":
     $rss = new rss();
 	$rss->display();
+    break;
   case 'archive':
     $archive = new archive;
 	$archive->display();
