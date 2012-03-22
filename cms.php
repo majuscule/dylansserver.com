@@ -326,84 +326,17 @@ class note extends cms {
       $author = $entry['author'];
       $text = htmlspecialchars($entry['text']);
       $head = "<h3>" . htmlspecialchars($author) . "</h3>";
-      echo <<<END_OF_COMMENT
-      <div class='comment'>
-      $head
-      $text
-      </div>
-END_OF_COMMENT;
+      echo "<div class='comment'>";
+      echo $head;
+      echo $text;
+      echo "</div>";
       }
     echo "</div>";
   }
 
   private function display_comment_form() {
     $publickey = $this->recaptcha_publickey;
-    echo <<<END_CAPTCHA_STYLE
-<script type="text/javascript">
-Recaptcha.create("$publickey",
-   "recaptcha_div", 
-   {
-     theme : 'custom',
-     custom_theme_widget: 'recaptcha_widget',
-     callback: Recaptcha.focus_response_field
-   });
-</script>
-END_CAPTCHA_STYLE;
-    require_once('includes/recaptchalib.php');
-    $url = $this->url . "verify";
-    echo "<form id='comment_form'  method='post' action='$url'>";
-    echo <<<END_OF_FORM
-    <div id="comment">
-      <h3>comment:</h3>
-      <textarea rows="10" cols="70" name="text" id="comment_text"></textarea>
-      <h3>name:</h3>
-      <input type=text name="name" id="comment_name">
-  
-      <nowiki>
-      <div id="recaptcha_widget"> 
-        <br>
-        <h3><b>what's this say</b>?</h3>
-        <br>
-          <div id="recaptcha_image"></div>
-        <br><br><br>
-        <span class="recaptcha_only_if_image"><br><br><br></span>
-        <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
-        <br><br>
-        <h3 class="recaptcha_only_if_audio"><b>enter the numbers you hear</b>:</h3>
-        <span class="recaptcha_help">
-          <a href="javascript:Recaptcha.reload()">another?</a> /
-          <span class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">audio?</a> /</span>
-          <span class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">image?</a></span><a href="javascript:Recaptcha.showhelp()">help?</a>
-        </span>
-      </div>
-END_OF_FORM;
-    echo recaptcha_get_html($this->recaptcha_publickey); 
-    if ($this->failed_captcha) {
-    echo <<<END_OF_ERRORS
-        <div id="not_human">
-          reCAPTCHA said you're not human, <br>
-          try again?
-        </div>
-        <input id="submit" class="submit" type="submit" value="post comment">
-        </form>
-      </div>
-END_OF_ERRORS;
-    } else {
-      echo <<<END_OF_ERRORS
-        <div id="not_human">
-          reCAPTCHA said you're not human, <br>
-          try again?
-        </div>
-        <div id="blank_comment">
-          but you didn't write anything! <br>
-        </div>
-END_OF_ERRORS;
-    }
-    echo <<<END_OF_FORM
-      <input id="submit" class="submit" type="submit" value="post comment">
-      </form>
-      </div>
-END_OF_FORM;
+    require_once("view/comment-form.php");
   }
 }
 
