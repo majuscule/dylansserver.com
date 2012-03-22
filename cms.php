@@ -320,7 +320,10 @@ class page extends cms {
   }
 
   public function display() {
-    $this->display_head();
+      require_once("view/page.php");
+  }
+
+  public function display_notes() {
     echo "<div id='notes'>";
     $sql = "SELECT date_posted, title, url, text
               FROM notes ORDER BY date_posted DESC
@@ -347,25 +350,7 @@ class page extends cms {
 END_NOTE;
     }
     echo "</div>";
-    $this->write_navigation();
-    $this->display_close();
   }
-
-  private function write_navigation() {
-    echo "<div id='navigation'>";
-    echo "<h1>";
-    if($this->page > 1){
-      $previous_page = $this->page - 1;
-      echo "<a href='/notes/page/$previous_page'>prev</a>";
-    }
-    if($this->page < $this->number_of_pages) {
-    $forward_page = $this->page + 1;
-    echo " <a href='/notes/page/$forward_page'>next</a>";
-    }
-    echo "</h1>";
-    echo "</div>";
-  }
-
 }
 
 
