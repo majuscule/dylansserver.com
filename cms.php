@@ -6,7 +6,6 @@ abstract class cms {
   protected $db;
   protected $recaptcha_publickey;
   protected $recaptcha_privatekey;
-  protected  $scripts;
   public $title;
   public $home_link;
 
@@ -164,24 +163,6 @@ class page extends cms {
   public function __construct() {
     parent::__construct();
     $this->page_offset();
-    $this->scripts = "
-        <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
-        <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
-        <script type='text/javascript'>
-          function highlight() {
-            SyntaxHighlighter.autoloader(
-             'js /includes/syntax/scripts/shBrushJScript.js',
-             'bash /includes/syntax/scripts/shBrushBash.js',
-             'sql /includes/syntax/scripts/shBrushSql.js',
-             'cpp /includes/syntax/scripts/shBrushCpp.js');
-            SyntaxHighlighter.defaults['gutter'] = false;
-            SyntaxHighlighter.defaults['toolbar'] = false;
-            SyntaxHighlighter.all();
-          }
-        </script>
-    ";
   }
 
   private function page_offset() {
