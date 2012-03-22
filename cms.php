@@ -70,63 +70,6 @@ abstract class cms {
     }
     $statement->free_result();
     return $return;
-      }
-
-  public function display_head($title = "dylansserver",
-                                  $home_link = "/") {
-    $scripts = $this->scripts;
-    $stylesheets = "<link href='/includes/style.css' rel='stylesheet' type='text/css'>";
-    $home_link = "http://validator.w3.org/unicorn/check?ucn_uri=dylansserver.com&amp;ucn_task=conformance#";
-    echo <<<END_OF_HEAD
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-  <title>$this->title</title>
-  <link rel="icon" href="/favicon.ico" type="image/png">
-  $stylesheets
-  $scripts
-</head>
-
-<body onload="return typeof highlight == 'function' ? highlight() : true;">
-  <div id="structure">
-    <div id="banner">
-      <a href="$this->home_link">
-      <img src="/images/dylansserver.png" alt="dylansserver"
-      border="0"></a>
-    </div>
-
-    <div id="content">
-END_OF_HEAD;
-  }
-
-  public function display_contact() {
-    echo <<<END_OF_CONTACT
-      <div id="contact_me"><h1><a href=
-      "mailto:dylan@psu.edu">dylan</a></h1><a href=
-      "mailto:dylan@psu.edu">@psu.edu</a>
-      </div>
-END_OF_CONTACT;
-  }
-
-  public function display_close($show_contact = true) {
-    if ($show_contact) {
-      $this->display_contact();
-    }
-    echo <<<END_OF_CLOSE
-    </div>
-    <br>
-    <br>
-  </div>
-</body>
-</html>
-END_OF_CLOSE;
-    ob_flush();
   }
 
   public function init() {
@@ -309,30 +252,6 @@ class note extends cms {
   public $number_of_comments;
 
   public function __construct() {
-      $this->scripts = "
-        <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
-        <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
-        <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
-        <script type='text/javascript'>
-          function highlight() {
-            SyntaxHighlighter.autoloader(
-             'js /includes/syntax/scripts/shBrushJScript.js',
-             'bash /includes/syntax/scripts/shBrushBash.js',
-             'sql /includes/syntax/scripts/shBrushSql.js',
-             'cpp /includes/syntax/scripts/shBrushCpp.js');
-            SyntaxHighlighter.defaults['gutter'] = false;
-            SyntaxHighlighter.defaults['toolbar'] = false;
-            SyntaxHighlighter.all();
-          }
-        </script>
-      ";
-
-    if (isset($_GET['comments'])) {
-      $this->scripts .= "
-        <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
-        <script type='text/javascript' src='/includes/comment.js'></script>";
-    }
     parent::__construct();
     if (isset($_GET['comments'])) {
       $this->comments_enabled = true;

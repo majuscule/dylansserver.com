@@ -80,14 +80,18 @@
  
         <li>
         </li>
-      <li>
-      <?php $this->display_contact() ?>
-      </li>
+
+        <li>
+          <div id="contact_me"><h1><a href=
+          "mailto:dylan@psu.edu">dylan</a></h1><a href=
+          "mailto:dylan@psu.edu">@psu.edu</a>
+          </div>
+        </li>
       </ul>
-      </div>
-      <br>
-      <br>
     </div>
+    <br>
+    <br>
   </div>
 </body>
+</html>
 </html>
