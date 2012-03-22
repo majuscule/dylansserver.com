@@ -168,61 +168,7 @@ END_OF_CLOSE;
 class index extends cms {
 
   public function display() {
-    $this->scripts = "<script type='text/javascript' src='/includes/index.js'></script>"; 
-    $this->display_head();
-    $this->display_exhibits();
-    echo "<ul id='portfolio'>";
-    $this->list_projects();
-    echo <<<OTHER_PROJECTS
-        <li>
-          <h3>things i've done for others:</h3>
-        </li>
-
-        <li><a href=
-        "http://activehamptons.com">activehamptons.com</a></li>
-
-        <li><a href=
-        "http://transfishing.com">transfishing.com</a></li>
-
-        <li>
-          <h3>something i've worked on:</h3>
-        </li>
-
-        <li><a href=
-        "http://tempositions.com">tempositions.com</a></li>
-
-        <li>
-          <h3>my repositories:</h3>
-        </li>
-
-        <li><a href=
-        "/git/">git://dylansserver.com</a></li>
-
-        <li>
-          <h3>some notes:</h3>
-        </li>
-
-        <li><a href=
-        "/notes/">here</a> [<a href="/notes/rss">rss</a>]</li>
-
-        <li>
-          <h3>my resume:</h3>
-        </li>
-
-        <li>[<a href=
-        "/resume">pdf</a>]</li>
-
-        <li>
-        </li>
-OTHER_PROJECTS;
-    // Because of the CSS necessary for the animations,
-    // the contact link needs to be in #portfolio to clear
-    // the floats.
-    echo "<li>";
-    $this->display_contact();
-    echo "</li>";
-    echo "</ul>";
-    $this->display_close($show_contact = false);
+      require_once("view/index.php");
   }
 
   protected function display_exhibits() {
@@ -236,11 +182,6 @@ OTHER_PROJECTS;
   }
 
   private function list_projects() {
-    echo <<<HEREDOC
-        <li>
-          <h3>my projects:</h3>
-        </li>
-HEREDOC;
     $sql = "SELECT title FROM projects ORDER BY rank";
     $result = $this->db->query($sql);
     while ($entry = $result->fetch_object()) {
