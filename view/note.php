@@ -42,11 +42,22 @@
             </span><?php echo $this->title ?></h1>
             <?php echo $this->text ?>
         </div>
-      <div id="contact_me"><h1><a href=
-      "mailto:dylan@psu.edu">dylan</a></h1><a href=
-      "mailto:dylan@psu.edu">@psu.edu</a>
+        <br><br><br><br>
+        <div id='navigation'>
+          <?php if ($this->comments_enabled) {
+            $this->display_comments();
+            $this->display_comment_form();
+          } ?>
+          <h1>
+          <?php if (!$this->comments_enabled) $this->display_comment_link(); ?>
+          <a href="/notes/">back to notes/</a>
+          </h1>
+        </div>
+        <div id="contact_me"><h1><a href=
+        "mailto:dylan@psu.edu">dylan</a></h1><a href=
+        "mailto:dylan@psu.edu">@psu.edu</a>
+        </div>
       </div>
-    </div>
     <br>
     <br>
   </div>
