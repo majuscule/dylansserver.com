@@ -583,7 +583,10 @@ class archive extends cms {
   }
 
   public function display() {
-    $this->display_head();
+      require_once("view/archive.php");
+  }
+
+  public function display_notes() {
     switch (true) {
       case (isset($_GET['year']) && !isset($_GET['month'])
                 && !isset($_GET['day'])):
@@ -632,20 +635,11 @@ class archive extends cms {
         echo "</div>";
       }
       echo "</div>";
-      $this->write_navigation();
     } else {
       echo "<br>";
       echo "<h1>sorry, nothing here</h2>";
       echo "<pre>Empty set (0.00 sec)</pre>";
     }
-    $this->display_close();
-  }
-
-  private function write_navigation() {
-    echo "<br>";
-    echo "<div id='navigation'>";
-    // fill me in!
-    echo "</div>";
   }
 
 }

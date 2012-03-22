@@ -36,12 +36,20 @@
 
     <div id="content">
       <div id='notes'>
-        <div class='note'>
-            <h1><span class='date'>
-              <?php echo "$this->year_posted/$this->month_posted/$this->day_posted/" ?>
-            </span><?php echo $this->title ?></h1>
-            <?php echo $this->text ?>
-        </div>
+        <?php $this->display_notes() ?>
+    <div id='navigation'>
+    <h1>
+    <?php
+    if($this->page > 1){
+      $previous_page = $this->page - 1;
+      echo "<a href='/notes/page/$previous_page'>prev</a>";
+    }
+    if($this->page < $this->number_of_pages) {
+    $forward_page = $this->page + 1;
+    echo " <a href='/notes/page/$forward_page'>next</a>";
+    } ?>
+    </h1>
+    </div>
       <div id="contact_me"><h1><a href=
       "mailto:dylan@psu.edu">dylan</a></h1><a href=
       "mailto:dylan@psu.edu">@psu.edu</a>
