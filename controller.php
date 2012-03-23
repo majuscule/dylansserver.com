@@ -6,63 +6,38 @@ abstract class cms {
 
   public function __construct() {
     $this->model = new model();
+    ob_start();
   }
 
-  public static function determine_type() {
+  public static function init() {
     if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-      return 'page';
+      require_once("model/page.php");
+      $page = new page();
+      $page->display();
     } else if (isset($_GET['year'])) {
-      return 'archive';
+      require_once("model/archive.php");
+      $archive = new archive();
+      $archive->display();
     } else if (isset($_GET['note'])) {
-      return 'note';
+      require_once("model/note.php");
+      $note = new note();
+      $note->display();
     } else if ($_SERVER['REQUEST_URI'] == '/') {
-      return 'index';
+      require_once("model/index.php");
+      $index = new index();
+      $index->display();
     } else if (isset($_GET['project'])) {
-      return 'project';
+      require_once("model/project.php");
+      $project = new project();
+      $project->display();
 	} else if (isset($_GET['rss'])) {
-	  return 'rss';
+      require_once("model/rss.php");
+      $rss = new rss();
+      $rss->display();
 	} else if (isset($_GET['challenge'])) {
-      return 'captcha';
-    }
-  }
-
-  public function init() {
-    switch (cms::determine_type()) {
-      case 'index':
-        require_once("model/index.php");
-        $index = new index();
-        $index->display();
-        break;
-      case 'project':
-        require_once("model/project.php");
-        $project = new project();
-        $project->display();
-        break;
-      case 'note':
-        require_once("model/note.php");
-        $note = new note();
-        $note->display();
-        break;
-      case 'page':
-        require_once("model/page.php");
-        $page = new page();
-        $page->display();
-        break;
-      case "rss":
-        require_once("model/rss.php");
-        $rss = new rss();
-        $rss->display();
-        break;
-      case 'archive':
-        require_once("model/archive.php");
-        $archive = new archive();
-        $archive->display();
-        break;
-      case "captcha":
-        require_once("model/captcha.php");
-        $captcha = new captcha();
-        $captcha->display();
-        break;
+      require_once("model/captcha.php");
+      $captcha = new captcha();
+      $captcha->display();
     }
   }
 
