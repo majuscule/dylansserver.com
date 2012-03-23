@@ -3,7 +3,7 @@
 
 <html>
 <head>
-  <title><?php echo $note->title; ?></title>
+  <title><?php echo $this->title; ?></title>
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
@@ -29,7 +29,7 @@
 <body onload="return typeof highlight == 'function' ? highlight() : true">
   <div id="structure">
     <div id="banner">
-      <a href="<?php echo $note->home_link ?>">
+      <a href="<?php echo $this->home_link ?>">
       <img src="/images/dylansserver.png" alt="dylansserver"
       border="0"></a>
     </div>
@@ -38,18 +38,18 @@
       <div id='notes'>
         <div class='note'>
             <h1><span class='date'>
-              <?php echo "$note->year_posted/$note->month_posted/$note->day_posted/" ?>
-            </span><?php echo $note->title ?></h1>
-            <?php echo $note->text ?>
+              <?php echo "$this->year_posted/$this->month_posted/$this->day_posted/" ?>
+            </span><?php echo $this->title ?></h1>
+            <?php echo $this->text ?>
         </div>
         <br><br><br><br>
         <div id='navigation'>
-          <?php if ($note->comments_enabled) {
-            $note->display_comments();
-            $note->display_comment_form();
+          <?php if ($this->comments_enabled) {
+            $this->display_comments();
+            $this->display_comment_form();
           } ?>
           <h1>
-          <?php if (!$note->comments_enabled) $note->display_comment_link(); ?>
+          <?php if (!$this->comments_enabled) $this->display_comment_link(); ?>
           <a href="/notes/">back to notes/</a>
           </h1>
         </div>

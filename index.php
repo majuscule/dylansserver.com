@@ -1,4 +1,4 @@
 <?php
-require_once("cms.php");
+require_once("controller.php");
 cms::init();
 ?>

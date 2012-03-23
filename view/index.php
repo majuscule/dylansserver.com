@@ -3,7 +3,7 @@
 
 <html>
 <head>
-  <title><?php echo $this->title; ?></title>
+  <title><?php echo $this->title ?></title>
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/index.js'></script>
