@@ -3,7 +3,7 @@
 
 <html>
 <head>
-  <title><?php echo $this->title; ?></title>
+  <title><?php echo $page->title; ?></title>
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
@@ -29,23 +29,23 @@
 <body onload="return typeof highlight == 'function' ? highlight() : true">
   <div id="structure">
     <div id="banner">
-      <a href="<?php echo $this->home_link ?>">
+      <a href="<?php echo $page->home_link ?>">
       <img src="/images/dylansserver.png" alt="dylansserver"
       border="0"></a>
     </div>
 
     <div id="content">
       <div id='notes'>
-        <?php $this->display_notes() ?>
+        <?php $page->display_notes() ?>
     <div id='navigation'>
     <h1>
     <?php
-    if($this->page > 1){
-      $previous_page = $this->page - 1;
+    if($page->page > 1){
+      $previous_page = $page->page - 1;
       echo "<a href='/notes/page/$previous_page'>prev</a>";
     }
-    if($this->page < $this->number_of_pages) {
-    $forward_page = $this->page + 1;
+    if($page->page < $page->number_of_pages) {
+    $forward_page = $page->page + 1;
     echo " <a href='/notes/page/$forward_page'>next</a>";
     } ?>
     </h1>
