@@ -1,15 +1,18 @@
 <?php
 
+require_once("model/model.php");
+
 abstract class cms {
 
   private $config_file = '/etc/dylansserver.ini';
-  protected $db;
+  protected $model;
   protected $recaptcha_publickey;
   protected $recaptcha_privatekey;
   public $title;
   public $home_link;
 
   public function __construct() {
+    $this->model = new model();
     $config = parse_ini_file($this->config_file, true);
     $this->db = new mysqli(
       $config['database']['domain'],
@@ -25,25 +28,6 @@ abstract class cms {
     $this->recaptcha_privatekey = $config['recaptcha']['privatekey'];
     $this->title = $config['site']['default_title'];
     $this->home_link = $config['site']['home_link'];
-    ob_start();
-  }
-
-  public static function determine_type() {
-    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-      return 'page';
-    } else if (isset($_GET['year'])) {
-      return 'archive';
-    } else if (isset($_GET['note'])) {
-      return 'note';
-    } else if ($_SERVER['REQUEST_URI'] == '/') {
-      return 'index';
-    } else if (isset($_GET['project'])) {
-      return 'project';
-	} else if (isset($_GET['rss'])) {
-	  return 'rss';
-	} else if (isset($_GET['challenge'])) {
-      return 'captcha';
-    }
   }
 
   public function query() {
@@ -71,6 +55,24 @@ abstract class cms {
     return $return;
   }
 
+  public static function determine_type() {
+    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+      return 'page';
+    } else if (isset($_GET['year'])) {
+      return 'archive';
+    } else if (isset($_GET['note'])) {
+      return 'note';
+    } else if ($_SERVER['REQUEST_URI'] == '/') {
+      return 'index';
+    } else if (isset($_GET['project'])) {
+      return 'project';
+	} else if (isset($_GET['rss'])) {
+	  return 'rss';
+	} else if (isset($_GET['challenge'])) {
+      return 'captcha';
+    }
+  }
+
   public function init() {
     switch (cms::determine_type()) {
       case 'index':
@@ -82,8 +84,9 @@ abstract class cms {
         $project->display();
         break;
       case 'note':
-        $note = new note;
-        $note->display();
+        require_once("model/note.php");
+        $note = new note();
+        require_once("view/note.php");
         break;
       case 'page':
         $page = new page;
@@ -215,128 +218,6 @@ class page extends cms {
 END_NOTE;
     }
     echo "</div>";
-  }
-}
-
-
-class note extends cms {
-
-  private $id;
-  private $comments_enabled = false;
-  private $failed_captcha;
-  public $url;
-  public $title;
-  public $year_posted;
-  public $month_posted;
-  public $day_posted;
-  public $text;
-  public $number_of_comments;
-
-  public function __construct() {
-    parent::__construct();
-    if (isset($_GET['comments'])) {
-      $this->comments_enabled = true;
-    }
-    $url = htmlspecialchars($_SERVER['REQUEST_URI']);
-    if (isset($_GET['verify'])) {
-      $url = substr($url, 0, (strlen($url)-6));
-    }
-    $this->url = $url;
-    $sql = "SELECT title, date_posted, text, id
-              FROM notes WHERE url = ?";
-    $result = $this->query($sql, "s",
-                              $_GET['note']);
-    if ($result) {
-      $entry = $result[0];
-      $this->id = $entry["id"];
-      $this->title = $entry["title"];
-      $date_posted =  explode("-", $entry["date_posted"]);
-      $this->year_posted = $date_posted[0];
-      $this->month_posted = $date_posted[1];
-      $datetime_posted = explode(' ', $date_posted[2]);
-      $this->day_posted = $datetime_posted[0];
-      $this->text = $entry["text"];
-    } else {
-      throw new notFound();
-    }
-    $sql = "SELECT COUNT(*) FROM comments
-              WHERE note = $this->id";
-    $result = $this->db->query($sql);
-    $result = $result->fetch_array();
-    $this->number_of_comments = $result[0];
-    if (isset($_GET['verify'])) {
-      $this->verify();
-    }
-  }
-
-  public function display() {
-      require_once("view/note.php");
-  }
-
-  private function verify() {
-    if (!isset($_POST['captcha'])) {
-      require_once('includes/recaptchalib.php');
-      echo "<br>";
-      $resp = recaptcha_check_answer ($this->recaptcha_privatekey,
-                                      $_SERVER["REMOTE_ADDR"],
-                                      $_POST["recaptcha_challenge_field"],
-                                      $_POST["recaptcha_response_field"]);
-      if (!$resp->is_valid) {
-        $this->failed_captcha = true;
-      }
-    }
-    if (isset($_POST['captcha']) || $resp->is_valid) {
-      $sql = ("INSERT INTO comments (date_posted, author,
-                  text, note)
-                VALUES(NOW(), ?, ?, ?)");
-      $stmt = $this->db->prepare($sql);
-      // Checks are needed here (no blank text,
-      // and a default author needs to be set
-      // for no-javascript users.
-      $stmt->bind_param('sss',
-                          $_POST['name'],
-                          $_POST['text'],
-                        $this->id);
-      $stmt->execute();
-    }
-  }
-
-  private function display_comment_link() {
-    if ($this->number_of_comments > 0) {
-      $anchor_text = "comments($this->number_of_comments)/";
-    } else {
-      $anchor_text = "comment?";
-    }
-    if (substr($this->url, (strlen($this->url)-1), strlen($this->url)) == '/') {
-      $url = $this->url . 'comments/';
-    } else {
-      $url = $this->url . '/comments/';
-    }
-    echo "<a id='comment_link' href='$url'>$anchor_text</a>";
-  }
-
-  private function display_comments() {
-    echo "<div id='comments'>";
-    $sql= "SELECT date_posted, author, text
-             FROM comments WHERE note = ?
-             ORDER BY date_posted DESC";
-    $result = $this->query($sql, 'd', $this->id);
-    foreach ($result as $row => $entry) {
-      $date_posted = $entry['date_posted'];
-      $author = $entry['author'];
-      $text = htmlspecialchars($entry['text']);
-      $head = "<h3>" . htmlspecialchars($author) . "</h3>";
-      echo "<div class='comment'>";
-      echo $head;
-      echo $text;
-      echo "</div>";
-      }
-    echo "</div>";
-  }
-
-  private function display_comment_form() {
-    $publickey = $this->recaptcha_publickey;
-    require_once("view/comment-form.php");
   }
 }
 
