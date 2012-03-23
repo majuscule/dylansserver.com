@@ -4,6 +4,6 @@
     <link>http://dylansserver.com/notes</link>
     <description>dylansserver.com/notes/rss</description>
     <atom:link href="http://dylansserver.com/notes/rss" rel="self" type="application/rss+xml" />
-    <?php $this->display_items() ?>
+    <?php $rss->display_items() ?>
   </channel>
 </rss>
