@@ -6,10 +6,12 @@ class page extends model {
   public $offset = 0;
   public $notes_per_page = 4;
   public $number_of_pages = 1;
+  public $notes = array();
 
   public function __construct() {
     parent::__construct();
     $this->page_offset();
+    $this->fetch_notes();
   }
 
   private function page_offset() {
@@ -35,8 +37,7 @@ class page extends model {
       require_once("view/page.php");
   }
 
-  public function display_notes() {
-    echo "<div id='notes'>";
+  protected function fetch_notes() {
     $sql = "SELECT date_posted, title, url, text
               FROM notes ORDER BY date_posted DESC
               LIMIT ?, ?";
@@ -44,24 +45,14 @@ class page extends model {
                               $this->offset,
                               $this->notes_per_page);
     foreach ($result as $row => $entry) {
-      $title = $entry['title'];
-      $url = '/note/' . $entry['url'];
-      $date_posted =  explode("-", $entry['date_posted']);
-      $year_posted = $date_posted[0];
-      $month_posted = $date_posted[1];
-      $datetime_posted = explode(' ', $date_posted[2]);
-      $day_posted = $datetime_posted[0];
-      $text = $entry['text'];
-      echo <<<END_NOTE
-      <div class='note'>
-      <h1>
-        <span class='date'>$year_posted/$month_posted/$day_posted/</span><a rel="canonical" href='$url'>$title</a>
-      </h1>
-      $text
-      </div>
-END_NOTE;
+      $entry['url'] = '/note/' . $entry['url'];
+      $date_posted = explode("-", $entry['date_posted']);
+      $entry['year_posted'] = $date_posted[0];
+      $entry['month_posted'] = $date_posted[1];
+      $entry['datetime_posted'] = explode(' ', $date_posted[2]);
+      $entry['day_posted'] = $entry['date_posted'][0];
+      $this->notes[$row] = $entry;
     }
-    echo "</div>";
   }
 }
 

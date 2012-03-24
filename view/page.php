@@ -35,8 +35,25 @@
     </div>
 
     <div id="content">
-      <div id='notes'>
-        <?php $this->display_notes() ?>
+      <div id="notes">
+        <div id="notes">
+        <?php
+          foreach ($this->notes as $note) {
+            echo "<div class='note'>";
+            echo "<h1>";
+            echo "<span class='date'>";
+            echo $note['year_posted'] . "/";
+            echo $note['month_posted'] . "/";
+            echo $note['day_posted'] . "/";
+            echo "</span>";
+            echo "<a href='" . $note['url'] . "'>";
+            echo $note['title'];
+            echo "</a>";
+            echo "</h1>";
+            echo $note['text'];
+          }
+        ?>
+      </div>
     <div id='navigation'>
     <h1>
     <?php

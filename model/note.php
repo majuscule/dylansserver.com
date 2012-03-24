@@ -12,6 +12,7 @@ class note extends model {
   public $day_posted;
   public $text;
   public $number_of_comments;
+  public $comments;
 
   public function __construct() {
     parent::__construct();
@@ -97,22 +98,19 @@ class note extends model {
   }
 
   public function display_comments() {
-    echo "<div id='comments'>";
+    // should be called like $note->comment[0]['author']
     $sql= "SELECT date_posted, author, text
              FROM comments WHERE note = ?
              ORDER BY date_posted DESC";
     $result = $this->query($sql, 'd', $this->id);
+    $i = 0;
     foreach ($result as $row => $entry) {
-      $date_posted = $entry['date_posted'];
-      $author = $entry['author'];
-      $text = htmlspecialchars($entry['text']);
-      $head = "<h3>" . htmlspecialchars($author) . "</h3>";
-      echo "<div class='comment'>";
-      echo $head;
-      echo $text;
-      echo "</div>";
+      $this->comment[$i]['date_posted'] = $entry['date_posted'];
+      $this->comment[$i]['author']  = $entry['author'];
+      $this->comment[$i]['text'] = htmlspecialchars($entry['text']);
+      $this->comment[$i]['head'] = "<h3>" . htmlspecialchars($author) . "</h3>";
+      $i++;
       }
-    echo "</div>";
   }
 
   public function display_comment_form() {
