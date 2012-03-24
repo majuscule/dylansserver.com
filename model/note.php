@@ -24,6 +24,11 @@ class note extends model {
       $url = substr($url, 0, (strlen($url)-6));
     }
     $this->url = $url;
+    $this->fetch_note();
+    $this->fetch_comments();
+  }
+
+  public function fetch_note() {
     $sql = "SELECT title, date_posted, text, id
               FROM notes WHERE url = ?";
     $result = $this->query($sql, "s",
@@ -41,6 +46,9 @@ class note extends model {
     } else {
       throw new notFound();
     }
+  }
+
+  public function fetch_comments() {
     $sql = "SELECT COUNT(*) FROM comments
               WHERE note = $this->id";
     $result = $this->db->query($sql);
@@ -53,6 +61,40 @@ class note extends model {
 
   public function display() {
       require_once("view/note.php");
+  }
+
+  public function display_comment_link() {
+    if ($this->number_of_comments > 0) {
+      $anchor_text = "comments($this->number_of_comments)/";
+    } else {
+      $anchor_text = "comment?";
+    }
+    if (substr($this->url, (strlen($this->url)-1), strlen($this->url)) == '/') {
+      $url = $this->url . 'comments/';
+    } else {
+      $url = $this->url . '/comments/';
+    }
+    echo "<a id='comment_link' href='$url'>$anchor_text</a>";
+  }
+
+  public function display_comments() {
+    $sql= "SELECT date_posted, author, text
+             FROM comments WHERE note = ?
+             ORDER BY date_posted DESC";
+    $result = $this->query($sql, 'd', $this->id);
+    $i = 0;
+    foreach ($result as $row => $entry) {
+      $this->comment[$i]['date_posted'] = $entry['date_posted'];
+      $this->comment[$i]['author']  = $entry['author'];
+      $this->comment[$i]['text'] = htmlspecialchars($entry['text']);
+      $this->comment[$i]['head'] = "<h3>" . htmlspecialchars($author) . "</h3>";
+      $i++;
+    }
+  }
+
+  public function display_comment_form() {
+    $publickey = $this->recaptcha_publickey;
+    require_once("view/comment-form.php");
   }
 
   public function verify() {
@@ -83,40 +125,6 @@ class note extends model {
     }
   }
 
-  public function display_comment_link() {
-    if ($this->number_of_comments > 0) {
-      $anchor_text = "comments($this->number_of_comments)/";
-    } else {
-      $anchor_text = "comment?";
-    }
-    if (substr($this->url, (strlen($this->url)-1), strlen($this->url)) == '/') {
-      $url = $this->url . 'comments/';
-    } else {
-      $url = $this->url . '/comments/';
-    }
-    echo "<a id='comment_link' href='$url'>$anchor_text</a>";
-  }
-
-  public function display_comments() {
-    // should be called like $note->comment[0]['author']
-    $sql= "SELECT date_posted, author, text
-             FROM comments WHERE note = ?
-             ORDER BY date_posted DESC";
-    $result = $this->query($sql, 'd', $this->id);
-    $i = 0;
-    foreach ($result as $row => $entry) {
-      $this->comment[$i]['date_posted'] = $entry['date_posted'];
-      $this->comment[$i]['author']  = $entry['author'];
-      $this->comment[$i]['text'] = htmlspecialchars($entry['text']);
-      $this->comment[$i]['head'] = "<h3>" . htmlspecialchars($author) . "</h3>";
-      $i++;
-      }
-  }
-
-  public function display_comment_form() {
-    $publickey = $this->recaptcha_publickey;
-    require_once("view/comment-form.php");
-  }
 }
 
 ?>
