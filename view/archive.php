@@ -36,20 +36,26 @@
 
     <div id="content">
       <div id='notes'>
-        <?php $this->display_notes() ?>
-    <div id='navigation'>
-    <h1>
-    <?php
-    if($this->page > 1){
-      $previous_page = $this->page - 1;
-      echo "<a href='/notes/page/$previous_page'>prev</a>";
-    }
-    if($this->page < $this->number_of_pages) {
-    $forward_page = $this->page + 1;
-    echo " <a href='/notes/page/$forward_page'>next</a>";
-    } ?>
-    </h1>
-    </div>
+        <?php
+          if (count($this->notes) >= 1) {
+            foreach ($this->notes as $note) {
+              echo "<div class='note'>";
+              echo "<h1><span class='date'>";
+              echo $note['year_posted'] . "/";
+              echo $note['month_posted'] . "/";
+              echo $note['day_posted'] . "/";
+              echo "</span><a href='" . $note['url'] . "'>";
+              echo $note['title'] . "</a></h1>";
+              echo $note['text'];
+              echo "</div>";
+            }
+          } else {
+            echo "<br>";
+            echo "<h1>sorry, nothing here</h2>";
+            echo "<pre>Empty set (0.00 sec)</pre>";
+          }
+        ?>
+      </div>
       <div id="contact_me"><h1><a href=
       "mailto:dylan@psu.edu">dylan</a></h1><a href=
       "mailto:dylan@psu.edu">@psu.edu</a>

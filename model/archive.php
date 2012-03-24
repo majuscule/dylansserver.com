@@ -2,6 +2,8 @@
 
 class archive extends model {
 
+  public $notes = array();
+
   public function __construct() {
     parent::__construct();
   }
@@ -16,10 +18,11 @@ class archive extends model {
   }
 
   public function display() {
+      $this->fetch_notes();
       require_once("view/archive.php");
   }
 
-  public function display_notes() {
+  public function fetch_notes() {
     switch (true) {
       case (isset($_GET['year']) && !isset($_GET['month'])
                 && !isset($_GET['day'])):
@@ -50,28 +53,14 @@ class archive extends model {
                                 $_GET['day']);
         break;
     }
-    if (count($result) >= 1) {
-      echo "<div id='notes'>";
-      foreach ($result as $row => $entry) {
-        $title = $entry['title'];
-        $url = '/note/' . $entry['url'];
-        $date_posted =  explode("-", $entry['date_posted']);
-        $year_posted = $date_posted[0];
-        $month_posted = $date_posted[1];
-        $datetime_posted = explode(' ', $date_posted[2]);
-        $day_posted = $datetime_posted[0];
-        echo "<div class='note'>";
-        echo "<h1><span class='date'>";
-        echo "$year_posted/$month_posted/$day_posted/";
-        echo "</span><a href='$url'>$title</a></h1>";
-        echo $entry['text'];
-        echo "</div>";
-      }
-      echo "</div>";
-    } else {
-      echo "<br>";
-      echo "<h1>sorry, nothing here</h2>";
-      echo "<pre>Empty set (0.00 sec)</pre>";
+    foreach ($result as $row => $entry) {
+      $entry['url'] = '/note/' . $entry['url'];
+      $date_posted = explode("-", $entry['date_posted']);
+      $entry['year_posted'] = $date_posted[0];
+      $entry['month_posted'] = $date_posted[1];
+      $entry['datetime_posted'] = explode(' ', $date_posted[2]);
+      $entry['day_posted'] = $entry['date_posted'][0];
+      $this->notes[$row] = $entry;
     }
   }
 
