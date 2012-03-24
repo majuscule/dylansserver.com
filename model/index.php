@@ -2,25 +2,32 @@
 
 class index extends model {
 
+  public $exhibits = array();
+  public $projects = array();
+
+  public function __construct() {
+      parent::__construct();
+      $this->fetch_exhibits();
+      $this->fetch_projects();
+  }
+
   public function display() {
       require_once("view/index.php");
   }
 
-  public function display_exhibits() {
-    echo "<div id='exhibit'>";
+  private function fetch_exhibits() {
     $sql = "SELECT text FROM projects ORDER BY rank";
     $result = $this->db->query($sql);
     while ($entry = $result->fetch_object()) {
-      echo $entry->text;
+      $this->exhibits[] = $entry->text;
     }
-    echo "</div>";
   }
 
-  public function list_projects() {
+  private function fetch_projects() {
     $sql = "SELECT title FROM projects ORDER BY rank";
     $result = $this->db->query($sql);
     while ($entry = $result->fetch_object()) {
-      echo "<li><a class='tab' href='$entry->title'>$entry->title</a></li>";
+        $this->projects[] = $entry->title;
     }
   }
 

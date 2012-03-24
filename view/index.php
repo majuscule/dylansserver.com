@@ -34,12 +34,22 @@
       border="0"></a>
     </div>
     <div id="content">
-      <?php $this->display_exhibits() ?>
+      <div id='exhibit'>
+        <?php
+          foreach ($this->exhibits as $exhibit) {
+            echo $exhibit;
+          }
+        ?>
+      </div>
       <ul id="portfolio">
         <li>
            <h3>my projects:</h3>
         </li>
-        <?php $this->list_projects() ?>
+        <?php
+          foreach ($this->projects as $project => $title) {
+              echo "<li><a class='tab' href='$title'>$title</a></li>";
+          }
+        ?>
         <li>
           <h3>things i've done for others:</h3>
         </li>
