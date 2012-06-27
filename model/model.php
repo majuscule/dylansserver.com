@@ -31,7 +31,7 @@ class model {
     $args = func_get_args();
     $statement = $this->db->prepare($args[0]);
     $args = array_slice($args, 1);
-    call_user_func_array(array($statement, 'bind_param'), &$args);
+    call_user_func_array(array($statement, 'bind_param'), $args);
     $statement->execute();
     $return = array();
     $statement->store_result();
