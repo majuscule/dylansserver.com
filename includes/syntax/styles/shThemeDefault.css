@@ -14,6 +14,8 @@
  * @license
  * Dual licensed under the MIT and GPL licenses.
  */
+
+/*
 .syntaxhighlighter {
   background-color: white !important;
 }
@@ -26,6 +28,8 @@
 .syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
   background-color: #e0e0e0 !important;
 }
+*/
+
 .syntaxhighlighter .line.highlighted.number {
   color: black !important;
 }

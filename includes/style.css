@@ -25,6 +25,10 @@ margin:0;
 padding:0;
 }
 
+body {
+    background-image: url('../images/gray_jean.png');
+}
+
 h3 {
 margin-top:15px;
 font-family:MuseoSlab500;
