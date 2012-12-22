@@ -160,8 +160,7 @@ text-align:left;
 }
 
 #comment .submit {
-background:#FFF;
-border:1px solid #FFF;
+border:none;
 color:blue;
 cursor:pointer;
 font-size:120%;
