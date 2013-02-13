@@ -22,8 +22,9 @@
       SyntaxHighlighter.all();
     }
   </script>
-  <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
+  <script type='text/javascript' src='https://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
   <script type='text/javascript' src='/includes/comment.js'></script>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body onload="return typeof highlight == 'function' ? highlight() : true">
