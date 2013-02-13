@@ -85,11 +85,11 @@ class note extends model {
     $i = 0;
     foreach ($result as $row => $entry) {
       $this->comment[$i]['date_posted'] = $entry['date_posted'];
-      $this->comment[$i]['author']  = $entry['author'];
+      $this->comment[$i]['author']  = htmlspecialchars($entry['author']);
       $this->comment[$i]['text'] = htmlspecialchars($entry['text']);
-      $this->comment[$i]['head'] = "<h3>" . htmlspecialchars($author) . "</h3>";
       $i++;
     }
+    require_once('view/comment.php');
   }
 
   public function display_comment_form() {

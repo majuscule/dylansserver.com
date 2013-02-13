@@ -92,7 +92,7 @@
   width: 100% !important;
   height: 100% !important;
   border: none !important;
-  background: white !important;
+  /*background: white !important;*/
   padding-left: 1em !important;
   overflow: hidden !important;
   white-space: pre !important;
@@ -225,6 +225,7 @@
   color: black !important;
 }
 
+/*
 .syntaxhighlighter {
   background-color: white !important;
 }
@@ -237,6 +238,8 @@
 .syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
   background-color: #e0e0e0 !important;
 }
+*/
+
 .syntaxhighlighter .line.highlighted.number {
   color: black !important;
 }
@@ -251,7 +254,7 @@
 }
 .syntaxhighlighter .gutter .line.highlighted {
   background-color: #6ce26c !important;
-  color: white !important;
+  /*color: white !important;*/
 }
 .syntaxhighlighter.printing .line .content {
   border: none !important;
@@ -261,7 +264,7 @@
 }
 .syntaxhighlighter.collapsed .toolbar {
   color: blue !important;
-  background: white !important;
+  /*background: white !important;*/
   border: 1px solid #6ce26c !important;
 }
 .syntaxhighlighter.collapsed .toolbar a {

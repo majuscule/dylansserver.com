@@ -4,6 +4,8 @@ ErrorDocument 404 /404.php
 RewriteEngine on
 
 RewriteRule ^resume$ /res.pdf [L]
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 RewriteRule ^notes/rss/?$ /index.php?rss=true [L]
 

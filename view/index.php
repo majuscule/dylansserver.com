@@ -7,23 +7,7 @@
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/index.js'></script>
-  <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
-  <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-  <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
-  <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
-  <script type='text/javascript'>
-    function highlight() {
-      SyntaxHighlighter.autoloader(
-       'js /includes/syntax/scripts/shBrushJScript.js',
-       'bash /includes/syntax/scripts/shBrushBash.js',
-       'sql /includes/syntax/scripts/shBrushSql.js',
-       'cpp /includes/syntax/scripts/shBrushCpp.js');
-      SyntaxHighlighter.defaults['gutter'] = false;
-      SyntaxHighlighter.defaults['toolbar'] = false;
-      SyntaxHighlighter.all();
-    }
-  </script>
-  <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body onload="return typeof highlight == 'function' ? highlight() : true">
@@ -51,7 +35,17 @@
           }
         ?>
         <li>
-          <h3>things i've done for others:</h3>
+          <h3>things i've worked on:</h3>
+        </li>
+ 
+        <li><a href=
+        "https://duckduckgo.com">duckduckgo.com</a></li>
+ 
+        <li><a href=
+        "http://tempositions.com">tempositions.com</a></li>
+ 
+        <li>
+          <h3>things i've made for others:</h3>
         </li>
  
         <li><a href=
@@ -61,18 +55,14 @@
         "http://transfishing.com">transfishing.com</a></li>
  
         <li>
-          <h3>something i've worked on:</h3>
-        </li>
- 
-        <li><a href=
-        "http://tempositions.com">tempositions.com</a></li>
- 
-        <li>
           <h3>my repositories:</h3>
         </li>
  
         <li><a href=
         "/git/">git://dylansserver.com</a></li>
+ 
+        <li><a href=
+        "https://github.com/nospampleasemam">git://github.com/nospampleasemam</a></li>
  
         <li>
           <h3>some notes:</h3>
@@ -92,16 +82,21 @@
         </li>
 
         <li>
-          <div id="contact_me"><h1><a href=
-          "mailto:dylan@psu.edu">dylan</a></h1><a href=
-          "mailto:dylan@psu.edu">@psu.edu</a>
+          <div id="contact_me">
+            <h1><a href= "mailto:dylan@dylansserver.com">dylan</a></h1>
+            <a href= "mailto:dylan@dylansserver.com">@dylansserver.com</a>
+           <br>
+           [<a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&amp;search=0xBE93C5C18CD4C40F">pgp key</a>]
           </div>
         </li>
       </ul>
     </div>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    &nbsp;
   </div>
 </body>
-</html>
 </html>
