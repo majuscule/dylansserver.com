@@ -35,7 +35,17 @@
           }
         ?>
         <li>
-          <h3>things i've done for others:</h3>
+          <h3>things i've worked on:</h3>
+        </li>
+ 
+        <li><a href=
+        "https://duckduckgo.com">duckduckgo.com</a></li>
+ 
+        <li><a href=
+        "http://tempositions.com">tempositions.com</a></li>
+ 
+        <li>
+          <h3>things i've made for others:</h3>
         </li>
  
         <li><a href=
@@ -45,18 +55,14 @@
         "http://transfishing.com">transfishing.com</a></li>
  
         <li>
-          <h3>something i've worked on:</h3>
-        </li>
- 
-        <li><a href=
-        "http://tempositions.com">tempositions.com</a></li>
- 
-        <li>
           <h3>my repositories:</h3>
         </li>
  
         <li><a href=
         "/git/">git://dylansserver.com</a></li>
+ 
+        <li><a href=
+        "https://github.com/nospampleasemam">git://github.com/nospampleasemam</a></li>
  
         <li>
           <h3>some notes:</h3>
@@ -76,16 +82,21 @@
         </li>
 
         <li>
-          <div id="contact_me"><h1><a href=
-          "mailto:dylan@psu.edu">dylan</a></h1><a href=
-          "mailto:dylan@psu.edu">@psu.edu</a>
+          <div id="contact_me">
+            <h1><a href= "mailto:dylan@dylansserver.com">dylan</a></h1>
+            <a href= "mailto:dylan@dylansserver.com">@dylansserver.com</a>
+           <br>
+           [<a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&amp;search=0xBE93C5C18CD4C40F">pgp key</a>]
           </div>
         </li>
       </ul>
     </div>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    &nbsp;
   </div>
 </body>
-</html>
 </html>
