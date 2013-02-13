@@ -7,23 +7,7 @@
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/index.js'></script>
-  <script type='text/javascript' src='/includes/syntax/scripts/shCore.js'></script>
-  <script type='text/javascript' src='/includes/syntax/scripts/shAutoloader.js'></script>
-  <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shCore.css'>
-  <link type='text/css' rel='stylesheet' href='/includes/syntax/styles/shThemeDefault.css'>
-  <script type='text/javascript'>
-    function highlight() {
-      SyntaxHighlighter.autoloader(
-       'js /includes/syntax/scripts/shBrushJScript.js',
-       'bash /includes/syntax/scripts/shBrushBash.js',
-       'sql /includes/syntax/scripts/shBrushSql.js',
-       'cpp /includes/syntax/scripts/shBrushCpp.js');
-      SyntaxHighlighter.defaults['gutter'] = false;
-      SyntaxHighlighter.defaults['toolbar'] = false;
-      SyntaxHighlighter.all();
-    }
-  </script>
-  <script type='text/javascript' src='http://www.google.com/recaptcha/api/js/recaptcha_ajax.js'></script>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body onload="return typeof highlight == 'function' ? highlight() : true">
