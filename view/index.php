@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -14,8 +13,7 @@
   <div id="structure">
     <div id="banner">
       <a href="<?php echo $this->home_link ?>">
-      <img src="/images/dylansserver.png" alt="dylansserver"
-      border="0"></a>
+      <img src="/images/dylansserver.png" alt="dylansserver"></a>
     </div>
     <div id="content">
       <div id='exhibit'>
@@ -37,10 +35,13 @@
         <li>
           <h3>things i've worked on:</h3>
         </li>
+
+        <li><a href=
+        "http://phoenixage.com/">phoenixage.com</a></li>
  
         <li><a href=
         "https://duckduckgo.com">duckduckgo.com</a></li>
- 
+
         <li><a href=
         "http://tempositions.com">tempositions.com</a></li>
  
