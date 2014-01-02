@@ -50,7 +50,7 @@ class page extends model {
       $entry['year_posted'] = $date_posted[0];
       $entry['month_posted'] = $date_posted[1];
       $entry['datetime_posted'] = explode(' ', $date_posted[2]);
-      $entry['day_posted'] = $entry['date_posted'][0];
+      $entry['day_posted'] = $entry['datetime_posted'][0];
       $this->notes[$row] = $entry;
     }
   }
