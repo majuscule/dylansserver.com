@@ -87,7 +87,8 @@
             <h1><a href= "mailto:dylan@dylansserver.com">dylan</a></h1>
             <a href= "mailto:dylan@dylansserver.com">@dylansserver.com</a>
            <br>
-           [<a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&amp;search=0xBE93C5C18CD4C40F">pgp key</a>]
+           <!-- [<a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&amp;search=0xBE93C5C18CD4C40F">pgp key</a>] -->
+           [<a href="/pubkey.pgp.asc">pgp key</a>]
           </div>
         </li>
       </ul>
@@ -99,5 +100,6 @@
     <br>
     &nbsp;
   </div>
+<? include 'analytics.php' ?>
 </body>
 </html>

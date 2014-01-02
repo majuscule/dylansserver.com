@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -31,13 +30,11 @@
   <div id="structure">
     <div id="banner">
       <a href="<?php echo $this->home_link ?>">
-      <img src="/images/dylansserver.png" alt="dylansserver"
-      border="0"></a>
+      <img src="/images/dylansserver.png" alt="dylansserver"></a>
     </div>
 
     <div id="content">
       <div id="notes">
-        <div id="notes">
         <?php
           foreach ($this->notes as $note) {
             echo "<div class='note'>";
@@ -52,6 +49,7 @@
             echo "</a>";
             echo "</h1>";
             echo $note['text'];
+            echo "</div>";
           }
         ?>
       </div>
@@ -69,12 +67,13 @@
     </h1>
     </div>
       <div id="contact_me"><h1><a href=
-      "mailto:dylan@psu.edu">dylan</a></h1><a href=
-      "mailto:dylan@psu.edu">@psu.edu</a>
+      "mailto:dylan@dylansserver.com">dylan</a></h1><a href=
+      "mailto:dylan@dylansserver.com">@dylansserver.com</a>
       </div>
     </div>
     <br>
     <br>
   </div>
+<? include 'analytics.php' ?>
 </body>
 </html>
