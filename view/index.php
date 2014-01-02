@@ -2,11 +2,11 @@
 
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <title><?php echo $this->title ?></title>
   <link rel="icon" href="/favicon.ico" type="image/png">
   <link href='/includes/style.css' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src='/includes/index.js'></script>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body onload="return typeof highlight == 'function' ? highlight() : true">
