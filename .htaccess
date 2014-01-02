@@ -1,11 +1,15 @@
 ErrorDocument 404 /404.php
 
-
 RewriteEngine on
 
-RewriteRule ^resume$ /res.pdf [L]
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+RewriteRule ^analytics$ /piwik [L]
+RewriteRule ^id$ /id_rsa.pub [L]
+RewriteRule ^pubkey.pgp.asc$ /dylan@dylansserver.com.pubkey.asc [L]
+RewriteRule ^cellular-automata/?$ /cellular-automata/index.php [L]
+RewriteRule ^resume/?$ /resume.pdf [L]
 
 RewriteRule ^notes/rss/?$ /index.php?rss=true [L]
 
@@ -26,5 +30,5 @@ RewriteRule ^notes/([0-9]{4})/([0-9]{2})/?$ /index.php?year=$1&month=$2 [L]
 RewriteRule ^notes/([0-9]{4})/([0-9]{2})/([0-9]{2})/?$ /index.php?year=$1&month=$2&day=$3 [L]
 
 ## This needs to be last as to avoid catching /notes/ etc.
-RewriteRule ^([^/\.]+)/?$ /index.php?project=$1 [L]
+#RewriteRule ^([^/\.]+)$ /index.php?project=$1 [L]
 
