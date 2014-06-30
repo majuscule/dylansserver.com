@@ -269,9 +269,4 @@ b.callback.apply(this,arguments);a.dequeue()}})})}})(jQuery);
 			$(activeTab).show("puff", 600);
 		$(activeTab).addClass("active_exhibit");
 	});
-	$('#showdivs').click(function() {
-		for(i=0;i<divs.length;i++){
-			divs[i].className += (" shownDiv");
-		}
-	});
 });

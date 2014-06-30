@@ -25,16 +25,11 @@
       </div>
       <ul id="portfolio">
         <li>
-           <h3>my projects:</h3>
+          <h3>professional work:</h3>
         </li>
-        <?php
-          foreach ($this->projects as $project => $title) {
-              echo "<li><a class='tab' href='$title'>$title</a></li>";
-          }
-        ?>
-        <li>
-          <h3>things i've worked on:</h3>
-        </li>
+
+        <li><a href=
+        "https://kabam.com/">kabam.com</a></li>
 
         <li><a href=
         "http://phoenixage.com/">phoenixage.com</a></li>
@@ -44,19 +39,20 @@
 
         <li><a href=
         "http://tempositions.com">tempositions.com</a></li>
- 
-        <li>
-          <h3>things i've made for others:</h3>
-        </li>
- 
+
         <li><a href=
         "http://activehamptons.com">activehamptons.com</a></li>
  
-        <li><a href=
-        "http://transfishing.com">transfishing.com</a></li>
- 
         <li>
-          <h3>my repositories:</h3>
+           <h3>personal projects:</h3>
+        </li>
+        <?php
+          foreach ($this->projects as $project => $title) {
+              echo "<li><a class='tab' href='$title'>$title</a></li>";
+          }
+        ?>
+        <li>
+          <h3>code repositories:</h3>
         </li>
  
         <li><a href=
@@ -88,6 +84,7 @@
             <a href= "mailto:dylan@dylansserver.com">@dylansserver.com</a>
            <br>
            <!-- [<a href="http://pgp.mit.edu:11371/pks/lookup?op=vindex&amp;search=0xBE93C5C18CD4C40F">pgp key</a>] -->
+           <!-- [<a href="https://keybase.io/majuscule/key.asc">pgp key</a>] -->
            [<a href="/pubkey.pgp.asc">pgp key</a>]
           </div>
         </li>

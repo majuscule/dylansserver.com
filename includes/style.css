@@ -95,10 +95,6 @@ text-align:left;
 padding:10px;
 }
 
-.shownDiv {
-border:1px solid #000;
-}
-
 #contact_me {
 margin-top:100px;
 text-align:left;
@@ -187,11 +183,11 @@ font-family:MuseoSlab500;
 font-size:80%;
 }
 
-#drawcss_title,#drawcss_entry,#youtube_backup_title,#i_like_pandora_title,#fvlc_title,#irssi-notify_title, #powermate_title {
+.project_title {
 font-size:1.6em;
 }
 
-#youtube_backup_entry,#i_like_pandora_entry,#matrixnullspace_entry,#fvlc_entry,#irssi-notify_entry,#dylansserver_entry,#metadata_writer_entry,#powermate_entry,#cellular-automaton_entry {
+.project_entry {
 font-size:1.4em;
 }
 
